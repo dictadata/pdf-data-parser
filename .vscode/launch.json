@@ -1,0 +1,58 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "pwa-node",
+      "name": "PdfDataParser",
+      "cwd": "${workspaceFolder}/test/",
+      "program": "${workspaceFolder}/test/testParser.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "pwa-node",
+      "name": "PdfDataReader",
+      "cwd": "${workspaceFolder}/test/",
+      "program": "${workspaceFolder}/test/testReader.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "pwa-node",
+      "name": "RowAsObjects",
+      "cwd": "${workspaceFolder}/test/",
+      "program": "${workspaceFolder}/test/testAsObjects.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "pwa-node",
+      "name": "getContent",
+      "cwd": "${workspaceFolder}/test/",
+      "program": "${workspaceFolder}/test/pdf.js/getContent.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "pwa-node",
+      "name": "getCells",
+      "cwd": "${workspaceFolder}/test/",
+      "program": "${workspaceFolder}/test/pdf.js/getCells.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    }
+  ]
+}

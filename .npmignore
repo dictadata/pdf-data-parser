@@ -1,0 +1,8 @@
+test/output/
+
+logs/
+*.log
+
+# Editor directories and files
+.vscode/settings.json
+.vscode/tasks.json
