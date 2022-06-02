@@ -169,7 +169,7 @@ Parser output:
 ]
 ```
 
-## Notes {#notes}
+## Notes
 
 ---
 
