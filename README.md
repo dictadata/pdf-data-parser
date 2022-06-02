@@ -1,6 +1,6 @@
-# pdfDataParser 2.3.x
+# pdf-data-parser 0.9.x
 
-Storage junction for PDF tabular data.
+Parse and stream a PDF as tabular data using Node.js and Mozilla's pdf.js library.
 
 ## Installation
 

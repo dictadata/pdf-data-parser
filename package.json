@@ -1,6 +1,6 @@
 {
   "name": "pdf-data-parser",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Parse and stream a PDF as tabular data using Node.js and Mozilla's pdf.js library.",
   "main": "lib/index.js",
   "scripts": {
@@ -8,22 +8,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/dictadata/pdf-data-parser.git"
+    "url": "git+ssh://git@gitlab.com/drewlab/pdf-data-parser.git"
   },
   "keywords": [
     "pdf",
     "json",
     "pdf.js",
     "parser",
+    "reader",
+    "extract",
+    "export",
     "data",
-    "tables"
+    "table"
   ],
   "author": "Drew O. Letcher",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/dictadata/pdf-data-parser/issues"
+    "url": "https://gitlab.com/drewlab/pdf-data-parser/issues"
   },
-  "homepage": "https://gitlab.com/dictadata/pdf-data-parser#readme",
+  "homepage": "https://gitlab.com/drewlab/pdf-data-parser#readme",
   "engines": {
     "node": ">=12.0.0"
   },
