@@ -99,7 +99,7 @@ If a row is encounter with more cells than headers array the extra cell property
 
 ### Hello World
 
-[HelloWorld.pdf](./data/pdf/helloworld.pdf) is a single page PDF document with the string "Hello, world!" positioned on the page. The parser output is one row with one cell.
+[HelloWorld.pdf](./test/data/pdf/helloworld.pdf) is a single page PDF document with the string "Hello, world!" positioned on the page. The parser output is one row with one cell.
 
 ```json
 [
@@ -125,7 +125,7 @@ Output as JSON objects:
 
 ### Census.gov Class Codes
 
-[ClassCodes.pdf](./data/pdf/ClassCodes.pdf) contains one simple table spanning multiple pages. It is a straight forward parsing of all rows in the document.
+[ClassCodes.pdf](./test/data/pdf/ClassCodes.pdf) contains one simple table spanning multiple pages. It is a straight forward parsing of all rows in the document.
 
 ```javascript
 let parser = new PdfDataParser({ url: "https://www2.census.gov/geo/pdfs/reference/ClassCodes.pdf" })
@@ -144,9 +144,9 @@ Parser output:
 
 ### USGS.gov File Specification
 
-[Nat_State_Topic_File_formats.pdf](./data/pdf/Nat_State_Topic_File_formats.pdf) contains USGS file formats for various downloadable reference files.  It is a rather complicated example containing multiple tables of data interspersed with headings, descriptive paragraphs, vertical column spans, cells split across pages and embedded hyperlinks.  See [Notes](#notes) below.
+[Nat_State_Topic_File_formats.pdf](./test/data/pdf/Nat_State_Topic_File_formats.pdf) contains USGS file formats for various downloadable reference files.  It is a rather complicated example containing multiple tables of data interspersed with headings, descriptive paragraphs, vertical column spans, cells split across pages and embedded hyperlinks.  See [Notes](#notes) below.
 
-For this example the parser will look for tabular data following the heading "Government Units File Format" found on pages 6 and 7 in [Nat_State_Topic_File_formats.pdf](./data/pdf/Nat_State_Topic_File_formats.pdf).
+For this example the parser will look for tabular data following the heading "Government Units File Format" found on pages 6 and 7 in [Nat_State_Topic_File_formats.pdf](./test/data/pdf/Nat_State_Topic_File_formats.pdf).
 
 ```javascript
 let parser = new PdfDataParser({  
