@@ -1,5 +1,7 @@
 # pdf-data-parser Change Log
 
+- version 1.0.4
+  - updated README with info about PDF marked content
 - version 1.0.3
   - bug fix of typo using `options.cells` argument
 - version 1.0.2
