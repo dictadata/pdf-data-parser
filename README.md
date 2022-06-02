@@ -5,10 +5,20 @@ Parse and stream a PDF as tabular data using Node.js and Mozilla's pdf.js librar
 ## Installation
 
 ```bash
-npm install pdfDataParser
+npm install pdf-data-parser
 ```
 
-## Basic Usage
+## Overview
+
+---
+
+In general, PdfDataParser given a PDF document will output an array of arrays (rows).  With default settings PdfDataParser will output all rows in the document.
+
+PdfDataParser only works on a certain subset of PDF documents specifically those that contain some type of tabular data in a grid/table format. The parser uses marked content and x,y position information returned by the Mozilla [pdf.js](https://github.com/mozilla/pdf.js) API to turn PDF content items into rows of cells.
+
+Rows and Cells terminology is used instead of Rows and Columns because the text positioning in a PDF document flows more like an HTML page than database query results. Some rows may have more cells than other rows. For example a heading or description paragraph will be a row (array) with one cell (string).  See [Notes](#Notes) below.
+
+### Basic Usage
 
 ```javascript
 const { PdfDataParser } = require("pdf-data-parser"); 
@@ -21,7 +31,21 @@ async function myFunc() {
 }
 ```
 
+### PdfDataParser Options
+
+PdfDataParser constructor takes an options object with the following fields.
+
+`{string|URL} url` - The local path or URL of the PDF document.
+
+`{string} heading` - Section heading in the document after which the parser will look for tabular data, default: none.
+
+`{integer} cells` - Minimum number of cells in tabular data, default: 1. Parser will look for the first row that contains at least `cells` count of cells. The parser will output rows until it encounters a row with less than `cells` count of cells.
+
+`{boolean} newlines` - Preserve new lines in cell data, default: false. When false newlines will be replaced by spaces. Preserving newlines characters will keep the formatting of multiline text such as descriptions. Though, newlines are problematic for cells containing multiword identifiers and keywords that might be wrapped in the PDF text.
+
 ## Streaming Usage
+
+---
 
 ```javascript
 const { PdfDataReader } = require("pdf-data-parser"); 
@@ -36,11 +60,46 @@ reader.on('data', (row) => {
 reader.on('end', () => {
   // do something with the rows
 });
+
+reader.on('error', (err) => {
+  // log error
+})
 ```
+
+### PdfDataParser Options
+
+PdfDataReader options are the same as [PdfDataParser Options](#pdf-data-parser-options).
+
+## Streaming As Objects
+
+---
+
+PdfDataReader operates in Object Mode. The parser outputs an array of rows (array). To convert the row into a JSON object use the RowAsObjects transform.
+
+```javascript
+const { PdfDataReader, RowAsObjects } = require("pdf-data-parser");
+const { pipeline } = require('node:stream/promises');
+
+let reader = new PdfDataReader(options);
+let transform1 = new RowAsObjects(options);
+let writer = <some writable that can handle Object Mode data>
+
+await pipeline(reader, transform1, writer);
+```
+
+### RowAsObjects Options
+
+`{array} headers` - array of cell property names, default: none. If a headers array is NOT specified then parser will assume the first row found contains the cell property names.
+
+If a row is encounter with more cells than headers the extra cell property names will be the ordinal position. For example: `{ ..., "4": value, "5": value }`.
 
 ## Examples
 
-[HelloWorld.pdf](./data/pdf/helloworld.pdf)
+---
+
+### Hello World
+
+[HelloWorld.pdf](./data/pdf/helloworld.pdf) is a single page PDF document with the string "Hello, world!" positioned on the page. The parser output is one row with one cell.
 
 ```json
 [
@@ -48,13 +107,62 @@ reader.on('end', () => {
 ]
 ```
 
-Census file format from [Nat_State_Topic_File_formats.pdf](./data/pdf/Nat_State_Topic_File_formats.pdf) in section "Government Units File Format".
+To transform the row array into an object specify the headers option to RowAsObjects transform.
+
+```javascript
+let transform = new RowAsObjects({ 
+  headers: [ "Greeting" ] 
+})
+```
+
+Output as JSON objects:
+
+```json
+[
+  { "Greeting": "Hello, world!" }
+]
+```
+
+### Census.gov Class Codes
+
+[ClassCodes.pdf](./data/pdf/ClassCodes.pdf) contains one simple table spanning multiple pages. It is a straight forward parsing of all rows in the document.
+
+```javascript
+let parser = new PdfDataParser({ url: "https://www2.census.gov/geo/pdfs/reference/ClassCodes.pdf" })
+```
+
+Parser output:
+
+```json
+[
+  ["Class Code","Class Code Description","Associated Geographic Entity"],
+  ["A1","Airport with scheduled commercial flights that also serves as a military installation","Locality Point, Military Installation"],
+   ...
+  ["Z9","County subdivision not defined","County Subdivision"]
+]
+```
+
+### USGS.gov File Format Specification
+
+[Nat_State_Topic_File_formats.pdf](./data/pdf/Nat_State_Topic_File_formats.pdf) contains USGS file formats for various downloadable reference files.  It is a rather complicated example containing multiple tables of data interspersed with headings, desciptive paragraphs, vertical column spans, cells split across pages and embedded hyperlinks.  See [Notes](#Notes) below.
+
+For this example the parser will look for tabular data following the heading "Government Units File Format" found on pages 6 and 7 in [Nat_State_Topic_File_formats.pdf](./data/pdf/Nat_State_Topic_File_formats.pdf).
+
+```javascript
+let parser = new PdfDataParser({  
+  url: "https://geonames.usgs.gov/docs/pubs/Nat_State_Topic_File_formats.pdf",  
+  heading: "Government Units File Format",  
+  cells: 3  
+})
+```
+
+Parser output:
 
 ```json
 [
   ["Name","Type","Length/Decimals","Description"],
-  ["Feature ID","Number","10","The Feature ID number for the governmental unit."],
-  ["Unit Type","Character","50","The type of government unit. Values are County, State, Country."],
+  ["Feature ID","Number","10","ID number for the governmental unit."],
+  ["Unit Type","Character","50","Type of government unit."],
   ...,
   ["Country Name","Character","100"],
   ["Feature Name","Character","120","Official feature name"]
@@ -63,5 +171,10 @@ Census file format from [Nat_State_Topic_File_formats.pdf](./data/pdf/Nat_State_
 
 ## Notes
 
-* Only supports PDF files with simple tabular format. Does not support reading PDF forms.
-* Does not support cells that cross page boundaries.
+---
+
+* Only supports PDF files containing table-like layouts. Does not support reading PDF forms.
+* Tables that span multiple pages are supported. Though, proper parsing of individual cells crossing page boundaries is not supported, currently. The cell will be split into multiple rows. The second row may not contain the proper number of cells, i.e. missing values are not supported.
+* Does not support embedded hyperlinks. The link information is not provided type pdf.js API.
+* Does not support identification of titles, headings, column headers or any formatting information for a cell. This style information is not provided type pdf.js API.
+* Vertical spanning cells are parsed with first row where the cell is encountered. Subsequent rows will not contain the cell and have one less cell. Currently, vertical spanning cells must be at the end of the row otherwise the ordinal position of cells in the following rows may be incorrect, i.e. missing values are not supported.

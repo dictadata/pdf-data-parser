@@ -18,6 +18,6 @@ async function test(options) {
 
 (async () => {
   await test({ url: "./data/pdf/helloworld.pdf", newlines: false });
-  await test({ url: "./data/pdf/ClassCodes.pdf", newlines: false });
-  await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", columns: 3 });
+  await test({ url: "https://www2.census.gov/geo/pdfs/reference/ClassCodes.pdf", newlines: false });
+  await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3 });
 })();
