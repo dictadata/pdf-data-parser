@@ -16,7 +16,11 @@ PdfDataParser given a PDF document will output an array of arrays (rows).  With 
 
 PdfDataParser only works on a certain subset of PDF documents specifically those that contain some type of tabular data in a grid/table format. The parser uses marked content and x,y position information returned by the Mozilla [pdf.js](https://github.com/mozilla/pdf.js) API to turn PDF content items into rows of cells.
 
-Rows and Cells terminology is used instead of Rows and Columns because the text positioning in a PDF document flows more like an HTML page than database query results. Some rows may have more cells than other rows. For example a heading or description paragraph will be a row (array) with one cell (string).  See [Notes](#notes) below.
+Rows and Cells terminology is used instead of Rows and Columns because the marked content in a PDF document flows more like an HTML page than database query results. Some rows may have more cells than other rows. For example a heading or description paragraph will be a row (array) with one cell (string).  See [Notes](#notes) below.
+
+> If the PDF document does not contain marked content the parser will display a console warning. In this case PdfDataParser may not be able to reliably parse data in the document based solely on x,y positioning.
+>
+> <font color="salmon">Warning: PDF document does not contain Marked Content</font>
 
 ### Basic Usage
 
