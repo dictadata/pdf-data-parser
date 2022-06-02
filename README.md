@@ -16,7 +16,7 @@ In general, PdfDataParser given a PDF document will output an array of arrays (r
 
 PdfDataParser only works on a certain subset of PDF documents specifically those that contain some type of tabular data in a grid/table format. The parser uses marked content and x,y position information returned by the Mozilla [pdf.js](https://github.com/mozilla/pdf.js) API to turn PDF content items into rows of cells.
 
-Rows and Cells terminology is used instead of Rows and Columns because the text positioning in a PDF document flows more like an HTML page than database query results. Some rows may have more cells than other rows. For example a heading or description paragraph will be a row (array) with one cell (string).  See [Notes](#Notes) below.
+Rows and Cells terminology is used instead of Rows and Columns because the text positioning in a PDF document flows more like an HTML page than database query results. Some rows may have more cells than other rows. For example a heading or description paragraph will be a row (array) with one cell (string).  See [Notes](#notes) below.
 
 ### Basic Usage
 
@@ -144,7 +144,7 @@ Parser output:
 
 ### USGS.gov File Specification
 
-[Nat_State_Topic_File_formats.pdf](./data/pdf/Nat_State_Topic_File_formats.pdf) contains USGS file formats for various downloadable reference files.  It is a rather complicated example containing multiple tables of data interspersed with headings, descriptive paragraphs, vertical column spans, cells split across pages and embedded hyperlinks.  See [Notes](#Notes) below.
+[Nat_State_Topic_File_formats.pdf](./data/pdf/Nat_State_Topic_File_formats.pdf) contains USGS file formats for various downloadable reference files.  It is a rather complicated example containing multiple tables of data interspersed with headings, descriptive paragraphs, vertical column spans, cells split across pages and embedded hyperlinks.  See [Notes](#notes) below.
 
 For this example the parser will look for tabular data following the heading "Government Units File Format" found on pages 6 and 7 in [Nat_State_Topic_File_formats.pdf](./data/pdf/Nat_State_Topic_File_formats.pdf).
 
@@ -169,7 +169,7 @@ Parser output:
 ]
 ```
 
-## Notes {#Notes}
+## Notes {#notes}
 
 ---
 
