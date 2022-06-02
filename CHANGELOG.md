@@ -1,5 +1,8 @@
 # pdf-data-parser Change Log
 
+- version 1.0.2
+  - allow regexp for PdfDataParser `heading` option
+  - bug fix of typo in code when using `options.cells`
 - version 1.0.1
   - fix some typos in README file
 - version 1.0.0
@@ -9,4 +12,3 @@
   - cleanup code, comments and readme
 - version 0.9.0
   - initial check-in of project files
-  
