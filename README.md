@@ -12,15 +12,15 @@ npm install pdf-data-parser
 
 ---
 
-PdfDataParser given a PDF document will output an array of arrays (rows).  With default settings PdfDataParser will output all rows in the document. Using [PdfDataParser Options](#pdf-data-parser-options) the parser can filter for the desired data table in the document.
+PdfDataParser given a PDF document will output an array of arrays (rows).  With default settings PdfDataParser will output all rows in the document including headings and paragraphs. Using [PdfDataParser Options](#pdf-data-parser-options) the parser can filter content to retrieve the desired data table in the document.
 
-PdfDataParser only works on a certain subset of PDF documents specifically those that contain some type of tabular data in a grid/table format. The parser uses marked content and x,y position information returned by the Mozilla [pdf.js](https://github.com/mozilla/pdf.js) API to turn PDF content items into rows of cells.
+PdfDataParser only works on a certain subset of PDF documents specifically those that contain some type of tabular data in a grid/table format. The parser uses marked content and x,y position information returned by the Mozilla [pdf.js](https://github.com/mozilla/pdf.js) API to transform PDF content items into rows of cells.
 
 Rows and Cells terminology is used instead of Rows and Columns because the marked content in a PDF document flows more like an HTML page than database query results. Some rows may have more cells than other rows. For example a heading or description paragraph will be a row (array) with one cell (string).  See [Notes](#notes) below.
 
-> If the PDF document does not contain marked content the parser will display a console warning. In this case PdfDataParser may not be able to reliably parse data in the document based solely on x,y positioning.
+> <font color="red">Warning: PDF document does not contain Marked Content</font>
 >
-> <font color="salmon">Warning: PDF document does not contain Marked Content</font>
+> If the PDF document does not contain marked content the parser will display a console warning. In this case PdfDataParser may not be able to reliably parse data in the document based solely on x,y positioning.
 
 ### Basic Usage
 
@@ -78,7 +78,7 @@ PdfDataReader constructor options are the same as [PdfDataParser Options](#pdf-d
 
 ---
 
-PdfDataReader operates in Object Mode. The reader outputs arrays (rows). To convert the rows into a JSON objects use the RowAsObjects transform.
+PdfDataReader operates in Object Mode. The reader outputs arrays (rows). To convert the row into a JSON object use the RowAsObjects transform.
 
 ```javascript
 const { PdfDataReader, RowAsObjects } = require("pdf-data-parser");
@@ -162,6 +162,8 @@ let parser = new PdfDataParser({
 })
 ```
 
+Note that `cells: 3` was specified even though the output has four cells.  The fourth cell of this table sometimes contains a vertical spanning cell.  Specifying `cells: 4` would cause the parser to short circuit on the row after the vertical span, because it would only contain three cells.
+
 Parser output:
 
 ```json
@@ -179,8 +181,9 @@ Parser output:
 
 ---
 
-* Only supports PDF files containing table-like layouts. Does not support reading PDF forms.
-* Tables that span multiple pages are supported. Though, proper parsing of individual cells crossing page boundaries is not supported, currently. The cell will be split into multiple rows. The second row may not contain the proper number of cells, i.e. missing values are not supported, currently.
+* Only supports PDF files containing grid/table like layouts. Does not support reading PDF forms (XFA).
+* Tables that span multiple pages are supported as long as all cell text for a row is on the same page.
+* Cells crossing page boundaries is not supported, currently. The cell will be split into multiple rows. The second row may not contain the proper number of cells, i.e. missing values are not supported, currently.
 * Embedded hyperlinks are not supported. The link information is not provided by pdf.js API.
 * Does not support identification of titles, headings, column headers, etc. by using style information for a cell. This style information is not provided by pdf.js API.
-* Vertical spanning cells are parsed with first row where the cell is encountered. Subsequent rows will not contain the cell and have one less cell. Currently, vertical spanning cells must be at the end of the row otherwise the ordinal position of cells in the following rows may be incorrect, i.e. missing values are not supported, currently.
+* Vertical spanning cells are parsed with first row where the cell is encountered. Subsequent rows will not contain the cell and have one less cell. Currently, vertical spanning cells must be at the end of the row otherwise the ordinal position of cells in the following rows will be incorrect, i.e. missing values are not supported, currently.
