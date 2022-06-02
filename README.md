@@ -177,6 +177,6 @@ Parser output:
 
 * Only supports PDF files containing table-like layouts. Does not support reading PDF forms.
 * Tables that span multiple pages are supported. Though, proper parsing of individual cells crossing page boundaries is not supported, currently. The cell will be split into multiple rows. The second row may not contain the proper number of cells, i.e. missing values are not supported, currently.
-* Hyperlinks are not supported. The link information is not provided by pdf.js API.
-* Does not support identification of titles, headings, column headers or any formatting information for a cell. This style information is not provided by pdf.js API.
+* Embedded hyperlinks are not supported. The link information is not provided by pdf.js API.
+* Does not support identification of titles, headings, column headers, etc. by using style information for a cell. This style information is not provided by pdf.js API.
 * Vertical spanning cells are parsed with first row where the cell is encountered. Subsequent rows will not contain the cell and have one less cell. Currently, vertical spanning cells must be at the end of the row otherwise the ordinal position of cells in the following rows may be incorrect, i.e. missing values are not supported, currently.
