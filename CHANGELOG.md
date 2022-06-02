@@ -1,5 +1,7 @@
 # pdf-data-parser Change Log
 
+- version 1.0.1
+  - fix some typos in README file
 - version 1.0.0
   - complete README file
   - testing updates

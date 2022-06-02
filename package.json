@@ -1,6 +1,6 @@
 {
   "name": "pdf-data-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parse and stream a PDF as tabular data using Node.js and Mozilla's pdf.js library.",
   "main": "lib/index.js",
   "scripts": {
@@ -16,6 +16,7 @@
     "pdf.js",
     "parser",
     "reader",
+    "stream",
     "extract",
     "export",
     "data",
