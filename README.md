@@ -1,4 +1,4 @@
-# pdf-data-parser 0.9.x
+# pdf-data-parser 1.0.x
 
 Parse and stream a PDF as tabular data using Node.js and Mozilla's pdf.js library.
 
@@ -74,7 +74,7 @@ PdfDataReader options are the same as [PdfDataParser Options](#pdf-data-parser-o
 
 ---
 
-PdfDataReader operates in Object Mode. The parser outputs an array of rows (array). To convert the row into a JSON object use the RowAsObjects transform.
+PdfDataReader operates in Object Mode. The reader outputs arrays (rows). To convert the rows into a JSON objects use the RowAsObjects transform.
 
 ```javascript
 const { PdfDataReader, RowAsObjects } = require("pdf-data-parser");
@@ -89,9 +89,9 @@ await pipeline(reader, transform1, writer);
 
 ### RowAsObjects Options
 
-`{array} headers` - array of cell property names, default: none. If a headers array is NOT specified then parser will assume the first row found contains the cell property names.
+`{array} headers` - array of cell property names, default: none. If a headers array is NOT specified then parser will assume the first row found contains cell property names.
 
-If a row is encounter with more cells than headers the extra cell property names will be the ordinal position. For example: `{ ..., "4": value, "5": value }`.
+If a row is encounter with more cells than headers array the extra cell property names will be the ordinal position. For example: `{ ..., "4": value, "5": value }`.
 
 ## Examples
 
@@ -142,9 +142,9 @@ Parser output:
 ]
 ```
 
-### USGS.gov File Format Specification
+### USGS.gov File Specification
 
-[Nat_State_Topic_File_formats.pdf](./data/pdf/Nat_State_Topic_File_formats.pdf) contains USGS file formats for various downloadable reference files.  It is a rather complicated example containing multiple tables of data interspersed with headings, desciptive paragraphs, vertical column spans, cells split across pages and embedded hyperlinks.  See [Notes](#Notes) below.
+[Nat_State_Topic_File_formats.pdf](./data/pdf/Nat_State_Topic_File_formats.pdf) contains USGS file formats for various downloadable reference files.  It is a rather complicated example containing multiple tables of data interspersed with headings, descriptive paragraphs, vertical column spans, cells split across pages and embedded hyperlinks.  See [Notes](#Notes) below.
 
 For this example the parser will look for tabular data following the heading "Government Units File Format" found on pages 6 and 7 in [Nat_State_Topic_File_formats.pdf](./data/pdf/Nat_State_Topic_File_formats.pdf).
 
@@ -169,12 +169,12 @@ Parser output:
 ]
 ```
 
-## Notes
+## Notes {#Notes}
 
 ---
 
 * Only supports PDF files containing table-like layouts. Does not support reading PDF forms.
 * Tables that span multiple pages are supported. Though, proper parsing of individual cells crossing page boundaries is not supported, currently. The cell will be split into multiple rows. The second row may not contain the proper number of cells, i.e. missing values are not supported.
-* Does not support embedded hyperlinks. The link information is not provided type pdf.js API.
+* Hyperlinks are not not support. The link information is not provided by pdf.js API.
 * Does not support identification of titles, headings, column headers or any formatting information for a cell. This style information is not provided type pdf.js API.
 * Vertical spanning cells are parsed with first row where the cell is encountered. Subsequent rows will not contain the cell and have one less cell. Currently, vertical spanning cells must be at the end of the row otherwise the ordinal position of cells in the following rows may be incorrect, i.e. missing values are not supported.
