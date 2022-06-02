@@ -68,7 +68,7 @@ reader.on('error', (err) => {
 
 ### PdfDataParser Options
 
-PdfDataReader options are the same as [PdfDataParser Options](#pdf-data-parser-options).
+PdfDataReader constructor options are the same as [PdfDataParser Options](#pdf-data-parser-options).
 
 ## Streaming As Objects
 
@@ -89,9 +89,11 @@ await pipeline(reader, transform1, writer);
 
 ### RowAsObjects Options
 
+RowAsObjects constructor takes an options object with the following fields.
+
 `{array} headers` - array of cell property names, default: none. If a headers array is NOT specified then parser will assume the first row found contains cell property names.
 
-If a row is encounter with more cells than headers array the extra cell property names will be the ordinal position. For example: `{ ..., "4": value, "5": value }`.
+If a row is encountered with more cells than headers array the extra cell property names will be the ordinal position. For example: `{ ..., "4": value, "5": value }`.
 
 ## Examples
 
@@ -174,7 +176,7 @@ Parser output:
 ---
 
 * Only supports PDF files containing table-like layouts. Does not support reading PDF forms.
-* Tables that span multiple pages are supported. Though, proper parsing of individual cells crossing page boundaries is not supported, currently. The cell will be split into multiple rows. The second row may not contain the proper number of cells, i.e. missing values are not supported.
-* Hyperlinks are not not support. The link information is not provided by pdf.js API.
-* Does not support identification of titles, headings, column headers or any formatting information for a cell. This style information is not provided type pdf.js API.
-* Vertical spanning cells are parsed with first row where the cell is encountered. Subsequent rows will not contain the cell and have one less cell. Currently, vertical spanning cells must be at the end of the row otherwise the ordinal position of cells in the following rows may be incorrect, i.e. missing values are not supported.
+* Tables that span multiple pages are supported. Though, proper parsing of individual cells crossing page boundaries is not supported, currently. The cell will be split into multiple rows. The second row may not contain the proper number of cells, i.e. missing values are not supported, currently.
+* Hyperlinks are not supported. The link information is not provided by pdf.js API.
+* Does not support identification of titles, headings, column headers or any formatting information for a cell. This style information is not provided by pdf.js API.
+* Vertical spanning cells are parsed with first row where the cell is encountered. Subsequent rows will not contain the cell and have one less cell. Currently, vertical spanning cells must be at the end of the row otherwise the ordinal position of cells in the following rows may be incorrect, i.e. missing values are not supported, currently.
