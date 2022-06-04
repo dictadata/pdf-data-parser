@@ -78,7 +78,7 @@ PdfDataReader constructor options are the same as [PdfDataParser Options](#pdf-d
 
 ---
 
-PdfDataReader operates in Object Mode. The reader outputs arrays (rows). To convert the row into a JSON object use the RowAsObjects transform.
+PdfDataReader operates in Object Mode. The reader outputs arrays (rows). To convert rows into a JSON objects use the RowAsObjects transform.
 
 ```javascript
 const { PdfDataReader, RowAsObjects } = require("pdf-data-parser");
