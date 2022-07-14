@@ -99,7 +99,7 @@ async function loadPage(pageNum, options) {
     }
   }
 
-  let outputFile = "./output/pdf.js/" + path.parse(options.url).name + "_content" + pageNum;
+  let outputFile = "./output/pdf.js/" + path.parse(options.url).name + "_content_p" + pageNum;
   outputFile += options.outputJSON ? ".json" : ".txt";
   console.log("output: " + outputFile);
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
@@ -112,7 +112,9 @@ async function loadPage(pageNum, options) {
 }
 
 (async () => {
-  await getContent({ url: "./data/pdf/helloworld.pdf", outputJSON: true });
-  await getContent({ url: "./data/pdf/ClassCodes.pdf", outputJSON: true });
-  await getContent({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", outputJSON: true });
+  //await getContent({ url: "./data/pdf/helloworld.pdf", outputJSON: true });7
+  //await getContent({ url: "./data/pdf/ClassCodes.pdf", outputJSON: true });
+  //await getContent({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", outputJSON: true });
+  await getContent({ url: "./data/pdf/CoJul22.pdf", outputJSON: true });
+  await getContent({ url: "./data/pdf/CongJul22.pdf", outputJSON: true });
 })();

@@ -187,7 +187,7 @@ async function loadPage(pageNum) {
     rows.push(row);
   }
 
-  let output = "./output/pdf.js/" + path.parse(pdfPath).name + "_cells" + pageNum + ".json";
+  let output = "./output/pdf.js/" + path.parse(pdfPath).name + "_cells_p" + pageNum + ".json";
   console.log("output: " + output);
   fs.mkdirSync(path.dirname(output), { recursive: true });
   fs.writeFileSync(output, JSON.stringify(rows, null, 2));
@@ -215,10 +215,14 @@ function adjacent(x, y, prevStr, cell) {
 
 (async () => {
   // Loading file from file system into typed array
-  pdfPath = process.argv[ 2 ] || "./data/pdf/helloworld.pdf";
+  //pdfPath = process.argv[ 2 ] || "./data/pdf/helloworld.pdf";
+  //await getContent();
+  //pdfPath = "./data/pdf/ClassCodes.pdf";
+  //await getContent();
+  //pdfPath = "./data/pdf/Nat_State_Topic_File_formats.pdf";
+  //await getContent();
+  pdfPath = "./data/pdf/CoJul22.pdf";
   await getContent();
-  pdfPath = "./data/pdf/ClassCodes.pdf";
-  await getContent();
-  pdfPath = "./data/pdf/Nat_State_Topic_File_formats.pdf";
+  pdfPath = "./data/pdf/CongJul22.pdf";
   await getContent();
 })();
