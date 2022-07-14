@@ -1,5 +1,8 @@
 # pdf-data-parser Change Log
 
+- version 1.0.6
+  -
+
 - version 1.0.5
   - add comment about vertical spanning cells to README
 - version 1.0.4
