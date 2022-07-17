@@ -2,9 +2,9 @@
  * test/testReader.js
  */
 
-const { PdfDataReader, RowAsObjects } = require("../lib");
+const PdfDataReader = require("../lib/PdfDataReader");
 const RowTransform = require('./_RowTransform');
-const { pipeline } = require('node:stream/promises');
+const { finished } = require('stream/promises');
 const fs = require("fs");
 const path = require("path");
 const compareFiles = require("./_compareFiles");
@@ -13,15 +13,15 @@ async function test(options) {
 
   let reader = new PdfDataReader(options);
 
-  let transform1 = new RowAsObjects(options);
-  let transform2 = new RowTransform();
+  let transform = new RowTransform();
 
-  let outputFile = "./output/RowAsObjects/" + path.parse(options.url).name + ".json";
+  let outputFile = "./output/PdfDataReader/" + path.parse(options.url).name + ".json";
   console.log("output: " + outputFile);
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
   let writer = fs.createWriteStream(outputFile, { encoding: "utf-8", autoClose: false });
 
-  await pipeline(reader, transform1, transform2, writer);
+  reader.pipe(transform).pipe(writer);
+  await finished(writer);
 
   let expected = outputFile.replace("/output/", "/expected/");
   let exitCode = compareFiles(expected, outputFile, 1);
@@ -29,9 +29,9 @@ async function test(options) {
 }
 
 (async () => {
-  if (await test({ url: "./data/pdf/helloworld.pdf", headers: [ "Greeting" ] })) return 1;
+  if (await test({ url: "./data/pdf/helloworld.pdf", newlines: false })) return 1;
   if (await test({ url: "./data/pdf/ClassCodes.pdf", newlines: false })) return 1;
-  if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3 })) return 1;
+  if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: /Government Units .*/, cells: 3 })) return 1;
   if (await test({ url: "./data/pdf/CoJul22.pdf", pageHeader: 50, pageFooter: 35, repeatingHeaders: true })) return 1;
-  if (await test({ url: "./data/pdf/CongJul22.pdf", pageHeader: 50, pageFooter: 35, heading: "US Representative District 3", cells: 5 })) return 1;
+  if (await test({ url: "./data/pdf/CongJul22.pdf", pageHeader: 50, pageFooter: 35 })) return 1;
 })();

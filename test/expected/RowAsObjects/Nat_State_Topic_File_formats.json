@@ -1,0 +1,6 @@
+[
+{"Name":"Feature ID","Type":"Number","Length/ Decimals":"10","Description":"The Feature ID number for the governmental unit."},
+{"Name":"Unit Type","Type":"Character","Length/ Decimals":"50","Description":"The type of government unit. Values are County, State, Country."},
+{"4":"The unique three number code and name for a county or county equivalent as specified in","Name":"County Numeric","Type":"Character","Length/ Decimals":"3","Description":"INCITS 31:200x, (Formerly FIPS 6-4)"},
+{"Name":"County Name","Type":"Character","Length/ Decimals":"100","Description":"Codes for the Identification of Counties and Equivalent Entities of the United States, its Possessions, and Insular Areas"}
+]

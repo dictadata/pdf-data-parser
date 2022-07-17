@@ -8,7 +8,7 @@
       "type": "pwa-node",
       "name": "PdfDataParser",
       "cwd": "${workspaceFolder}/test/",
-      "program": "${workspaceFolder}/test/testParser.js",
+      "program": "${workspaceFolder}/test/testDataParser.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
@@ -18,7 +18,7 @@
       "type": "pwa-node",
       "name": "PdfDataReader",
       "cwd": "${workspaceFolder}/test/",
-      "program": "${workspaceFolder}/test/testReader.js",
+      "program": "${workspaceFolder}/test/testDataReader.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
