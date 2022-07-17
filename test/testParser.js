@@ -20,6 +20,6 @@ async function test(options) {
   await test({ url: "./data/pdf/helloworld.pdf", newlines: false });
   await test({ url: "https://www2.census.gov/geo/pdfs/reference/ClassCodes.pdf", newlines: false });
   await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3 });
-  await test({ url: "./data/pdf/CoJul22.pdf", pageHeader: 50, pageFooter: 35 });
+  await test({ url: "./data/pdf/CoJul22.pdf", pageHeader: 50, pageFooter: 35, repeatingHeaders: true });
   await test({ url: "./data/pdf/CongJul22.pdf", pageHeader: 50, pageFooter: 35 });
 })();

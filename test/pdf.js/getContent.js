@@ -112,9 +112,9 @@ async function loadPage(pageNum, options) {
 }
 
 (async () => {
-  //await getContent({ url: "./data/pdf/helloworld.pdf", outputJSON: true });7
-  //await getContent({ url: "./data/pdf/ClassCodes.pdf", outputJSON: true });
+  await getContent({ url: "./data/pdf/helloworld.pdf", outputJSON: true }); 7
+  await getContent({ url: "./data/pdf/ClassCodes.pdf", outputJSON: true });
   await getContent({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", outputJSON: true });
-  //await getContent({ url: "./data/pdf/CoJul22.pdf", outputJSON: true });
-  //await getContent({ url: "./data/pdf/CongJul22.pdf", outputJSON: true });
+  await getContent({ url: "./data/pdf/CoJul22.pdf", outputJSON: true });
+  await getContent({ url: "./data/pdf/CongJul22.pdf", outputJSON: true });
 })();

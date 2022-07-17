@@ -215,10 +215,10 @@ function adjacent(x, y, prevStr, cell) {
 
 (async () => {
   // Loading file from file system into typed array
-  //pdfPath = process.argv[ 2 ] || "./data/pdf/helloworld.pdf";
-  //await getContent();
-  //pdfPath = "./data/pdf/ClassCodes.pdf";
-  //await getContent();
+  pdfPath = process.argv[ 2 ] || "./data/pdf/helloworld.pdf";
+  await getContent();
+  pdfPath = "./data/pdf/ClassCodes.pdf";
+  await getContent();
   pdfPath = "./data/pdf/Nat_State_Topic_File_formats.pdf";
   await getContent();
   pdfPath = "./data/pdf/CoJul22.pdf";
