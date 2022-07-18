@@ -2,32 +2,66 @@
   [
     "Name",
     "Type",
-    "Length/ Decimals",
+    "Length/Decimals",
     "Description"
   ],
   [
-    "Feature ID",
+    "FeatureID",
     "Number",
     "10",
     "The Feature ID number for the governmental unit."
   ],
   [
-    "Unit Type",
+    "UnitType",
     "Character",
     "50",
     "The type of government unit. Values are County, State, Country."
   ],
   [
-    "County Numeric",
+    "CountyNumeric",
     "Character",
     "3",
-    "INCITS 31:200x, (Formerly FIPS 6-4)",
-    "The unique three number code and name for a county or county equivalent as specified in"
+    "The unique three number code and name for a county or countyequivalent as specified inINCITS 31:200x, (Formerly FIPS 6-4)"
   ],
   [
-    "County Name",
+    "CountyName",
     "Character",
     "100",
-    "Codes for the Identification of Counties and Equivalent Entities of the United States, its Possessions, and Insular Areas"
+    "Codes for the Identification of Counties and Equivalent Entities ofthe United States, its Possessions, and Insular Areas"
+  ],
+  [
+    "StateNumeric",
+    "Character",
+    "2",
+    "1) The unique two number code for a US State as specified inINCITS 38:200x, (Formerly FIPS 5-2)Codes for the Identification ofthe States, the District of Columbia, Puerto Rico, and the InsularAreas of the United States, or 2) The unique two number code for aprinciple administrative division of countries other thanthe UnitedStates as specified in FIPS PUB 10-4,Countries, Dependencies,Areas Of Special Sovereignty, And Their Principal AdministrativeDivisions."
+  ],
+  [
+    "StateAlpha",
+    "Character",
+    "2",
+    "The unique two letter code for a US State as specified inINCITS38:200x, (Formerly FIPS 5-2)Codes for the Identification of theStates, the District of Columbia, Puerto Rico, and the Insular Areasof the United States."
+  ],
+  [
+    "StateName",
+    "Character",
+    "100",
+    "1) The name of a US State as specified inINCITS 38:200x,(Formerly FIPS 5-2)Codes for the Identification of the States, theDistrict of Columbia, Puerto Rico, and the Insular Areasof theUnited States, or 2) The name of a principle administrative divisionof countries other than the United States as specified in FIPS PUB10-4,Countries, Dependencies, Areas Of Special Sovereignty, AndTheir Principal Administrative Divisions."
+  ],
+  [
+    "CountryAlpha",
+    "Character",
+    "2"
+  ],
+  [
+    "CountryName",
+    "Character",
+    "100",
+    "The unique two letter code and name of a country as specified inFederal Information Processing Standards Publication (FIPS PUB)10-4,Countries, Dependencies, Areas of Special Sovereignty, AndTheir Principal Administrative Divisions."
+  ],
+  [
+    "FeatureName",
+    "Character",
+    "120",
+    "Official feature name"
   ]
 ]

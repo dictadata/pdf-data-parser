@@ -17,7 +17,7 @@ async function test(options) {
   fs.writeFileSync(outputFile, JSON.stringify(rows, null, 2));
 
   let expected = outputFile.replace("/output/", "/expected/");
-  let exitCode = compareFiles(expected, outputFile, 1);
+  let exitCode = compareFiles(expected, outputFile, 2);
   return exitCode;
 }
 
@@ -25,6 +25,6 @@ async function test(options) {
   if (await test({ url: "./data/pdf/helloworld.pdf", newlines: false })) return 1;
   if (await test({ url: "https://www2.census.gov/geo/pdfs/reference/ClassCodes.pdf", newlines: false })) return 1;
   if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3 })) return 1;
-  if (await test({ url: "./data/pdf/CoJul22.pdf", pageHeader: 50, pageFooter: 35, repeatingHeaders: true })) return 1;
-  if (await test({ url: "./data/pdf/CongJul22.pdf", pageHeader: 50, pageFooter: 35 })) return 1;
+  //if (await test({ url: "./data/pdf/CoJul22.pdf", pageHeader: 50, pageFooter: 35, repeatingHeaders: true })) return 1;
+  //if (await test({ url: "./data/pdf/CongJul22.pdf", pageHeader: 50, pageFooter: 35 })) return 1;
 })();
