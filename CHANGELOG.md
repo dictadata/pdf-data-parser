@@ -1,8 +1,13 @@
 # pdf-data-parser Change Log
 
-- version 1.0.6
-  -
-
+- version 1.1.0
+  - remove page header and footer artifacts from output
+  - option to remove repeating table headers on multiple page output
+  - major refactor of marked content processing
+  - handle cells that are out of normal x,y flow order, e.g. absolute positioning
+  - improved handling of font size and line spacing
+  - improved handling of cells with _Span_ marked content
+  - testing: compare output files to expected data
 - version 1.0.5
   - add comment about vertical spanning cells to README
 - version 1.0.4

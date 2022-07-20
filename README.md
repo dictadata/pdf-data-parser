@@ -1,4 +1,4 @@
-# pdf-data-parser 1.0.x
+# pdf-data-parser 1.1.x
 
 Parse and stream a PDF as tabular data using Node.js and Mozilla's pdf.js library.
 
@@ -14,7 +14,7 @@ npm install pdf-data-parser
 
 PdfDataParser given a PDF document will output an array of arrays (rows).  With default settings PdfDataParser will output all rows in the document including headings and paragraphs. Using [PdfDataParser Options](#pdf-data-parser-options) the parser can filter content to retrieve the desired data table in the document.
 
-PdfDataParser only works on a certain subset of PDF documents specifically those that contain some type of tabular data in a grid/table format. The parser uses marked content and x,y position information returned by the Mozilla [pdf.js](https://github.com/mozilla/pdf.js) API to transform PDF content items into rows of cells.
+PdfDataParser only works on a certain subset of PDF documents specifically those that contain some type of tabular data in a grid/table format. The parser uses marked content items and x,y position information returned by the Mozilla [pdf.js](https://github.com/mozilla/pdf.js) API to transform PDF content items into rows of cells.
 
 Rows and Cells terminology is used instead of Rows and Columns because the marked content in a PDF document flows more like an HTML page than database query results. Some rows may have more cells than other rows. For example a heading or description paragraph will be a row (array) with one cell (string).  See [Notes](#notes) below.
 
@@ -46,6 +46,16 @@ PdfDataParser constructor takes an options object with the following fields.
 `{integer} cells` - Minimum number of cells in tabular data; optional, default: 1. After `heading` string is found parser will look for the first row that contains at least `cells` count of cells. The parser will output rows until it encounters a row with less than `cells` count of cells.
 
 `{boolean} newlines` - Preserve new lines in cell data; optional, default: false. When false newlines will be replaced by spaces. Preserving newlines characters will keep the formatting of multiline text such as descriptions. Though, newlines are problematic for cells containing multiword identifiers and keywords that might be wrapped in the PDF text.
+
+`{Boolean} artifacts` - Parse artifacts content, default: false. Artifacts content specifies objects on the page such as table/grid lines and headers/footers. Grid lines do not have text content, but headers and footers might. If page headers and footers show up in output try the pageHeader and pageFooter options.
+
+`{Integer} pageHeader` - Height of page header area in points, default: 0. Content within this area of the page will not be included in output. Use about 16 points per line including blank lines.
+
+`{Integer} pageFooter` - Height of page footer area in points, default: 0. Content within this area of the page will not be included in output. Use about 16 points per line including blank lines.
+
+`{Boolean} repeatingHeaders` - Indicates if table headers are repeated on each page, default: false. The table headers will be compare to the first row on each subsequent page.  If found they will be removed from the output.
+
+`{Integer} lineHeight` - Approximate line height ratio based on font size; default 1.67. The parser extracts font size from the pdf content. The line height ratio maybe used when comparing the position of content items on the page.
 
 ## Streaming Usage
 
@@ -175,6 +185,43 @@ Parser output:
   ["Country Name","Character","100"],
   ["Feature Name","Character","120","Official feature name"]
 ]
+```
+
+### State of Iowa Voter Registration Totals by County
+
+[CoJul22.pdf](./test/data/pdf/CoJul22.pdf) contains one simple table spanning multiple pages. This document contains page headers and footers with repeating table headers on each page.
+
+```javascript
+let parser = new PdfDataParser({ url: "./data/pdf/CoJul22.pdf", repeatingHeaders: true })
+```
+
+The page headers/footers in this document are in PDF.js _Artifacts_ marked content. They will be ignored by default. To output the page headers and footers us the _artifacts_ option.
+
+```javascript
+let parser = new PdfDataParser({ url: "./data/pdf/CoJul22.pdf", artifacts: true })
+```
+
+If the page headers/footers are contained in regular content items the headers/footers can alternatively be ignored by using the _pageHeader_ and _pageFooter_ options.
+
+```javascript
+let parser = new PdfDataParser({ url: "./data/pdf/CoJul22.pdf", pageHeader: 50, pageFooter: 35 })
+```
+
+### State of Iowa Voter Registration Totals by Congressional District
+
+[CongJul22.pdf](./test/data/pdf/CongJul22.pdf) contains four tables. This document contains page headers and footers.
+
+The oddity of this document is the additional table header that identifies each table. This content item, e.g. "US Representative District 1", is actually in the document content after the table. The parser has to insert the cell data in the appropriate flow order before output of data rows. PdfDataParser does not support the splitting of output so the file would need to be read for times. Alternatively, a Node.js stream transform or writer derived class could be used to split the data into multiple outputs.
+
+```javascript
+parser1 = new PdfDataParser({ url: "./data/pdf/CongJul22.pdf", heading: "US Representative District 1", cells: 12 })
+house1 = await parser.parse();
+parser2 = new PdfDataParser({ url: "./data/pdf/CongJul22.pdf", heading: "US Representative District 2", cells: 12 })
+house2 = await parser.parse();
+parser3 = new PdfDataParser({ url: "./data/pdf/CongJul22.pdf", heading: "US Representative District 3", cells: 12 })
+house3 = await parser.parse();
+parser3 = new PdfDataParser({ url: "./data/pdf/CongJul22.pdf", heading: "US Representative District 4", cells: 12 })
+house3 = await parser.parse();
 ```
 
 ## Notes
