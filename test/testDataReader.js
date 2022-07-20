@@ -24,14 +24,14 @@ async function test(options) {
   await finished(writer);
 
   let expected = outputFile.replace("/output/", "/expected/");
-  let exitCode = compareFiles(expected, outputFile, 1);
+  let exitCode = compareFiles(expected, outputFile, 2);
   return exitCode;
 }
 
 (async () => {
-  if (await test({ url: "./data/pdf/helloworld.pdf", newlines: false })) return 1;
+  if (await test({ url: "./data/pdf/helloworld.pdf" })) return 1;
   if (await test({ url: "./data/pdf/ClassCodes.pdf", newlines: false })) return 1;
   if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: /Government Units .*/, cells: 3 })) return 1;
-  if (await test({ url: "./data/pdf/CoJul22.pdf", pageHeader: 50, pageFooter: 35, repeatingHeaders: true })) return 1;
-  if (await test({ url: "./data/pdf/CongJul22.pdf", pageHeader: 50, pageFooter: 35 })) return 1;
+  if (await test({ url: "./data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
+  if (await test({ url: "./data/pdf/CongJul22.pdf", artifacts: true, pageHeader: 50, pageFooter: 35 })) return 1;
 })();

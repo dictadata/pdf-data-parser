@@ -24,7 +24,7 @@ async function test(options) {
   await pipeline(reader, transform1, transform2, writer);
 
   let expected = outputFile.replace("/output/", "/expected/");
-  let exitCode = compareFiles(expected, outputFile, 1);
+  let exitCode = compareFiles(expected, outputFile, 2);
   return exitCode;
 }
 
@@ -32,6 +32,6 @@ async function test(options) {
   if (await test({ url: "./data/pdf/helloworld.pdf", headers: [ "Greeting" ] })) return 1;
   if (await test({ url: "./data/pdf/ClassCodes.pdf", newlines: false })) return 1;
   if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3 })) return 1;
-  if (await test({ url: "./data/pdf/CoJul22.pdf", pageHeader: 50, pageFooter: 35, repeatingHeaders: true })) return 1;
-  if (await test({ url: "./data/pdf/CongJul22.pdf", pageHeader: 50, pageFooter: 35, heading: "US Representative District 3", cells: 5 })) return 1;
+  if (await test({ url: "./data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
+  if (await test({ url: "./data/pdf/CongJul22.pdf", artifacts: true, pageHeader: 50, pageFooter: 35, heading: "US Representative District 3", cells: 12 })) return 1;
 })();

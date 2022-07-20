@@ -1,5 +1,9 @@
 # pdf-data-parser Change Log
 
+- version 1.1.1
+  - improved test coverage
+  - remove console debug statement
+  - fix typos in README.md
 - version 1.1.0
   - remove page header and footer artifacts from output
   - option to remove repeating table headers on multiple page output
