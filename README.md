@@ -189,19 +189,19 @@ Parser output:
 
 ### State of Iowa Voter Registration Totals by County
 
-[CoJul22.pdf](./test/data/pdf/CoJul22.pdf) contains one simple table spanning multiple pages. This document contains page headers and footers with repeating table headers on each page.
+[CoJul22.pdf](./test/data/pdf/CoJul22.pdf) contains one simple table spanning multiple pages. This document contains page headers and footers with repeating table headers on each page. Use the _repeatingHeaders_ option to remove the extra table headers from output data.
 
 ```javascript
 let parser = new PdfDataParser({ url: "./data/pdf/CoJul22.pdf", repeatingHeaders: true })
 ```
 
-The page headers/footers in this document are in PDF.js _Artifacts_ marked content. They will be ignored by default. To output the page headers and footers us the _artifacts_ option.
+The page headers/footers in this document are in PDF.js _Artifacts_ marked content. They will be ignored by default. To output the page headers and footers use the _artifacts_ option.
 
 ```javascript
 let parser = new PdfDataParser({ url: "./data/pdf/CoJul22.pdf", artifacts: true })
 ```
 
-If the page headers/footers are contained in regular content items the headers/footers can alternatively be ignored by using the _pageHeader_ and _pageFooter_ options.
+If your document has page headers/footers contained in regular content items then the headers/footers can be ignored by using the _pageHeader_ and _pageFooter_ options.  The settings of 50 and 35 ignore 3 and 2 lines respectively.
 
 ```javascript
 let parser = new PdfDataParser({ url: "./data/pdf/CoJul22.pdf", pageHeader: 50, pageFooter: 35 })
@@ -211,7 +211,9 @@ let parser = new PdfDataParser({ url: "./data/pdf/CoJul22.pdf", pageHeader: 50, 
 
 [CongJul22.pdf](./test/data/pdf/CongJul22.pdf) contains four tables. This document contains page headers and footers.
 
-The oddity of this document is the additional table header that identifies each table. This content item, e.g. "US Representative District 1", is actually in the document content after the table. The parser has to insert the cell data in the appropriate flow order before output of data rows. PdfDataParser does not support the splitting of output so the file would need to be read for times. Alternatively, a Node.js stream transform or writer derived class could be used to split the data into multiple outputs.
+The oddity of this document is the additional table header that identifies each table. This content item, e.g. "US Representative District 1", is actually in the document content after the table. The parser has to insert the cell data in the appropriate flow order before output of data rows.
+
+PdfDataParser does not support the splitting of output so the file would need to be read four times. Alternatively, a Node.js stream transform or writer derived class could be used to split the data into multiple outputs.
 
 ```javascript
 parser1 = new PdfDataParser({ url: "./data/pdf/CongJul22.pdf", heading: "US Representative District 1", cells: 12 })
