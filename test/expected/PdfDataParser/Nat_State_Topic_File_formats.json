@@ -2,64 +2,64 @@
   [
     "Name",
     "Type",
-    "Length/Decimals",
+    "Length/ Decimals",
     "Description"
   ],
   [
-    "FeatureID",
+    "Feature ID",
     "Number",
     "10",
     "The Feature ID number for the governmental unit."
   ],
   [
-    "UnitType",
+    "Unit Type",
     "Character",
     "50",
     "The type of government unit. Values are County, State, Country."
   ],
   [
-    "CountyNumeric",
+    "County Numeric",
     "Character",
     "3",
-    "The unique three number code and name for a county or countyequivalent as specified inINCITS 31:200x, (Formerly FIPS 6-4)"
+    "The unique three number code and name for a county or county equivalent as specified in INCITS 31:200x, (Formerly FIPS 6-4)"
   ],
   [
-    "CountyName",
+    "County Name",
     "Character",
     "100",
-    "Codes for the Identification of Counties and Equivalent Entities ofthe United States, its Possessions, and Insular Areas"
+    "Codes for the Identification of Counties and Equivalent Entities of the United States, its Possessions, and Insular Areas"
   ],
   [
-    "StateNumeric",
+    "State Numeric",
     "Character",
     "2",
-    "1) The unique two number code for a US State as specified inINCITS 38:200x, (Formerly FIPS 5-2)Codes for the Identification ofthe States, the District of Columbia, Puerto Rico, and the InsularAreas of the United States, or 2) The unique two number code for aprinciple administrative division of countries other thanthe UnitedStates as specified in FIPS PUB 10-4,Countries, Dependencies,Areas Of Special Sovereignty, And Their Principal AdministrativeDivisions."
+    "1) The unique two number code for a US State as specified in INCITS 38:200x, (Formerly FIPS 5-2) Codes for the Identification of the States, the District of Columbia, Puerto Rico, and the Insular Areas of the United States, or 2) The unique two number code for a principle administrative division of countries other than the United States as specified in FIPS PUB 10-4, Countries, Dependencies, Areas Of Special Sovereignty, And Their Principal Administrative Divisions."
   ],
   [
-    "StateAlpha",
+    "State Alpha",
     "Character",
     "2",
-    "The unique two letter code for a US State as specified inINCITS38:200x, (Formerly FIPS 5-2)Codes for the Identification of theStates, the District of Columbia, Puerto Rico, and the Insular Areasof the United States."
+    "The unique two letter code for a US State as specified in INCITS 38:200x, (Formerly FIPS 5-2) Codes for the Identification of the States, the District of Columbia, Puerto Rico, and the Insular Areas of the United States."
   ],
   [
-    "StateName",
+    "State Name",
     "Character",
     "100",
-    "1) The name of a US State as specified inINCITS 38:200x,(Formerly FIPS 5-2)Codes for the Identification of the States, theDistrict of Columbia, Puerto Rico, and the Insular Areasof theUnited States, or 2) The name of a principle administrative divisionof countries other than the United States as specified in FIPS PUB10-4,Countries, Dependencies, Areas Of Special Sovereignty, AndTheir Principal Administrative Divisions."
+    "1) The name of a US State as specified in INCITS 38:200x, (Formerly FIPS 5-2) Codes for the Identification of the States, the District of Columbia, Puerto Rico, and the Insular Areas of the United States, or 2) The name of a principle administrative division of countries other than the United States as specified in FIPS PUB 10-4, Countries, Dependencies, Areas Of Special Sovereignty, And Their Principal Administrative Divisions."
   ],
   [
-    "CountryAlpha",
+    "Country Alpha",
     "Character",
-    "2"
+    "2",
+    "The unique two letter code and name of a country as specified in Federal Information Processing Standards Publication (FIPS PUB) 10-4, Countries, Dependencies, Areas of Special Sovereignty, And Their Principal Administrative Divisions."
   ],
   [
-    "CountryName",
+    "Country Name",
     "Character",
-    "100",
-    "The unique two letter code and name of a country as specified inFederal Information Processing Standards Publication (FIPS PUB)10-4,Countries, Dependencies, Areas of Special Sovereignty, AndTheir Principal Administrative Divisions."
+    "100"
   ],
   [
-    "FeatureName",
+    "Feature Name",
     "Character",
     "120",
     "Official feature name"
