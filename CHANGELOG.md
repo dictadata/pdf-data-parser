@@ -1,5 +1,8 @@
 # pdf-data-parser Change Log
 
+- version 1.1.2
+  - remove console debug statement
+  - updated README.md documentation
 - version 1.1.1
   - improved test coverage
   - remove console debug statement
