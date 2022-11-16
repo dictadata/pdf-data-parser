@@ -1,5 +1,7 @@
 # pdf-data-parser Change Log
 
+- version 1.1.3
+  - use latest pre-built PDF.js from npm package 'pdf.js-dist' instead of building it
 - version 1.1.2
   - remove console debug statement
   - updated README.md documentation

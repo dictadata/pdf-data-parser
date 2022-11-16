@@ -1,7 +1,7 @@
 {
   "name": "pdf-data-parser",
-  "version": "1.1.2",
-  "description": "Parse and stream a PDF as tabular data using Node.js and Mozilla's pdf.js library.",
+  "version": "1.1.3",
+  "description": "Parse, search and stream PDF tabular data using Node.js with Mozilla's PDF.js library.",
   "main": "lib/index.js",
   "scripts": {
     "test": "test/pdfdataparser.js"
@@ -33,5 +33,8 @@
   },
   "devDependencies": {
     "eslint": "^8.19.0"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^3.0.279"
   }
 }

@@ -9,7 +9,7 @@
 // Output is an array of arrays.
 //
 
-const pdfjsLib = require("../../lib/pdfjs-dist/build/pdf.js");
+const pdfjsLib = require("pdfjs-dist");
 //pdfjsLib.GlobalWorkerOptions.workerSrc = '../../lib/pdfjs-dist/build/pdf.worker.js';
 
 const fs = require("fs");

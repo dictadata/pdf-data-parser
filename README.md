@@ -1,6 +1,6 @@
-# pdf-data-parser 1.1.x
+# pdf-data-parser 1.1.3
 
-Parse and stream a PDF as tabular data using Node.js and Mozilla's pdf.js library.
+Parse, search and stream PDF tabular data using Node.js with Mozilla's PDF.js library.
 
 > If you are looking for a command line interface (CLI) to parse PDF data documents check out [@dictadata/pdf-junction](https://github.com/dictadata/pdf-junction) which uses pdf-data-parser. PdfJunction is a plugin for [@dictadata/storage-etl](https://github.com/dictadata/storage-etl) project.  
 
