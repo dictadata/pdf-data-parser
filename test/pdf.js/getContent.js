@@ -7,7 +7,7 @@
 // including marked content to a output file in .txt or .json format.
 //
 
-const pdfjsLib = require("pdfjs-dist");
+//const pdfjsLib = require("pdfjs-dist");
 //pdfjsLib.GlobalWorkerOptions.workerSrc = '../../lib/pdfjs-dist/build/pdf.worker.js';
 
 const fs = require("fs");
@@ -17,6 +17,8 @@ var doc;
 
 async function getContent(options) {
   try {
+    const pdfjsLib = await import("pdfjs-dist");
+
     var loadingTask = pdfjsLib.getDocument({ url: options.url, fontExtraProperties: true });
     doc = await loadingTask.promise;
 

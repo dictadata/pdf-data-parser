@@ -9,7 +9,7 @@
 // Output is an array of arrays.
 //
 
-const pdfjsLib = require("pdfjs-dist");
+//const pdfjsLib = require("pdfjs-dist");
 //pdfjsLib.GlobalWorkerOptions.workerSrc = '../../lib/pdfjs-dist/build/pdf.worker.js';
 
 const fs = require("fs");
@@ -39,6 +39,8 @@ class Cell {
 
 async function getContent() {
   try {
+    const pdfjsLib = await import("pdfjs-dist");
+
     var loadingTask = pdfjsLib.getDocument({ url: pdfPath, fontExtraProperties: true });
     doc = await loadingTask.promise;
 
