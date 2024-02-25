@@ -1,8 +1,8 @@
 node_modules/
 
+output/
+
 log/
 *.log
-
-output/
 
 # Editor directories and files
