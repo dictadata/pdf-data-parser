@@ -11,10 +11,7 @@
     "pdp": "./pdf-data-parser.js",
     "pdfdataparser": "./pdf-data-parser.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@gitlab.com/drewlab/pdf-data-parser.git"
-  },
+  "repository": "https://github.com/drewletcher/pdf-data-parser.git",
   "keywords": [
     "pdf",
     "json",
@@ -30,9 +27,9 @@
   "author": "Drew O. Letcher",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/drewlab/pdf-data-parser/issues"
+    "url": "https://github.com/drewletcher/pdf-data-parser/issues"
   },
-  "homepage": "https://gitlab.com/drewlab/pdf-data-parser#readme",
+  "homepage": "https://github.com/drewletcher/pdf-data-parser#readme",
   "engines": {
     "node": ">=12.0.0"
   },
