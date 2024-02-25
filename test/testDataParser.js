@@ -26,5 +26,5 @@ async function test(options) {
   if (await test({ url: "https://www2.census.gov/geo/pdfs/reference/ClassCodes.pdf", newlines: false })) return 1;
   if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3 })) return 1;
   if (await test({ url: "./data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
-  if (await test({ url: "./data/pdf/CongJul22.pdf", artifacts: true, pageHeader: 50, pageFooter: 35 })) return 1;
+  if (await test({ url: "./data/pdf/CongJul22.pdf" })) return 1;
 })();

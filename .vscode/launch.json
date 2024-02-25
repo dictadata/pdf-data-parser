@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-node",
+      "type": "node",
       "name": "PdfDataParser",
       "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/testDataParser.js",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "type": "pwa-node",
+      "type": "node",
       "name": "PdfDataReader",
       "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/testDataReader.js",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "type": "pwa-node",
+      "type": "node",
       "name": "RowAsObjects",
       "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/testAsObjects.js",
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "type": "pwa-node",
+      "type": "node",
       "name": "getContent",
       "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/pdf.js/getContent.js",
@@ -45,11 +45,56 @@
       ]
     },
     {
-      "type": "pwa-node",
+      "type": "node",
       "name": "getCells",
       "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/pdf.js/getCells.js",
       "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "cli helloworld.csv",
+      "cwd": "${workspaceFolder}",
+      "program": "pdf-data-parser.js",
+      "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating" ],
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "cli helloworld.json",
+      "cwd": "${workspaceFolder}",
+      "program": "pdf-data-parser.js",
+      "args": [ ".\\test\\data\\pdf\\helloworld.pdf", ".\\test\\output\\cli\\helloworld.json", "--headers=Greating", "--json" ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "cli ClassCodes.csv",
+      "cwd": "${workspaceFolder}",
+      "program": "pdf-data-parser.js",
+      "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\cli\\ClassCodes.csv", "--csv" ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "cli ClassCodes.json",
+      "cwd": "${workspaceFolder}",
+      "program": "pdf-data-parser.js",
+      "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\cli\\ClassCodes.json", "--json" ],
       "skipFiles": [
         "<node_internals>/**"
       ]

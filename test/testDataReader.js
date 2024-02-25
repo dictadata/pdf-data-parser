@@ -3,7 +3,7 @@
  */
 
 const PdfDataReader = require("../lib/PdfDataReader");
-const RowTransform = require('./_RowTransform');
+const FormatJSON = require('./_RowTransform');
 const { finished } = require('stream/promises');
 const fs = require("fs");
 const path = require("path");
@@ -13,7 +13,7 @@ async function test(options) {
 
   let reader = new PdfDataReader(options);
 
-  let transform = new RowTransform();
+  let transform = new FormatJSON();
 
   let outputFile = "./output/PdfDataReader/" + path.parse(options.url).name + ".json";
   console.log("output: " + outputFile);
@@ -33,5 +33,5 @@ async function test(options) {
   if (await test({ url: "./data/pdf/ClassCodes.pdf", newlines: false })) return 1;
   if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: /Government Units .*/, cells: 3 })) return 1;
   if (await test({ url: "./data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
-  if (await test({ url: "./data/pdf/CongJul22.pdf", artifacts: true, pageHeader: 50, pageFooter: 35 })) return 1;
+  if (await test({ url: "./data/pdf/CongJul22.pdf" })) return 1;
 })();
