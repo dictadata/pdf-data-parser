@@ -1,5 +1,9 @@
 # pdf-data-parser Change Log
 
+- version 1.2.4
+  - feature: implement CLI program, pdp or pdf-data-parser
+  - refactor: if options.heading is not defined process entire document, not just first table.
+  - updated: pdfjs-dist@4.0
 - version 1.1.3
   - use latest pre-built PDF.js from npm package 'pdf.js-dist' instead of building it
 - version 1.1.2
