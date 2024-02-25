@@ -1,9 +1,19 @@
 {
-  "name": "pdf-data-parser",
-  "version": "1.2.4",
+  "name": "@dictadata/pdf-data-parser",
+  "version": "1.2.5",
   "description": "Parse, search and stream PDF tabular data using Node.js with Mozilla's PDF.js library.",
-  "main": "lib/index.js",
+  "author": "Drew O. Letcher",
+  "license": "MIT",
+  "keywords": [
+    "dictadata",
+    "pdf",
+    "pdf.js"
+  ],
   "type": "commonjs",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "main": "lib/index.js",
   "scripts": {
     "test": "test/pdfdataparser.js"
   },
@@ -11,27 +21,10 @@
     "pdp": "./pdf-data-parser.js",
     "pdfdataparser": "./pdf-data-parser.js"
   },
-  "repository": "https://github.com/drewletcher/pdf-data-parser.git",
-  "keywords": [
-    "pdf",
-    "json",
-    "pdf.js",
-    "parser",
-    "reader",
-    "stream",
-    "extract",
-    "export",
-    "data",
-    "table"
-  ],
-  "author": "Drew O. Letcher",
-  "license": "MIT",
+  "repository": "github:dictadata/pdf-data-parser",
+  "homepage": "https://github.com/drewletcher/pdf-data-parser#readme",
   "bugs": {
     "url": "https://github.com/drewletcher/pdf-data-parser/issues"
-  },
-  "homepage": "https://github.com/drewletcher/pdf-data-parser#readme",
-  "engines": {
-    "node": ">=12.0.0"
   },
   "devDependencies": {
     "eslint": "^8.57.0"

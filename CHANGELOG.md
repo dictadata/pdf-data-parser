@@ -1,5 +1,9 @@
-# pdf-data-parser Change Log
+# @dictadata/pdf-data-parser Change Log
 
+- version 1.2.5
+  - refactor: rename project to @dictadata/pdf-data-parser
+  - feature: findModules() finds node_modules dir for default fonts
+  - updated: README.md cli options
 - version 1.2.4
   - feature: implement CLI program, pdp or pdf-data-parser
   - refactor: if options.heading is not defined process entire document, not just first table.
