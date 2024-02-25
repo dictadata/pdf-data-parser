@@ -33,8 +33,8 @@ pdp <filename.pdf|URL> [<output-file>] [--cells=#] [--heading=title], [--repeati
   `--heading`    - text of heading to find in document that precedes desired data table, default none.
   `--headers`    - comma separated list of column names for data, default none first table row contains names.
   `--repeating`  - table headers repeat on each PDF page, default = false.
-  `--csv`        - output data in CSV format, default.
-  `--json`       - output data in JSON format.
+  `--csv`        - output data in CSV format.
+  `--json`       - output data in JSON format, default.
   `--raw`        - output text in the document as JSON array of arrays.
 ```
 
