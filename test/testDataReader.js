@@ -3,7 +3,7 @@
  */
 
 const PdfDataReader = require("../lib/PdfDataReader");
-const FormatJSON = require('./_RowTransform');
+const FormatJSON = require('../lib/FormatJSON');
 const { finished } = require('stream/promises');
 const fs = require("fs");
 const path = require("path");
