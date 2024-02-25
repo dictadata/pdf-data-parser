@@ -7,6 +7,7 @@
   "keywords": [
     "dictadata",
     "pdf",
+    "parser",
     "pdf.js"
   ],
   "type": "commonjs",
@@ -18,10 +19,13 @@
     "test": "test/pdfdataparser.js"
   },
   "bin": {
-    "pdp": "./pdf-data-parser.js",
-    "pdfdataparser": "./pdf-data-parser.js"
+    "pdp": "pdf-data-parser.js",
+    "pdfdataparser": "pdf-data-parser.js"
   },
-  "repository": "github:dictadata/pdf-data-parser",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dictadata/pdf-data-parser.git"
+  },
   "homepage": "https://github.com/drewletcher/pdf-data-parser#readme",
   "bugs": {
     "url": "https://github.com/drewletcher/pdf-data-parser/issues"
