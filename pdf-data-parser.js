@@ -10,6 +10,7 @@ const PdfDataReader = require("./lib/PdfDataReader.js");
 const RowAsObjects = require("./lib/RowAsObjects.js");
 const FormatCSV = require("./lib/FormatCSV.js");
 const FormatJSON = require("./lib/FormatJSON.js");
+const Package = require("./package.json");
 
 const fs = require('node:fs/promises');
 const { pipeline } = require('node:stream/promises');
@@ -20,7 +21,7 @@ var options = {
   url: ""
 }
 var outfile = "";
-var format = "csv";
+var format = "json";
 
 /**
  * parseArgs
@@ -49,8 +50,10 @@ function parseArgs() {
         options.repeatingHeaders = true;
       else if (nv[ 0 ].includes("headers"))
         options.headers = nv[ 1 ].split(",");
-      else if (nv[ 0 ] === "--json")
-        format = "json";
+      else if (nv[ 0 ] === "--csv")
+        format = "csv";
+      else if (nv[ 0 ] === "--raw")
+        format = "raw";
     }
     ++i;
   }
@@ -64,26 +67,28 @@ function parseArgs() {
   let retCode = 0;
 
   parseArgs();
-  let consoleOn = outfile !== "";
+  let consoleOn = outfile !== "" || !options.url;
 
   if (consoleOn) {
-    console.log("pdf-data-parser");
+    console.log("pdfdataparser (pdp) " + Package.version);
     console.log("Copyright 2024 Drew O. Letcher | The MIT License");
   }
 
   if (!options.url) {
+    console.log("");
     console.log("Parse tabular data from a PDF file.");
     console.log("");
-    console.log("pdf-data-parser.js <filename.pdf>, <output-file> [--cells=#] [--heading=title], [--repeating] [--headers=name1,name2,...] [--csv|--json]");
+    console.log("pdp <filename.pdf|URL> [<output-file>] [--cells=#] [--heading=title], [--repeating] [--headers=name1,name2,...] [--csv|--json]");
     console.log("");
-    console.log("  filename - path name or URL of PDF file to process.");
-    console.log("  output-file - local path name for output of parsed data.");
-    console.log("  --cells - minimum number of cells for a data row, default = 1.");
-    console.log("  --heading - text of heading to find in document that precedes desired data table, default none.");
-    console.log("  --repeating - table headers repeat on each PDF page, default = false.");
-    console.log("  --headers - comma separated list of table headers (property names) for data, default none.")
-    console.log("  --csv - output data in CSV format, default.");
-    console.log("  --json - output data in JSON format.");
+    console.log("  filename|URL - path name or URL of PDF file to process, required.");
+    console.log("  output-file  - local path name for output of parsed data, default stdout.");
+    console.log("  --cells      - minimum number of cells for a data row, default = 1.");
+    console.log("  --heading    - text of heading to find in document that precedes desired data table, default none.");
+    console.log("  --headers    - comma separated list of column names for data, default none first table row contains names.")
+    console.log("  --repeating  - table header row repeats on each PDF page, default = false.");
+    console.log("  --csv        - output data in CSV format.");
+    console.log("  --json       - output data in JSON format, default.");
+    console.log("  --raw        - output text in the document as JSON array of arrays.")
     console.log("");
     return;
   }
@@ -92,7 +97,7 @@ function parseArgs() {
 
     let reader = new PdfDataReader(options);
     let transform = new RowAsObjects(options);
-    let formatter = format === "json" ? new FormatJSON() : new FormatCSV();
+    let formatter = format === "csv" ? new FormatCSV() : new FormatJSON();
     let writer;
     if (outfile) {
       let fd = await fs.open(outfile, "w");
@@ -101,7 +106,10 @@ function parseArgs() {
     else
       writer = process.stdout;
 
-    await pipeline(reader, transform, formatter, writer);
+    if (format === "raw")
+      await pipeline(reader, formatter, writer);
+    else
+      await pipeline(reader, transform, formatter, writer);
 
     writer.end();
   }
