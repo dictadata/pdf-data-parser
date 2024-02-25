@@ -1,4 +1,4 @@
-# pdf-data-parser 1.2.4
+# @dictadata/pdf-data-parser 1.2.5
 
 Parse, search and stream PDF tabular data using Node.js with Mozilla's PDF.js library.
 
@@ -9,13 +9,13 @@ This document explains how to use pdf-data-parser in your code or as a stand-alo
 For use as command line utility. Requires Node.js 12+.
 
 ```bash
-npm -g install pdf-data-parser
+npm -g install @dictadata/pdf-data-parser
 ```
 
 For use as module in a Node.js project. See Developers Guide below.
 
 ```bash
-npm install pdf-data-parser
+npm install @dictadata/pdf-data-parser
 ```
 
 ## CLI Program
@@ -24,7 +24,6 @@ Parse tabular data from a PDF file or URL.
 
 ```bash
 pdp <filename.pdf|URL> [<output-file>] [--cells=#] [--heading=title], [--repeating] [--headers=name1,name2,...] [--csv|--json]
-```
 
   `filename|URL` - path name or URL of PDF file to process, required.
   `output-file`  - local path name for output of parsed data, default stdout.
@@ -35,6 +34,7 @@ pdp <filename.pdf|URL> [<output-file>] [--cells=#] [--heading=title], [--repeati
   `--csv`        - output data in CSV format, default.
   `--json`       - output data in JSON format.
   `--raw`        - output text in the document as JSON array of arrays.
+```
 
 Note: If the `pdp` command conflicts with another program on your system use `pdfdataparser` instead.
 
