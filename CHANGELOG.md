@@ -1,5 +1,7 @@
 # @dictadata/pdf-data-parser Change Log
 
+- version 1.2.6
+  - updated: README.md
 - version 1.2.5
   - refactor: rename project to @dictadata/pdf-data-parser
   - feature: findModules() finds node_modules dir for default fonts

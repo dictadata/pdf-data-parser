@@ -1,12 +1,14 @@
-# @dictadata/pdf-data-parser 1.2.5
+# @dictadata/pdf-data-parser 1.2.6
 
 Parse, search and stream PDF tabular data using Node.js with Mozilla's PDF.js library.
 
 This document explains how to use pdf-data-parser in your code or as a stand-alone program.
 
+> Only supports PDF files containing grid/table like layouts. Does not support reading PDF forms (XFA).
+
 ## Installation
 
-For use as command line utility. Requires Node.js 12+.
+For use as command line utility. Requires Node.js 18+.
 
 ```bash
 npm -g install @dictadata/pdf-data-parser
