@@ -19,28 +19,40 @@ async function getContent(options) {
   try {
     const pdfjsLib = await import("pdfjs-dist");
 
-    var loadingTask = pdfjsLib.getDocument({ url: options.url, fontExtraProperties: true });
+    let loadingTask = pdfjsLib.getDocument({ url: options.url, fontExtraProperties: true });
     doc = await loadingTask.promise;
 
+    let output = {};
     const numPages = doc.numPages;
     console.log("# Document Loaded");
     console.log("Number of Pages: " + numPages);
     console.log();
+    output[ "Number of Pages" ] = numPages;
 
     let docdata = await doc.getMetadata();
-    console.log("# Metadata Is Loaded");
+    console.log("# Metadata Loaded");
+
     console.log("## Info");
+    output.info = docdata.info;
     console.log(JSON.stringify(docdata.info, null, 2));
     console.log();
 
     if (docdata.metadata) {
       console.log("## Metadata");
-      console.log(JSON.stringify(docdata.metadata.getAll(), null, 2));
+      output.metadata = docdata.metadata.getAll()
+      console.log(JSON.stringify(output.metadata, null, 2));
       console.log();
     }
 
     let markInfo = await doc.getMarkInfo();
     console.log("Marked = " + (markInfo && markInfo.Marked));
+    output.MarkInfo = markInfo;
+
+    let outputFile = "./output/getContent/" + path.parse(options.url).name + "_header.json";
+    console.log("output: " + outputFile);
+    fs.mkdirSync(path.dirname(outputFile), { recursive: true });
+    fs.writeFileSync(outputFile, JSON.stringify(output, null, 2));
+
 
     for (let n = 1; n <= numPages; n++) {
       await loadPage(n, options);
@@ -101,7 +113,7 @@ async function loadPage(pageNum, options) {
     }
   }
 
-  let outputFile = "./output/pdf.js/" + path.parse(options.url).name + "_content_p" + pageNum;
+  let outputFile = "./output/getContent/" + path.parse(options.url).name + "_content_p" + pageNum;
   outputFile += options.outputJSON ? ".json" : ".txt";
   console.log("output: " + outputFile);
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
@@ -114,9 +126,10 @@ async function loadPage(pageNum, options) {
 }
 
 (async () => {
-  await getContent({ url: "./data/pdf/helloworld.pdf", outputJSON: true }); 7
+  await getContent({ url: "./data/pdf/helloworld.pdf", outputJSON: true });
   await getContent({ url: "./data/pdf/ClassCodes.pdf", outputJSON: true });
   await getContent({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", outputJSON: true });
   await getContent({ url: "./data/pdf/CoJul22.pdf", outputJSON: true });
   await getContent({ url: "./data/pdf/CongJul22.pdf", outputJSON: true });
+  await getContent({ url: "./data/pdf/state_voter_registration_jan2024.pdf", outputJSON: true });
 })();

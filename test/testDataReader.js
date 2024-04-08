@@ -29,6 +29,7 @@ async function test(options) {
 }
 
 (async () => {
+  if (await test({ url: "/var/dictadata/US/AZ/azsos.gov/election/VoterReg/2024/state_voter_registration_jan2024.pdf" })) return 1;
   if (await test({ url: "./data/pdf/helloworld.pdf" })) return 1;
   if (await test({ url: "./data/pdf/ClassCodes.pdf", newlines: false })) return 1;
   if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: /Government Units .*/, cells: 3 })) return 1;

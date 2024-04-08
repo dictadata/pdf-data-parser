@@ -27,4 +27,5 @@ async function test(options) {
   if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3 })) return 1;
   if (await test({ url: "./data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
   if (await test({ url: "./data/pdf/CongJul22.pdf" })) return 1;
+  if (await test({ url: "./data/pdf/state_voter_registration_jan2024.pdf", pages: [ 2 ], cells: 1 })) return 1;
 })();

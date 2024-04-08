@@ -38,7 +38,7 @@
       "type": "node",
       "name": "getContent",
       "cwd": "${workspaceFolder}/test/",
-      "program": "${workspaceFolder}/test/pdf.js/getContent.js",
+      "program": "${workspaceFolder}/test/getContent.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
@@ -48,7 +48,7 @@
       "type": "node",
       "name": "getCells",
       "cwd": "${workspaceFolder}/test/",
-      "program": "${workspaceFolder}/test/pdf.js/getCells.js",
+      "program": "${workspaceFolder}/test/getCells.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
@@ -95,16 +95,6 @@
       "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\cli\\ClassCodes.json", "--json" ],
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "findModules",
-      "cwd": "${workspaceFolder}/test",
-      "program": "findModules.js",
       "skipFiles": [
         "<node_internals>/**"
       ]

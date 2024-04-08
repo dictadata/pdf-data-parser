@@ -11,10 +11,13 @@ const RowAsObjects = require("./lib/RowAsObjects.js");
 const FormatCSV = require("./lib/FormatCSV.js");
 const FormatJSON = require("./lib/FormatJSON.js");
 const Package = require("./package.json");
+var colors = require('colors');
 
 const fs = require('node:fs/promises');
 const { pipeline } = require('node:stream/promises');
 const { stdout } = require('node:process');
+
+colors.enable();
 
 // set program argument defaults
 var options = {
@@ -44,12 +47,14 @@ function parseArgs() {
       let nv = arg.split('=');
       if (nv[ 0 ] === "--cells")
         options.cells = parseInt(nv[ 1 ]);
+      if (nv[ 0 ] === "--pages")
+        options.pages = nv[ 1 ].split(",");
       else if (nv[ 0 ] === "--heading")
         options.heading = nv[ 1 ];
-      else if (nv[ 0 ].startsWith("--repeating"))
-        options.repeatingHeaders = true;
       else if (nv[ 0 ].includes("headers"))
         options.headers = nv[ 1 ].split(",");
+      else if (nv[ 0 ].startsWith("--repeating"))
+        options.repeatingHeaders = true;
       else if (nv[ 0 ] === "--csv")
         format = "csv";
       else if (nv[ 0 ] === "--raw")
@@ -58,6 +63,24 @@ function parseArgs() {
     ++i;
   }
 
+  // convert pages arg
+  // from an array of strings
+  // to an array of integers
+  if (options.pages) {
+    let pgnums = []
+
+    for (let p of options.pages) {
+      let range = p.split("-");
+      if (range.length === 1)
+        pgnums.push(parseInt(range[ 0 ]));
+      else {
+        for (let i = parseInt(range[ 0 ]); i <= parseInt(range[ 1 ]); i++)
+          pgnums.push(i);
+      }
+    }
+
+    options.pages = pgnums;
+  }
 }
 
 /**
@@ -114,7 +137,7 @@ function parseArgs() {
     writer.end();
   }
   catch (err) {
-    console.error(err);
+    console.error(err.message.red);
     retCode = 1;
   }
 
@@ -122,7 +145,7 @@ function parseArgs() {
     if (retCode === 0)
       console.log("parser results OK");
     else
-      console.log(" parser failed.");
+      console.log(" parser failed.".red);
     console.log();
   }
 
