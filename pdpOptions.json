@@ -1,0 +1,18 @@
+{
+  "url": "",
+  "format": "json",
+  "output": "",
+  "pages": null,
+  "heading": null,
+  "cells": 1,
+  "repeatingHeaders": false,
+  "pageHeader": 0,
+  "pageFooter": 0,
+  "artifacts": false,
+  "lineHeight": 1.67,
+  "newlines": false,
+  "orderXY": true,
+  "RowAsObject.headers": null,
+  "RepeatCell.index": null,
+  "RepeatHeading.header": null
+}
