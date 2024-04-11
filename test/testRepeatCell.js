@@ -36,6 +36,6 @@ async function test(options) {
     pageHeader: 64,
     cells: 7,
     repeatingHeaders: true,
-    "RepeatCell.index": 0
+    "RepeatCell.column": 0
   })) return 1;
 })();
