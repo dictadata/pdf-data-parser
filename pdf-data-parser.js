@@ -63,10 +63,8 @@ async function parseArgs() {
         options.headers = nv[ 1 ].split(",");
       else if (nv[ 0 ].startsWith("--repeating"))
         options.repeatingHeaders = true;
-      else if (nv[ 0 ] === "--csv")
-        options.format = "csv";
-      else if (nv[ 0 ] === "--raw")
-        options.format = "raw";
+      else if (nv[ 0 ] === "--format")
+        options.format = nv[ 1 ];
     }
     ++i;
   }
@@ -114,13 +112,11 @@ async function parseArgs() {
     console.log("  --options    - file containing JSON object with pdp options, optional.");
     console.log("  filename|URL - path name or URL of PDF file to process, required.");
     console.log("  output       - local path name for output of parsed data, default stdout.");
+    console.log("  --format     - output data format CSV, JSON or raw, default JSON, raw is JSON array of arrays (rows).");
     console.log("  --cells      - minimum number of cells for a data row, default = 1.");
     console.log("  --heading    - text of heading to find in document that precedes desired data table, default none.");
-    console.log("  --headers    - comma separated list of column names for data, default none first table row contains names.")
+    console.log("  --headers    - comma separated list of column names for data, default none first table row contains names.");
     console.log("  --repeating  - table header row repeats on each PDF page, default = false.");
-    console.log("  --csv        - output data in CSV format.");
-    console.log("  --json       - output data in JSON format, default.");
-    console.log("  --raw        - output text in the document as JSON array of arrays (rows).")
     console.log("");
     return;
   }
@@ -132,7 +128,7 @@ async function parseArgs() {
     let reader = new PdfDataReader(options);
     pipes.push(reader);
 
-    if (Object.hasOwn( options,  "RepeatCell.index") || Object.hasOwn( options, "index")) {
+    if (Object.hasOwn( options,  "RepeatCell.column") || Object.hasOwn( options, "column")) {
       let transform = new RepeatCellTransform(options);
       pipes.push(transform);
     }
