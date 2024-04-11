@@ -1,9 +1,14 @@
-# @dictadata/pdf-data-parser Change Log
+# pdf-data-parser Change Log
 
+- version 1.2.7
+  - feature: read command-line options from a file
+  - feature: pages option to limit parsing to specific pages
+  - feature: support non-Marked, line oriented PDF content, e.g. printer style output to PDF files
+  - feature: add RepeatCell and RepeatHeading transforms to normalize rows from printed reports
+  - refactor: improved handling of XY coordinates for determining cell order
 - version 1.2.6
   - updated: README.md
 - version 1.2.5
-  - refactor: rename project to @dictadata/pdf-data-parser
   - feature: findModules() finds node_modules dir for default fonts
   - updated: README.md cli options
 - version 1.2.4

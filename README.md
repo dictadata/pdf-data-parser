@@ -1,44 +1,93 @@
-# @dictadata/pdf-data-parser 1.2.6
+# pdf-data-parser 1.2.7
 
 Parse, search and stream PDF tabular data using Node.js with Mozilla's PDF.js library.
 
 This document explains how to use pdf-data-parser in your code or as a stand-alone program.
 
-> Only supports PDF files containing grid/table like layouts. Does not support reading PDF forms (XFA).
+> Only supports PDF files containing grid/table like content. Does not support reading PDF forms (XFA).
 
 ## Installation
 
 For use as command line utility. Requires Node.js 18+.
 
 ```bash
-npm -g install @dictadata/pdf-data-parser
+npm -g install pdf-data-parser
 ```
 
 For use as module in a Node.js project. See Developers Guide below.
 
 ```bash
-npm install @dictadata/pdf-data-parser
+npm install pdf-data-parser
 ```
 
 ## CLI Program
 
+---
+
 Parse tabular data from a PDF file or URL.
 
 ```bash
-pdp <filename.pdf|URL> [<output-file>] [--cells=#] [--heading=title], [--repeating] [--headers=name1,name2,...] [--csv|--json]
+pdp [--options=filename.json] <filename.pdf|URL> [<output-file>] [--cells=#] [--heading=title], [--repeating] [--headers=name1,name2,...] [--format=csv|json|raw]
 
+  `--options`    - file containing JSON object with pdp options, optional.
   `filename|URL` - path name or URL of PDF file to process, required.
   `output-file`  - local path name for output of parsed data, default stdout.
+  `--format`     - output data format CSV, JSON or raw, default JSON, raw is JSON array of arrays (rows).
   `--cells`      - minimum number of cells for a data row, default = 1.
   `--heading`    - text of heading to find in document that precedes desired data table, default none.
-  `--headers`    - comma separated list of column names for data, default none first table row contains names.
+  `--headers`    - comma separated list of column names for data, default none, first table row contains names.
   `--repeating`  - table headers repeat on each PDF page, default = false.
-  `--csv`        - output data in CSV format.
-  `--json`       - output data in JSON format, default.
-  `--raw`        - output text in the document as JSON array of arrays.
 ```
 
 Note: If the `pdp` command conflicts with another program on your system use `pdfdataparser` instead.
+
+### Options File
+
+The options file supports options for all pdf-data-parser modules.
+
+```javascript
+{
+  ///// PdfDataParser options
+  // url - local path name or URL of PDF file to process, required.
+  "url": "",
+  // output - local path name for output of parsed data, default stdout.
+  "output": "",
+  // format - output data format CSV, JSON or raw, default JSON, raw is JSON array of arrays (rows).
+  "format": "json",
+  // pages - string or array of page numbers to process, if undefined defaults to all pages. Examples: [ 1,3,4,5,7 ], [ 1, "3-5", 7 ], "1,3-5,7".
+  "pages": null,
+  // heading - text of heading to find in document that precedes desired data table, default none.
+  "heading": null,
+  // cells - minimum number of cells for a data row, default = 1.
+  "cells": 1,
+  // repeating - table header row repeats on each PDF page, default = false.
+  "repeatingHeaders": false,
+  // pageHeader - height of page header area in points, default: 0. Content in this area will be excluded. When true any row matching the first row encountered will be excluded from output.
+  "pageHeader": 0,
+  // pageFooter - height of page footer area in points, default: 0. Content in this area will be excluded.
+  "pageFooter": 0,
+  // artifacts - parse PDF Artifacts content, default: false. Sometimes used in PDF documents for page header/footer, footnotes, annotations, etc.
+  "artifacts": false,
+  // lineHeight - approximate line height ratio based on font size; default 1.67.
+  "lineHeight": 1.67,
+  // newlines - preserve new lines in cell data, default: false.
+  "newlines": false,
+  // orderXY - order cells by XY coordinates on page; default true. When false cells will be order as found in the PDF.js page content array.
+  "orderXY": true,
+
+  //// RowAsObjectTransform options
+  // headers - comma separated list of column names for data, default none. When not defined the first table row encountered will be treated as column names.
+  "RowAsObject.headers": null,
+
+  //// RepeatCellTransform options
+  // column - column index of cell to repeat, default 0.
+  "RepeatCell.column": null,
+
+  //// RepeatHeadingTransform options
+  // header - column name for the repeating heading field. Can optionally contain an index of where to insert the header in the header row. Default "heading:0".
+  "RepeatHeading.header": null
+}
+```
 
 ### Examples
 
@@ -50,17 +99,34 @@ pdp ./test/data/pdf/helloworld.pdf --headers=Greeting --csv
 pdp https://sos.iowa.gov/elections/pdf/VRStatsArchive/2024/CoJan24.pdf --cells=8 --repeating
 ```
 
+```bash
+pdp --options=.\\test\\testRepeatCell.json
+
+testRepeatCell.json:
+{
+  "url": "./test/data/pdf/state_voter_registration_jan2024.pdf",
+  "output": "./test/output/cli/repeat_cell.json",
+  "format": "json",
+  "pages": [ 1 ],
+  "pageHeader": 64,
+  "cells": 7,
+  "RepeatCell.column": 0
+}
+```
+
 ## Developer Guide
 
 ---
 
-PdfDataParser given a PDF document will output an array of arrays (rows). For most projects use the streaming classes PdfDataReader and RowAsObjects transform to convert the arrays to Javascript objects.  With default settings PdfDataParser will output all rows in the document including headings and paragraphs. Using [PdfDataParser Options](#pdf-data-parser-options) the parser can filter content to retrieve the desired data table in the document.
+### PdfDataParser
+
+PdfDataParser given a PDF document will output an array of arrays (rows). For most projects use the streaming classes PdfDataReader and RowAsObjectTransform transform to convert the arrays to Javascript objects.  With default settings PdfDataParser will output all rows in the document including headings and paragraphs. Using [PdfDataParser Options](#pdf-data-parser-options) the parser can filter content to retrieve the desired data table in the document.
 
 PdfDataParser only works on a certain subset of PDF documents specifically those that contain some type of tabular data in a grid/table format. The parser uses __marked content__ items and x,y position information returned by the Mozilla [pdf.js](https://github.com/mozilla/pdf.js) API to transform PDF content items into rows of cells.
 
 Rows and Cells terminology is used instead of Rows and Columns because the marked content in a PDF document flows more like an HTML page than database query results. Some rows may have more cells than other rows. For example a heading or description paragraph will be a row (array) with one cell (string).  See [Notes](#notes) below.
 
-> <font color="red">Warning: PDF document does not contain Marked Content</font>
+> <font color="yellow">Warning: PDF document does not contain Marked Content</font>
 >
 > If the PDF document does not contain marked content the parser will display a console warning. In this case PdfDataParser may not be able to reliably parse data in the document based solely on x,y positioning.
 
@@ -85,23 +151,27 @@ PdfDataParser constructor takes an options object with the following fields.
 
 Common Options:
 
+`{Array} pages` - array of page numbers to process, if undefined defaults to all pages. Examples: [ 1 ], [ 3, 5, 7 ]
+
 `{string|regexp} heading` - Section heading in the document after which the parser will look for tabular data; optional, default: none. The parser does a string comparison or regexp match looking for first occurrence of `heading` value in the first cell of rows. If not specified then data output starts with first row of the document that contains enough cells.
 
 `{integer} cells` - Minimum number of cells in tabular data; optional, default: 1. If `heading` is not specified then all rows in document with at least `cells` length will be output. If `heading` string is found parser will look for the first row that contains at least `cells` count of cells after the heading. The parser will output rows until it encounters a row with less than `cells` count of cells.
 
 `{Boolean} repeatingHeaders` - Indicates if table headers are repeated on each page, default: false. The table headers will be compare to the first row on each subsequent page.  If found they will be removed from the output.
 
-Other Options:
-
-`{boolean} newlines` - Preserve new lines in cell data; optional, default: false. When false newlines will be replaced by spaces. Preserving newlines characters will keep the formatting of multiline text such as descriptions. Though, newlines are problematic for cells containing multi-word identifiers and keywords that might be wrapped in the PDF text.
-
-`{Boolean} artifacts` - Parse artifacts content, default: false. Artifacts content specifies objects on the page such as table/grid lines and table headers/footers. Grid lines do not have text content, but table headers and footers might. If page headers and footers show up in output try the pageHeader and pageFooter options.
-
 `{Integer} pageHeader` - Height of page header area in points, default: 0. Content within this area of the page will not be included in output. Use about 16 points per line including blank lines.
 
 `{Integer} pageFooter` - Height of page footer area in points, default: 0. Content within this area of the page will not be included in output. Use about 16 points per line including blank lines.
 
+Other Options:
+
+`{Boolean} artifacts` - Parse artifacts content, default: false. Artifacts content specifies objects on the page such as table/grid lines and table headers/footers. Grid lines do not have text content, but table headers and footers might. If page headers and footers show up in output try the pageHeader and pageFooter options.
+
 `{Integer} lineHeight` - Approximate line height ratio based on font size; default 1.67. The parser extracts font size from the pdf content. The line height ratio maybe used when comparing the position of content items on the page.
+
+`{boolean} newlines` - Preserve new lines in cell data; optional, default: false. When false newlines will be replaced by spaces. Preserving newlines characters will keep the formatting of multiline text such as descriptions. Though, newlines are problematic for cells containing multi-word identifiers and keywords that might be wrapped in the PDF text.
+
+`{Boolean} orderXY` - order cells by XY coordinates on page; default true. When false cells will be order as found in the PDF.js page content array. Some documents may have items ordered top-to-bottom, left-to-right in the PDF document.  Most PDF documents will have items that are out of order and need to be placed on the page by X,Y coordinates.
 
 ## Streaming Usage
 
@@ -130,45 +200,125 @@ reader.on('error', (err) => {
 })
 ```
 
-### PdfDataParser Options
+### PdfDataReader Options
 
 PdfDataReader constructor options are the same as [PdfDataParser Options](#pdf-data-parser-options).
 
-## RowAsObjects
+### RowAsObjectTransform
 
----
-
-PdfDataReader operates in Object Mode. The reader outputs arrays (rows). To convert rows into Javascript objects use the RowAsObjects transform.  PdfDataReader also operates in Object mode where a chunk is a Javascript Object of <name,value> pairs.
+PdfDataReader operates in Object Mode. The reader outputs arrays (rows). To convert rows into Javascript objects use the RowAsObjectTransform transform.  PdfDataReader operates in Object mode where a chunk is a Javascript Object of <name,value> pairs.
 
 ```javascript
-const { PdfDataReader, RowAsObjects } = require("pdf-data-parser");
+const { PdfDataReader, RowAsObjectTransform } = require("pdf-data-parser");
 const { pipeline } = require('node:stream/promises');
 
 let reader = new PdfDataReader(options);
-let transform1 = new RowAsObjects(options);
+let transform1 = new RowAsObjectTransform(options);
 let writable = <some writable that can handle Object Mode data>
 
 await pipeline(reader, transform1, writable);
 ```
 
-### RowAsObjects Options
+### RowAsObjectTransform Options
 
-RowAsObjects constructor takes an options object with the following fields.
+RowAsObjectTransform constructor takes an options object with the following fields.
 
 `{array} headers` - array of cell property names; optional, default: none. If a headers array is not specified then parser will assume the first row found contains cell property names.
 
 If a row is encountered with more cells than in the headers array then extra cell property names will be the ordinal position. For example if the data contains five cells, but only three headers where specified.  Specifying `options = { headers: [ 'name', 'type', 'info' ] }` then the Javascript objects in the stream will contain `{ "name": "value1", "type": "value2", "info": "value3", "4": "value4", "5": "value5" }`.
+
+### RepeatCellTransform
+
+The RepeatCellTransform will normalize data the was probably generated by a report writer. The specified cell will be repeated in following rows that contain one less cell. In the following example "Dewitt" will be repeated in rows 2 and 3.
+
+**PDF Document**
+
+```
+County   Precincts  Date/Period   Total
+Dewitt          44  JUL 2023     52,297
+                44  OCT 2023     52,017
+                44  JAN 2024     51,712
+```
+
+**Output**
+
+```
+[ "County", "Precincts", "Date/Period", "Total" ]
+[ "Dewitt", "44", "JUL 2023", "52,297" ]
+[ "Dewitt", "44", "OCT 2023", "52,017" ]
+[ "Dewitt", "44", "JAN 2024", "51,712" ]
+```
+
+### Example Usage
+
+```javascript
+const { PdfDataReader, RepeatCellTransform } = require("pdf-data-parser");
+const { pipeline } = require('node:stream/promises');
+
+let reader = new PdfDataReader(options);
+let transform1 = new RepeatCellTransform({ column: 0 });
+let writable = <some writable that can handle Object Mode data>
+
+await pipeline(reader, transform1, writable);
+```
+
+### RepeatCellTransform Options
+
+RepeatCellTransform constructor takes an options object with the following fields.
+
+`{Number} column` - column index of cell to repeat, default 0.
+
+### RepeatHeadingTransform
+
+The RepeatHeadingTransform will normalize data the was probably generated by a report writer. The subheading cell will be repeated in rows that follow until another subheading is encountered. In the following example `options = {header: "County:1"}`.
+
+**PDF Document**
+
+```
+District  Precincts    Total
+
+Congressional District 5
+Maricopa        120  403,741
+Pinal            30  102,512
+Total:          150  506,253
+```
+
+**Output**
+
+```
+[ "District", "County", "Precincts", "Total" ]
+[ "Congressional District 5", "Maricopa", "120", "403,741" ]
+[ "Congressional District 5", "Pinal", "30", "102,512" ]
+[ "Congressional District 5", "Total:", "150", "506,253" ]
+```
+
+```javascript
+const { PdfDataReader, RepeatHeadingTransform } = require("pdf-data-parser");
+const { pipeline } = require('node:stream/promises');
+
+let reader = new PdfDataReader(options);
+let transform1 = new RepeatHeadingTransform({header: "County:1"});
+let writable = <some writable that can handle Object Mode data>
+
+await pipeline(reader, transform1, writable);
+```
+
+### RepeatHeadingTransform Options
+
+RepeatHeadingTransform constructor takes an options object with the following fields.
+
+`{String} header` - column name for the repeating heading field. Can optionally contain an index of where to insert the header in the header row. Default "heading:0".
 
 ### FormatCSV and FormatJSON
 
 The `pdfdataparser` CLI program uses the FormatCSV and FormatJSON transforms to covert Javascript Objects into strings that can be saved to a file.
 
 ```javascript
-const { PdfDataReader, RowAsObjects, FormatCSV } = require("pdf-data-parser");
+const { PdfDataReader, RowAsObjectTransform, FormatCSV } = require("pdf-data-parser");
 const { pipeline } = require('node:stream/promises');
 
 let reader = new PdfDataReader(options);
-let transform1 = new RowAsObjects(options);
+let transform1 = new RowAsObjectTransform(options);
 let transform2 = new FormatCSV();
 
 await pipeline(reader, transform1, transform2, process.stdout);
@@ -177,6 +327,8 @@ await pipeline(reader, transform1, transform2, process.stdout);
 ## Examples
 
 ---
+
+In the source code the pdf-data-parser.js program and the Javascript files in the /test folder are good examples of using the library modules.
 
 ### Hello World
 
@@ -188,10 +340,10 @@ await pipeline(reader, transform1, transform2, process.stdout);
 ]
 ```
 
-To transform the row array into an object specify the headers option to RowAsObjects transform.
+To transform the row array into an object specify the headers option to RowAsObjectTransform transform.
 
 ```javascript
-let transform = new RowAsObjects({
+let transform = new RowAsObjectTransform({
   headers: [ "Greeting" ]
 })
 ```
@@ -290,6 +442,10 @@ house3 = await parser.parse();
 parser3 = new PdfDataParser({ url: "./data/pdf/CongJul22.pdf", heading: "US Representative District 4", cells: 12 })
 house3 = await parser.parse();
 ```
+
+### PDF from a Report Generator
+
+The /test/data/pdf fold contains a PDF that was created by a report generator, state_voter_registration_jan2024.pdf.  This PDF content does not contain Marked content and cell positioning is totally by X,Y coordinates.  Also, it contains subheadings in tables and some missing cell values.  The test/testRepeatCells and test/testRepeatHeading files contain examples of parsing this type of PDF document.
 
 ## Notes
 
