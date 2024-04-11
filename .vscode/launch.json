@@ -28,7 +28,7 @@
       "type": "node",
       "name": "RowAsObjectTransform",
       "cwd": "${workspaceFolder}/test/",
-      "program": "${workspaceFolder}/test/testObjectTransform.js",
+      "program": "${workspaceFolder}/test/testRowAsObjectTransform.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
