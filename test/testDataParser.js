@@ -23,9 +23,9 @@ async function test(options) {
 
 (async () => {
   if (await test({ url: "./data/pdf/helloworld.pdf" })) return 1;
-  if (await test({ url: "https://www2.census.gov/geo/pdfs/reference/ClassCodes.pdf", newlines: false })) return 1;
-  if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3 })) return 1;
+  if (await test({ url: "https://www2.census.gov/geo/pdfs/reference/ClassCodes.pdf", newlines: true })) return 1;
+  if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3, orderXY: false })) return 1;
   if (await test({ url: "./data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
   if (await test({ url: "./data/pdf/CongJul22.pdf" })) return 1;
-  if (await test({ url: "./data/pdf/state_voter_registration_jan2024.pdf", pages: [ 2 ], cells: 1 })) return 1;
+  if (await test({ url: "./data/pdf/state_voter_registration_jan2024.pdf", pages: [ 3,4,5 ], pageHeader: 64, repeatingHeaders: true })) return 1;
 })();
