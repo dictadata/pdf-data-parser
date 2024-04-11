@@ -1,0 +1,8 @@
+{
+  "url": "./test/data/pdf/state_voter_registration_jan2024.pdf",
+  "output": "./test/output/cli/repeat_heading.json",
+  "format": "json",
+  "pages": "2",
+  "pageHeader": 64,
+  "RepeatHeading.header": "County:1"
+}
