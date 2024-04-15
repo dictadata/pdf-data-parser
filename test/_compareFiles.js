@@ -98,7 +98,7 @@ function compareJSON(var1, var2, compareValues) {
     }
 
     for (let key of keys1) {
-      if (!Object.prototype.hasOwnProperty.call(var2, key)) {
+      if (!Object.hasOwn(var2, key)) {
         console.error("compare object2 does not contain property: " + key);
         return 1;
       }
