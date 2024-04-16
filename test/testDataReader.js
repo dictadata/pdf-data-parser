@@ -31,8 +31,8 @@ async function test(options) {
 (async () => {
   if (await test({ url: "./data/pdf/helloworld.pdf" })) return 1;
   if (await test({ url: "./data/pdf/ClassCodes.pdf", newlines: false })) return 1;
-  if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: /Government Units .*/, cells: 3, orderXY: false })) return 1;
+  if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: /Official short names, .*/, stopHeading: /.* File Format/, orderXY: false })) return 1;
   if (await test({ url: "./data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
   if (await test({ url: "./data/pdf/CongJul22.pdf" })) return 1;
-  if (await test({ url: "./data/pdf/state_voter_registration_jan2024.pdf", pages: [ 3,4,5 ], pageHeader: 64, repeatingHeaders: true })) return 1;
+  if (await test({ url: "./data/pdf/state_voter_registration_jan2024.pdf", pages: [ 3,4,5,6 ], pageHeader: 64, repeatingHeaders: true })) return 1;
 })();

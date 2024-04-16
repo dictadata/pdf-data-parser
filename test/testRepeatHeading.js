@@ -32,8 +32,10 @@ async function test(options) {
 (async () => {
   if (await test({
     url: "./data/pdf/state_voter_registration_jan2024.pdf",
-    pages: [ 2 ],
-    pageHeader: 64,
+    pages: [ 2,3,4,5 ],
+    pageHeader: 48,
+    heading: "Active",
+    stopHeading: "Active",
     "RepeatHeading.header": "County:1"
   })) return 1;
 })();
