@@ -58,7 +58,7 @@ The options file supports options for all pdf-data-parser modules.
   "pages": null,
   // heading - text of heading to find in document that precedes desired data table, default none.
   "heading": null,
-  // stopHeading - text of heading to find in document that follows desired data table, default none.
+  // stopHeading - text of heading that follows desired data table, default none.
   "stopHeading": null,
   // cells - minimum number of cells for a data row, default = 1.
   "cells": 1,

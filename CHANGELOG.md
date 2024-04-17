@@ -1,5 +1,7 @@
 # pdf-data-parser Change Log
 
+- version 1.2.8
+  - feature: add options.stopHeading to identify the end of a table.
 - version 1.2.7
   - feature: read command-line options from a file
   - feature: pages option to limit parsing to specific pages
