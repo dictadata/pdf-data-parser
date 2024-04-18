@@ -17,9 +17,9 @@ var doc;
 
 async function getContent(options) {
   try {
-    const pdfjsLib = await import("pdfjs-dist");
+    const { getDocument } = await import("pdfjs-dist/legacy/build/pdf.mjs");
 
-    let loadingTask = pdfjsLib.getDocument({ url: options.url, fontExtraProperties: true });
+    let loadingTask = getDocument({ url: options.url, fontExtraProperties: true });
     doc = await loadingTask.promise;
 
     let output = {};

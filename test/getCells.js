@@ -131,9 +131,9 @@ function adjacent(x, y, prevItem, cell) {
 
 async function getContent() {
   try {
-    const pdfjsLib = await import("pdfjs-dist");
+    const { getDocument } = await import("pdfjs-dist/legacy/build/pdf.mjs");
 
-    var loadingTask = pdfjsLib.getDocument({ url: pdfPath, fontExtraProperties: true });
+    var loadingTask = getDocument({ url: pdfPath, fontExtraProperties: true });
     doc = await loadingTask.promise;
     console.log("# Document Loaded");
 
