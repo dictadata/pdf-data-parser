@@ -1,4 +1,4 @@
-# pdf-data-parser 1.2.7
+# pdf-data-parser 1.2.x
 
 Parse, search and stream PDF tabular data using Node.js with Mozilla's PDF.js library.
 

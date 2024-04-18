@@ -1,5 +1,7 @@
 # pdf-data-parser Change Log
 
+- version 1.2.9
+  - bug fix: use pdfjs-dist legacy build, fixes Promise.withResolvers error
 - version 1.2.8
   - feature: add options.stopHeading to identify the end of a table.
 - version 1.2.7
