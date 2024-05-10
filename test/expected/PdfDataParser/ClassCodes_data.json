@@ -1,0 +1,357 @@
+[
+  [
+    "Class Code",
+    "Class Code Description",
+    "Associated Geographic Entity"
+  ],
+  [
+    "A1",
+    "Airport with scheduled commercial flights\nthat also serves as a military installation",
+    "Locality Point, Military Installation"
+  ],
+  [
+    "A3",
+    "Airport with scheduled commercial flights\nthat does not serve as a military\ninstallation",
+    "Locality Point"
+  ],
+  [
+    "A4",
+    "Airport without scheduled commercial\nflights that does not serve as a military\ninstallation",
+    "Locality Point"
+  ],
+  [
+    "A6",
+    "Airport without scheduled commercial\nflights that serves as a military installation",
+    "Locality Point, Military Installation"
+  ],
+  [
+    "B0",
+    "Post office, branch, or station",
+    "Locality Point"
+  ],
+  [
+    "B3",
+    "Three-digit ZCTA",
+    "ZIP Code Tabulation Area (Three-Digit)"
+  ],
+  [
+    "B5",
+    "Five-digit ZCTA",
+    "Zip Code Tabulation Area (Five-Digit)"
+  ],
+  [
+    "C1",
+    "An active incorporated place that does\nnot serve as a county subdivision\nequivalent",
+    "Economic Census Place, Incorporated\nPlace"
+  ],
+  [
+    "C2",
+    "An active incorporated place that is\nlegally coextensive with an county\nsubdivision but treated as independent of\nany county subdivision",
+    "County Subdivision, Economic Census\nPlace, Incorporated Place"
+  ],
+  [
+    "C3",
+    "Consolidated city",
+    "Consolidated City"
+  ],
+  [
+    "C4",
+    "Alternate official common name for an\nincorporated place",
+    "Locality Point"
+  ],
+  [
+    "C5",
+    "An active incorporated place that is\nindependent of any county subdivision\nand serves as a county subdivision\nequivalent",
+    "County Subdivision, Economic Census\nPlace, Incorporated Place"
+  ],
+  [
+    "C6",
+    "An active incorporated place that partially\nis independent of any county subdivision\nand serves as a county subdivision\nequivalent or partially coextensive with a\ncounty subdivision but treated as\nindependent of any county subdivision",
+    "Incorporated Place"
+  ],
+  [
+    "C7",
+    "An incorporated place that is independent\nof any county",
+    "County or Equivalent Feature, County\nSubdivision, Economic Census Place,\nIncorporated Place"
+  ],
+  [
+    "C8",
+    "The balance of a consolidated city\nexcluding the separately incorporated\nplace(s) within that consolidated\ngovernment",
+    "Economic Census Place, Incorporated\nPlace"
+  ],
+  [
+    "C9",
+    "An inactive or nonfunctioning\nincorporated place",
+    "Economic Census Place, Incorporated\nPlace"
+  ],
+  [
+    "D0",
+    "Statistical or legal area administered\nand/or claimed by two or more American\nIndian tribes",
+    "American Indian/Alaska Native/Native\nHawaiian Area"
+  ],
+  [
+    "D1",
+    "Legal federally recognized American\nIndian area consisting of reservation and\nassociated off-reservation trust land",
+    "American Indian/Alaska Native/Native\nHawaiian Area"
+  ],
+  [
+    "D2",
+    "Legal federally recognized American\nIndian area consisting of reservation only",
+    "American Indian/Alaska Native/Native\nHawaiian Area"
+  ],
+  [
+    "D3",
+    "Legal federally recognized American\nIndian area consisting of off-reservation\ntrust land only",
+    "American Indian/Alaska Native/Native\nHawaiian Area"
+  ],
+  [
+    "D4",
+    "Legal state recognized American Indian\narea",
+    "American Indian/Alaska Native/Native\nHawaiian Area"
+  ],
+  [
+    "D5",
+    "The legal off-reservation trust land\nportion of an American Indian entity with\nboth a reservation and trust land",
+    "American Indian/Alaska Native/Native\nHawaiian Area"
+  ],
+  [
+    "D6",
+    "Statistical American Indian area defined\nfor a federally recognized tribe that does\nnot have a reservation or off-reservation\ntrust land specifically a tribal designated\nstatistical area or Oklahoma tribal\nstatistical area, but excluding Alaska\nNative village statistical areas",
+    "American Indian/Alaska Native/Native\nHawaiian Area"
+  ],
+  [
+    "D7",
+    "A tribal subdivision",
+    "Tribal Subdivision"
+  ],
+  [
+    "D8",
+    "The legal reservation portion of an\nAmerican Indian entity with both a\nreservation and trust land",
+    "American Indian/Alaska Native/Native\nHawaiian Area"
+  ],
+  [
+    "D9",
+    "Statistical American Indian area defined\nfor a state-recognized tribe that does not\nhave a reservation or off-reservation trust\nland, specifically a state-designated tribal\nstatistical area",
+    "American Indian/Alaska Native/Native\nHawaiian Area"
+  ],
+  [
+    "E1",
+    "Statistical area that represents the\ndensely settled portion of an Alaska\nNative village; an Alaska Native village\nstatistical area",
+    "American Indian/Alaska Native/Native\nHawaiian Area"
+  ],
+  [
+    "E7",
+    "An Alaska Native Regional Corporation",
+    "Alaska Native Regional Corporation"
+  ],
+  [
+    "F1",
+    "Legal Hawaiian home land consisting of\nlands held in trust for the benefit of Native\nHawaiians",
+    "American Indian/Alaska Native/Native\nHawaiian Area"
+  ],
+  [
+    "H1",
+    "An active county or equivalent feature",
+    "County or Equivalent Feature"
+  ],
+  [
+    "H2",
+    "The balance of an active county or\nequivalent feature excluding the\nincorporated place(s) that separately\nqualify as EC places",
+    "Economic Census Place"
+  ],
+  [
+    "H3",
+    "The balance of an inactive county or\nequivalent feature excluding the\nincorporated place(s) that separately\nqualify as EC places",
+    "Economic Census Place"
+  ],
+  [
+    "H4",
+    "An inactive county or equivalent feature",
+    "County or Equivalent Feature"
+  ],
+  [
+    "H5",
+    "A statistical county equivalent feature",
+    "County or Equivalent Feature"
+  ],
+  [
+    "H6",
+    "A county that is coextensive with an\nincorporated place, part of an\nincorporated place, or a consolidated city\nand the governmental functions of the\ncounty are part of the municipal\ngovenment",
+    "County or Equivalent Feature"
+  ],
+  [
+    "H7",
+    "The balance of a statistical county\nequivalent feature excluding the\nincorporated place(s) that separately\nqualify as EC places",
+    "Economic Census Place"
+  ],
+  [
+    "I1",
+    "An EC Place that is a whole Hawaiian\nIsland",
+    "Economic Census Place"
+  ],
+  [
+    "I2",
+    "An EC Place that is a balance of a\nHawaiian Island",
+    "Economic Census Place"
+  ],
+  [
+    "M1",
+    "A military or other defense installation\nthat is not entirely within a census\ndesignated place",
+    "Locality Point, Military Installation"
+  ],
+  [
+    "M2",
+    "A military or other defense installation\nentirely within a place",
+    "Census Designated Place, Economic\nCensus Place, Military Installation"
+  ],
+  [
+    "M3",
+    "Health care facility",
+    "Locality Point"
+  ],
+  [
+    "M4",
+    "Federally managed park, forest, or other\narea",
+    "Locality Point, Park"
+  ],
+  [
+    "M9",
+    "Federal facility not classified elsewhere",
+    "Locality Point"
+  ],
+  [
+    "N1",
+    "National Guard installation",
+    "Locality Point, Military Installation"
+  ],
+  [
+    "N9",
+    "International, state, tribal, or local\ngovernment facility",
+    "Locality Point, Military Installation"
+  ],
+  [
+    "R0",
+    "Park, forest, or other reserve not federally\nmanaged or unknown",
+    "Park"
+  ],
+  [
+    "S1",
+    "A nonfunctioning county subdivision that\nis coextensive with a census designated\nplace",
+    "County Subdivision"
+  ],
+  [
+    "S2",
+    "A statistical county subdivision that is\ncoextensive with a census designated\nplace",
+    "County Subdivision"
+  ],
+  [
+    "S3",
+    "A statistical county subdivision that is\ncoextensive with a legal American Indian,\nAlaska Native, or Native Hawaiian area",
+    "County Subdivision"
+  ],
+  [
+    "T1",
+    "An active county subdivision that is not\ncoextensive with an incorporated place",
+    "County Subdivision, Economic Census\nPlace"
+  ],
+  [
+    "T2",
+    "An active county subdivision that is\ncoextensive with a census designated\nplace",
+    "County Subdivision"
+  ],
+  [
+    "T5",
+    "An active county subdivision that is\ncoextensive with an incorporated place",
+    "County Subdivision"
+  ],
+  [
+    "T8",
+    "The balance of a county subdivision\nexcluding the incorporated place(s) that\nseparately qualify as EC places",
+    "Economic Census Place"
+  ],
+  [
+    "T9",
+    "An inactive county subdivision",
+    "County Subdivision"
+  ],
+  [
+    "U1",
+    "A census designated place with an\nofficial federally recognized name",
+    "Census Designated Place, Economic\nCensus Place"
+  ],
+  [
+    "U2",
+    "A census designated place without an\nofficial federally recognized name",
+    "Census Designated Place, Economic\nCensus Place"
+  ],
+  [
+    "U3",
+    "Alternate official common name for a\ncensus designated place",
+    "Locality Point"
+  ],
+  [
+    "U4",
+    "Alternate official common name for a\npopulated location within an incorporated\nplace",
+    "Locality Point"
+  ],
+  [
+    "U5",
+    "A census designated place that is\ncoextensive with a county subdivision",
+    "Census Designated Place"
+  ],
+  [
+    "U6",
+    "A populated place that is not a census\ndesignated or incorporated place having\nan official federally recognized name",
+    "Locality Point"
+  ],
+  [
+    "U8",
+    "A populated place that is not a census\ndesignated or incorporated place that\ndoes not have an official federally\nrecognized name",
+    "Locality Point"
+  ],
+  [
+    "Z1",
+    "A nonfunctioning county subdivision",
+    "County Subdivision, Economic Census\nPlace"
+  ],
+  [
+    "Z2",
+    "A county subdivision that is coextensive\nwith an American Indian, Alaska Native,\nor Native Hawaiian area and legally is\nindependent of any other county\nsubdivision",
+    "County Subdivision"
+  ],
+  [
+    "Z3",
+    "A county subdivision defined as an\nunorganized territory",
+    "County Subdivision, Economic Census\nPlace"
+  ],
+  [
+    "Z4",
+    "A nonfunctioning or disorganized\nhistorical county subdivision no longer\nrecognized by the Census Bureau",
+    "Locality Point"
+  ],
+  [
+    "Z5",
+    "A statistical county subdivision",
+    "County Subdivision"
+  ],
+  [
+    "Z6",
+    "A sub-minor civil division",
+    "Sub-Minor Civil Division"
+  ],
+  [
+    "Z7",
+    "A county subdivision that is coextensive\nwith a county or equivalent feature or all\nor part of an incorporated place that the\nCensus Bureau recognizes separately",
+    "County Subdivision, Locality Point"
+  ],
+  [
+    "Z8",
+    "A county subdivision that is legally\ncoextensive with all or part of an\nincorporated place that the Census\nBureau does not recognize",
+    "Locality Point"
+  ],
+  [
+    "Z9",
+    "County subdivision not defined",
+    "County Subdivision"
+  ]
+]

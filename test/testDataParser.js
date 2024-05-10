@@ -8,10 +8,17 @@ const path = require("path");
 const compareFiles = require("./_compareFiles");
 
 async function test(options) {
+  let outputName = path.parse(options.url || options.data).name;
+
+  if (options.data) {
+    options.data = new Uint8Array(fs.readFileSync(options.data));
+    outputName += "_data";
+  }
+
   let pdfDataParser = new PdfDataParser(options);
   let rows = await pdfDataParser.parse();
 
-  let outputFile = "./output/PdfDataParser/" + path.parse(options.url).name + ".json";
+  let outputFile = "./output/PdfDataParser/" + outputName + ".json";
   console.log("output: " + outputFile);
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
   fs.writeFileSync(outputFile, JSON.stringify(rows, null, 2));
@@ -27,5 +34,8 @@ async function test(options) {
   if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3, orderXY: false })) return 1;
   if (await test({ url: "./data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
   if (await test({ url: "./data/pdf/CongJul22.pdf" })) return 1;
-  if (await test({ url: "./data/pdf/state_voter_registration_jan2024.pdf", pages: [ 3,4,5 ], pageHeader: 64, repeatingHeaders: true })) return 1;
+  if (await test({ url: "./data/pdf/state_voter_registration_jan2024.pdf", pages: [ 3, 4, 5 ], pageHeader: 64, repeatingHeaders: true })) return 1;
+
+  if (await test({ data: "./data/pdf/helloworld.pdf" })) return 1;
+  if (await test({ data: "./data/pdf/ClassCodes.pdf", newlines: true })) return 1;
 })();

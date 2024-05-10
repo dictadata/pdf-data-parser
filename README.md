@@ -147,9 +147,11 @@ async function myFunc() {
 
 ### PdfDataParser Options
 
-PdfDataParser constructor takes an options object with the following fields.
+PdfDataParser constructor takes an options object with the following fields. One of `url` or `data` arguments is required.
 
-`{string|URL} url` - The local path or URL of the PDF document; required.
+`{URL|string} url` - The local path or URL of the PDF document.
+
+`{TypeArray|string} data` - pdf file data in a TypedArray, e.g. `options.data = new Uint8Array(buffer)`.
 
 Common Options:
 
