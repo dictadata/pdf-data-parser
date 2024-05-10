@@ -1,5 +1,7 @@
 # pdf-data-parser Change Log
 
+- version 1.2.10
+  - feature: implement pdf.js options.data argument for TypedArray input, instead of using options.url argument
 - version 1.2.9
   - bug fix: use pdfjs-dist legacy build, fixes Promise.withResolvers error
 - version 1.2.8
