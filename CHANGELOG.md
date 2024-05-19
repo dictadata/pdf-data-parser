@@ -1,9 +1,11 @@
 # pdf-data-parser Change Log
 
+- version 1.2.11
+  - update: use pdfjs-dist 4.2.67, fixes a high severity vulnerability
 - version 1.2.10
   - feature: implement pdf.js options.data argument for TypedArray input, instead of using options.url argument
 - version 1.2.9
-  - bug fix: use pdfjs-dist legacy build, fixes Promise.withResolvers error
+  - bug fix: use pdfjs-dist 4.0.379 legacy build, fixes Promise.withResolvers error
 - version 1.2.8
   - feature: add options.stopHeading to identify the end of a table.
 - version 1.2.7
