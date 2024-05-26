@@ -12,7 +12,7 @@ const RowAsObjectTransform = require("./lib/RowAsObjectTransform.js");
 const FormatCSV = require("./lib/FormatCSV.js");
 const FormatJSON = require("./lib/FormatJSON.js");
 const Package = require("./package.json");
-var colors = require('colors');
+const colors = require('colors');
 
 const { open, readFile } = require('node:fs/promises');
 const { pipeline } = require('node:stream/promises');
@@ -27,13 +27,14 @@ var options = {
   output: "",
   cells: 1,
   lineHeight: 1.67,
-  orderXY: true
+  orderXY: true,
+  trim: true
 }
 
 /**
  * parseArgs
  *   only filename is required
- *   example ["node.exe", "pdf-data-parser.js", <filename.pdf|URL>, <output> "--cells=3", "--heading=title", "--repeating" "--headers=c1,c2,.." "--json|csv" ]
+ *   example ["node.exe", "pdf-data-parser.js", <filename.pdf|URL>, <output> "--cells=3", "--heading=title", "--repeating" "--headers=c1,c2,.." "--format=json|csv|rows" ]
  */
 async function parseArgs() {
 
@@ -96,9 +97,10 @@ async function parseArgs() {
   let retCode = 0;
 
   await parseArgs();
-  let consoleOn = options.output !== "" || !options.url;
 
-  if (consoleOn) {
+  let stdoutput = options.output === "" || !options.url;
+
+  if (!stdoutput) {
     console.log("pdp PDF Data Parser " + Package.version);
     console.log("Copyright 2024 Drew O. Letcher | The MIT License");
   }
@@ -107,12 +109,12 @@ async function parseArgs() {
     console.log("");
     console.log("Parse tabular data from a PDF file.");
     console.log("");
-    console.log("pdp [--options=filename.json] <filename.pdf|URL> [<output>] [--cells=#] [--heading=title], [--repeating] [--headers=name1,name2,...] [--csv|--json]");
+    console.log("pdp [--options=filename.json] <filename.pdf|URL> [<output>] [--cells=#] [--heading=title], [--repeating] [--headers=name1,name2,...] [--format=json|csv|rows]");
     console.log("");
     console.log("  --options    - file containing JSON object with pdp options, optional.");
     console.log("  filename|URL - path name or URL of PDF file to process, required.");
     console.log("  output       - local path name for output of parsed data, default stdout.");
-    console.log("  --format     - output data format CSV, JSON or raw, default JSON, raw is JSON array of arrays (rows).");
+    console.log("  --format     - output data format JSON, CSV or rows (JSON arrays), default JSON.");
     console.log("  --cells      - minimum number of cells for a data row, default = 1.");
     console.log("  --heading    - text of heading to find in document that precedes desired data table, default none.");
     console.log("  --headers    - comma separated list of column names for data, default none first table row contains names.");
@@ -122,7 +124,6 @@ async function parseArgs() {
   }
 
   try {
-
     let pipes = [];
 
     let reader = new PdfDataReader(options);
@@ -138,12 +139,12 @@ async function parseArgs() {
       pipes.push(transform);
     }
 
-    if (options.format !== "raw") {
+    if (options?.format.toLowerCase() !== "rows") {
       let transform = new RowAsObjectTransform(options);
       pipes.push(transform);
     }
 
-    let formatter = options.format === "csv" ? new FormatCSV() : new FormatJSON();
+    let formatter = options?.format.toLowerCase() === "csv" ? new FormatCSV() : new FormatJSON();
     pipes.push(formatter);
 
     let writer;
@@ -157,19 +158,19 @@ async function parseArgs() {
 
     await pipeline(pipes);
 
-    writer.end();
+    if (options.output)
+      writer.end();
   }
   catch (err) {
     console.error(err.message.red);
     retCode = 1;
   }
 
-  if (consoleOn) {
+  if (!stdoutput) {
     if (retCode === 0)
-      console.log("parser results OK");
+      console.log("parser results OK".green);
     else
       console.log(" parser failed.".red);
-    console.log();
   }
 
   process.exitCode = retCode;
