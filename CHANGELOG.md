@@ -1,5 +1,8 @@
 # pdf-data-parser Change Log
 
+- version 1.2.12
+  - feature: add trim option to trim whitespace from output values
+  - refactor: refactor CLI format option: --format=json|csv|rows
 - version 1.2.11
   - update: use pdfjs-dist 4.2.67, fixes a high severity vulnerability
 - version 1.2.10
