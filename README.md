@@ -27,12 +27,12 @@ npm install pdf-data-parser
 Parse tabular data from a PDF file or URL.
 
 ```bash
-pdp [--options=filename.json] <filename.pdf|URL> [<output-file>] [--cells=#] [--heading=title], [--repeating] [--headers=name1,name2,...] [--format=csv|json|raw]
+pdp [--options=filename.json] <filename.pdf|URL> [<output-file>] [--cells=#] [--heading=title], [--repeating] [--headers=name1,name2,...] [--format=json|csv|rows]
 
   `--options`    - file containing JSON object with pdp options, optional.
   `filename|URL` - path name or URL of PDF file to process, required.
   `output-file`  - local path name for output of parsed data, default stdout.
-  `--format`     - output data format CSV, JSON or raw, default JSON, raw is JSON array of arrays (rows).
+  `--format`     - output data format JSON, CSV or rows (JSON arrays), default JSON.
   `--cells`      - minimum number of cells for a data row, default = 1.
   `--heading`    - text of heading to find in document that precedes desired data table, default none.
   `--headers`    - comma separated list of column names for data, default none, first table row contains names.
@@ -52,7 +52,7 @@ The options file supports options for all pdf-data-parser modules.
   "url": "",
   // output - local path name for output of parsed data, default stdout.
   "output": "",
-  // format - output data format CSV, JSON or raw, default JSON, raw is JSON array of arrays (rows).
+  // format - output data format CSV, JSON or rows, default JSON, rows is JSON array of arrays (rows).
   "format": "json",
   // pages - string or array of page numbers to process, if undefined defaults to all pages. Examples: [ 1,3,4,5,7 ], [ 1, "3-5", 7 ], "1,3-5,7".
   "pages": null,
@@ -70,12 +70,14 @@ The options file supports options for all pdf-data-parser modules.
   "pageFooter": 0,
   // artifacts - parse PDF Artifacts content, default: false. Sometimes used in PDF documents for page header/footer, footnotes, annotations, etc.
   "artifacts": false,
-  // lineHeight - approximate line height ratio based on font size; default 1.67.
+  // lineHeight - approximate line height ratio based on font size; default: 1.67.
   "lineHeight": 1.67,
   // newlines - preserve new lines in cell data, default: false.
   "newlines": false,
   // orderXY - order cells by XY coordinates on page; default true. When false cells will be order as found in the PDF.js page content array.
   "orderXY": true,
+  // trim whitespace from output values, false (0) = none, true (1) = both, 2 = starting only, 3 = trailing only, default: true.
+  "trim": true,
 
   //// RowAsObjectTransform options
   // headers - comma separated list of column names for data, default none. When not defined the first table row encountered will be treated as column names.
@@ -94,7 +96,7 @@ The options file supports options for all pdf-data-parser modules.
 ### Examples
 
 ```bash
-pdp ./test/data/pdf/helloworld.pdf --headers=Greeting --csv
+pdp ./test/data/pdf/helloworld.pdf --headers=Greeting --format=csv
 ```
 
 ```bash
@@ -178,6 +180,8 @@ Other Options:
 `{boolean} newlines` - Preserve new lines in cell data; optional, default: false. When false newlines will be replaced by spaces. Preserving newlines characters will keep the formatting of multiline text such as descriptions. Though, newlines are problematic for cells containing multi-word identifiers and keywords that might be wrapped in the PDF text.
 
 `{boolean} orderXY` - order cells by XY coordinates on page; default true. When false cells will be order as found in the PDF.js page content array. Some documents may have items ordered top-to-bottom, left-to-right in the PDF document.  Most PDF documents will have items that are out of order and need to be placed on the page by X,Y coordinates.
+
+`{boolean|number} trim` - trim whitespace from output values, false (0) = no trimming, true (1) = both, 2 = starting only, 3 = trailing only, default: true.
 
 ## Streaming Usage
 
