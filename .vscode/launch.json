@@ -6,6 +6,31 @@
   "configurations": [
     {
       "type": "node",
+      "name": "getContent",
+      "cwd": "${workspaceFolder}/test/",
+      "program": "${workspaceFolder}/test/getContent.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node",
+      "name": "getCells",
+      "cwd": "${workspaceFolder}/test/",
+      "program": "${workspaceFolder}/test/getCells.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node-terminal",
+      "name": "---",
+      "request": "launch"
+    },
+    {
+      "type": "node",
       "name": "PdfDataParser",
       "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/testDataParser.js",
@@ -55,32 +80,16 @@
       ]
     },
     {
-      "type": "node",
-      "name": "getContent",
-      "cwd": "${workspaceFolder}/test/",
-      "program": "${workspaceFolder}/test/getContent.js",
-      "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
+      "type": "node-terminal",
+      "name": "---",
+      "request": "launch"
     },
     {
       "type": "node",
-      "name": "getCells",
-      "cwd": "${workspaceFolder}/test/",
-      "program": "${workspaceFolder}/test/getCells.js",
-      "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "cli helloworld.csv",
+      "name": "cli helloworld json",
       "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
-      "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating", "--csv" ],
+      "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating" ],
       "outputCapture": "std",
       "skipFiles": [
         "<node_internals>/**"
@@ -88,55 +97,66 @@
     },
     {
       "type": "node",
-      "request": "launch",
-      "name": "cli helloworld.json",
+      "name": "cli helloworld csv",
       "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
-      "args": [ ".\\test\\data\\pdf\\helloworld.pdf", ".\\test\\output\\cli\\helloworld.json", "--headers=Greating" ],
+      "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating", "--format=csv" ],
+      "outputCapture": "std",
       "skipFiles": [
         "<node_internals>/**"
       ]
     },
     {
       "type": "node",
-      "request": "launch",
-      "name": "cli ClassCodes.csv",
+      "name": "cli helloworld rows",
       "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
-      "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\cli\\ClassCodes.csv", "--csv" ],
+      "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating", "--format=rows" ],
+      "outputCapture": "std",
       "skipFiles": [
         "<node_internals>/**"
       ]
     },
     {
       "type": "node",
-      "request": "launch",
-      "name": "cli ClassCodes.json",
+      "name": "cli ClassCodes csv",
       "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
-      "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\cli\\ClassCodes.json", "--json" ],
+      "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\cli\\ClassCodes.csv", "--format=csv" ],
+      "outputCapture": "std",
       "skipFiles": [
         "<node_internals>/**"
       ]
     },
     {
       "type": "node",
-      "request": "launch",
+      "name": "cli ClassCodes json",
+      "cwd": "${workspaceFolder}",
+      "program": "pdf-data-parser.js",
+      "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\cli\\ClassCodes.json", "--format=json" ],
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node",
       "name": "cli RepeatCell",
       "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
-      "args": [ "--options=.\\test\\testRepeatCell.json" ],
+      "args": [ "--options=.\\test\\optionsRepeatCell.json" ],
+      "outputCapture": "std",
       "skipFiles": [
         "<node_internals>/**"
       ]
     },
     {
       "type": "node",
-      "request": "launch",
       "name": "cli RepeatHeading",
       "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
-      "args": [ "--options=.\\test\\testRepeatHeading.json" ],
+      "args": [ "--options=.\\test\\optionsRepeatHeading.json" ],
+      "outputCapture": "std",
       "skipFiles": [
         "<node_internals>/**"
       ]

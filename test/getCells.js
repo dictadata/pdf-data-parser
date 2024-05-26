@@ -15,6 +15,7 @@
 const Cell = require("../lib/cell");
 const fs = require("fs");
 const path = require("path");
+const findModules = require("../lib/findModules");
 
 var pdfPath;
 var doc;
@@ -133,7 +134,11 @@ async function getContent() {
   try {
     const { getDocument } = await import("pdfjs-dist/legacy/build/pdf.mjs");
 
-    var loadingTask = getDocument({ url: pdfPath, fontExtraProperties: true });
+    var loadingTask = getDocument({
+      url: pdfPath,
+      fontExtraProperties: true,
+      standardFontDataUrl: path.join(await findModules(), "./pdfjs-dist/standard_fonts/")
+    });
     doc = await loadingTask.promise;
     console.log("# Document Loaded");
 
