@@ -13,6 +13,7 @@
   "lineHeight": 1.67,
   "newlines": false,
   "orderXY": true,
+  "trim": true,
   "RowAsObject.headers": null,
   "RepeatCell.column": null,
   "RepeatHeading.header": null
