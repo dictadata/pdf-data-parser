@@ -24,8 +24,8 @@ async function test(options) {
 
   await pipeline(reader, transform1, transform2, transform3, writer);
 
-  let expected = outputFile.replace("/output/", "/expected/");
-  let exitCode = compareFiles(expected, outputFile, 2);
+  let expectedFile = outputFile.replace("/output/", "/expected/");
+  let exitCode = compareFiles(outputFile, expectedFile, 2);
   return exitCode;
 }
 
