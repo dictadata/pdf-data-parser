@@ -93,6 +93,8 @@ The options file supports options for all pdf-data-parser modules.
 }
 ```
 
+Note: `RowAsObject.headers`, `RepeatCell.column`, `RepeatHeading.header` properties can be shortened to `headers`, `column` and `header`.
+
 ### Examples
 
 ```bash
