@@ -53,7 +53,7 @@ async function getContent(options) {
     console.log("Marked = " + (markInfo && markInfo.Marked));
     output.MarkInfo = markInfo;
 
-    let outputFile = "./output/getContent/" + path.parse(options.url).name + "_header.json";
+    let outputFile = "./test/output/getContent/" + path.parse(options.url).name + "_header.json";
     console.log("output: " + outputFile);
     fs.mkdirSync(path.dirname(outputFile), { recursive: true });
     fs.writeFileSync(outputFile, JSON.stringify(output, null, 2));
@@ -118,7 +118,7 @@ async function loadPage(pageNum, options) {
     }
   }
 
-  let outputFile = "./output/getContent/" + path.parse(options.url).name + "_content_p" + pageNum;
+  let outputFile = "./test/output/getContent/" + path.parse(options.url).name + "_content_p" + pageNum;
   outputFile += options.outputJSON ? ".json" : ".txt";
   console.log("output: " + outputFile);
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
@@ -131,10 +131,10 @@ async function loadPage(pageNum, options) {
 }
 
 (async () => {
-  await getContent({ url: "./data/pdf/helloworld.pdf", outputJSON: true });
-  await getContent({ url: "./data/pdf/ClassCodes.pdf", outputJSON: true });
-  await getContent({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", outputJSON: true });
-  await getContent({ url: "./data/pdf/CoJul22.pdf", outputJSON: true });
-  await getContent({ url: "./data/pdf/CongJul22.pdf", outputJSON: true });
-  await getContent({ url: "./data/pdf/state_voter_registration_jan2024.pdf", outputJSON: true });
+  await getContent({ url: "./test/data/pdf/helloworld.pdf", outputJSON: true });
+  await getContent({ url: "./test/data/pdf/ClassCodes.pdf", outputJSON: true });
+  await getContent({ url: "./test/data/pdf/Nat_State_Topic_File_formats.pdf", outputJSON: true });
+  await getContent({ url: "./test/data/pdf/CoJul22.pdf", outputJSON: true });
+  await getContent({ url: "./test/data/pdf/CongJul22.pdf", outputJSON: true });
+  await getContent({ url: "./test/data/pdf/state_voter_registration_jan2024.pdf", outputJSON: true });
 })();

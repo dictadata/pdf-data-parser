@@ -16,7 +16,7 @@ async function test(options) {
   let transform1 = new RowAsObjectTransform(options);
   let transform2 = new FormatJSON();
 
-  let outputFile = "./output/RowAsObjectTransform/" + path.parse(options.url).name + ".json";
+  let outputFile = "./test/output/RowAsObjectTransform/" + path.parse(options.url).name + ".json";
   console.log("output: " + outputFile);
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
   let writer = fs.createWriteStream(outputFile, { encoding: "utf-8", autoClose: false });
@@ -29,10 +29,10 @@ async function test(options) {
 }
 
 (async () => {
-  if (await test({ url: "./data/pdf/helloworld.pdf", headers: [ "Greeting" ] })) return 1;
-  if (await test({ url: "./data/pdf/ClassCodes.pdf", newlines: false })) return 1;
-  if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3, orderXY: false })) return 1;
-  if (await test({ url: "./data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
-  if (await test({ url: "./data/pdf/CongJul22.pdf", cells: 12 })) return 1;
-  if (await test({ url: "./data/pdf/state_voter_registration_jan2024.pdf", pages: [ 3,4,5 ], pageHeader: 64, repeatingHeaders: true })) return 1;
+  if (await test({ url: "./test/data/pdf/helloworld.pdf", headers: [ "Greeting" ] })) return 1;
+  if (await test({ url: "./test/data/pdf/ClassCodes.pdf", newlines: false })) return 1;
+  if (await test({ url: "./test/data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3, orderXY: false })) return 1;
+  if (await test({ url: "./test/data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
+  if (await test({ url: "./test/data/pdf/CongJul22.pdf", cells: 12 })) return 1;
+  if (await test({ url: "./test/data/pdf/state_voter_registration_jan2024.pdf", pages: [ 3,4,5 ], pageHeader: 64, repeatingHeaders: true })) return 1;
 })();

@@ -1,5 +1,8 @@
 # pdf-data-parser Change Log
 
+- version 1.2.13
+  - refactor: _compareFiles test
+  - refactor: testrunner.bat, use tr_launcher CLI test app from @dictadata/lib project
 - version 1.2.12
   - feature: add trim option to trim whitespace from output values
   - refactor: refactor CLI format option: --format=json|csv|rows

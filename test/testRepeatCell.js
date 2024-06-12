@@ -17,7 +17,7 @@ async function test(options) {
   let transform2 = new RowAsObjectTransform(options);
   let transform3 = new FormatJSON();
 
-  let outputFile = "./output/RepeatCell/" + path.parse(options.url).name + ".json";
+  let outputFile = "./test/output/RepeatCell/" + path.parse(options.url).name + ".json";
   console.log("output: " + outputFile);
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
   let writer = fs.createWriteStream(outputFile, { encoding: "utf-8", autoClose: false });
@@ -31,7 +31,7 @@ async function test(options) {
 
 (async () => {
   if (await test({
-    url: "./data/pdf/state_voter_registration_jan2024.pdf",
+    url: "./test/data/pdf/state_voter_registration_jan2024.pdf",
     pages: [ 1 ],
     pageHeader: 64,
     cells: 7,

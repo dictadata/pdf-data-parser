@@ -166,7 +166,7 @@ async function getContent() {
     console.log("Marked = " + (markInfo && markInfo.Marked));
     output.MarkInfo = markInfo;
 
-    let outputFile = "./output/getCells/" + path.parse(pdfPath).name + "_header.json";
+    let outputFile = "./test/output/getCells/" + path.parse(pdfPath).name + "_header.json";
     console.log("output: " + outputFile);
     fs.mkdirSync(path.dirname(outputFile), { recursive: true });
     fs.writeFileSync(outputFile, JSON.stringify(output, null, 2));
@@ -282,7 +282,7 @@ async function parseMarkedPage(pageNum) {
     rows.push(row);
   }
 
-  let output = "./output/getCells/" + path.parse(pdfPath).name + "_cells_p" + pageNum + ".json";
+  let output = "./test/output/getCells/" + path.parse(pdfPath).name + "_cells_p" + pageNum + ".json";
   console.log("output: " + output);
   fs.mkdirSync(path.dirname(output), { recursive: true });
   fs.writeFileSync(output, JSON.stringify(rows, null, 2));
@@ -356,7 +356,7 @@ async function parseLinedPage(pageNum) {
     rows.push(row);
   }
 
-  let output = "./output/getCells/" + path.parse(pdfPath).name + "_cells_p" + pageNum + ".json";
+  let output = "./test/output/getCells/" + path.parse(pdfPath).name + "_cells_p" + pageNum + ".json";
   console.log("output: " + output);
   fs.mkdirSync(path.dirname(output), { recursive: true });
   fs.writeFileSync(output, JSON.stringify(rows, null, 2));
@@ -368,16 +368,16 @@ async function parseLinedPage(pageNum) {
 }
 
 (async () => {
-  pdfPath = process.argv[ 2 ] || "./data/pdf/helloworld.pdf";
+  pdfPath = process.argv[ 2 ] || "./test/data/pdf/helloworld.pdf";
   await getContent();
-  pdfPath = "./data/pdf/ClassCodes.pdf";
+  pdfPath = "./test/data/pdf/ClassCodes.pdf";
   await getContent();
-  pdfPath = "./data/pdf/Nat_State_Topic_File_formats.pdf";
+  pdfPath = "./test/data/pdf/Nat_State_Topic_File_formats.pdf";
   await getContent();
-  pdfPath = "./data/pdf/CoJul22.pdf";
+  pdfPath = "./test/data/pdf/CoJul22.pdf";
   await getContent();
-  pdfPath = "./data/pdf/CongJul22.pdf";
+  pdfPath = "./test/data/pdf/CongJul22.pdf";
   await getContent();
-  pdfPath = "./data/pdf/state_voter_registration_jan2024.pdf";
+  pdfPath = "./test/data/pdf/state_voter_registration_jan2024.pdf";
   await getContent();
 })();

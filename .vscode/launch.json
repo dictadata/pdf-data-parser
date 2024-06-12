@@ -7,7 +7,6 @@
     {
       "type": "node",
       "name": "getContent",
-      "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/getContent.js",
       "request": "launch",
       "skipFiles": [
@@ -17,7 +16,6 @@
     {
       "type": "node",
       "name": "getCells",
-      "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/getCells.js",
       "request": "launch",
       "skipFiles": [
@@ -32,7 +30,6 @@
     {
       "type": "node",
       "name": "PdfDataParser",
-      "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/testDataParser.js",
       "request": "launch",
       "skipFiles": [
@@ -42,7 +39,6 @@
     {
       "type": "node",
       "name": "PdfDataReader",
-      "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/testDataReader.js",
       "request": "launch",
       "skipFiles": [
@@ -52,7 +48,6 @@
     {
       "type": "node",
       "name": "RowAsObjectTransform",
-      "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/testRowAsObjectTransform.js",
       "request": "launch",
       "skipFiles": [
@@ -62,7 +57,6 @@
     {
       "type": "node",
       "name": "RepeatCellTransform",
-      "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/testRepeatCell.js",
       "request": "launch",
       "skipFiles": [
@@ -72,7 +66,6 @@
     {
       "type": "node",
       "name": "RepeatHeadingTransform",
-      "cwd": "${workspaceFolder}/test/",
       "program": "${workspaceFolder}/test/testRepeatHeading.js",
       "request": "launch",
       "skipFiles": [
@@ -87,7 +80,6 @@
     {
       "type": "node",
       "name": "cli helloworld json",
-      "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating" ],
       "outputCapture": "std",
@@ -98,7 +90,6 @@
     {
       "type": "node",
       "name": "cli helloworld csv",
-      "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating", "--format=csv" ],
       "outputCapture": "std",
@@ -109,7 +100,6 @@
     {
       "type": "node",
       "name": "cli helloworld rows",
-      "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating", "--format=rows" ],
       "outputCapture": "std",
@@ -120,7 +110,6 @@
     {
       "type": "node",
       "name": "cli ClassCodes csv",
-      "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\cli\\ClassCodes.csv", "--format=csv" ],
       "outputCapture": "std",
@@ -131,7 +120,6 @@
     {
       "type": "node",
       "name": "cli ClassCodes json",
-      "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\cli\\ClassCodes.json", "--format=json" ],
       "outputCapture": "std",
@@ -142,7 +130,6 @@
     {
       "type": "node",
       "name": "cli RepeatCell",
-      "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
       "args": [ "--options=.\\test\\optionsRepeatCell.json" ],
       "outputCapture": "std",
@@ -153,7 +140,6 @@
     {
       "type": "node",
       "name": "cli RepeatHeading",
-      "cwd": "${workspaceFolder}",
       "program": "pdf-data-parser.js",
       "args": [ "--options=.\\test\\optionsRepeatHeading.json" ],
       "outputCapture": "std",

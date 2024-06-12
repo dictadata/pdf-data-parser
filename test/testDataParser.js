@@ -18,7 +18,7 @@ async function test(options) {
   let pdfDataParser = new PdfDataParser(options);
   let rows = await pdfDataParser.parse();
 
-  let outputFile = "./output/PdfDataParser/" + outputName + ".json";
+  let outputFile = "./test/output/PdfDataParser/" + outputName + ".json";
   console.log("output: " + outputFile);
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
   fs.writeFileSync(outputFile, JSON.stringify(rows, null, 2));
@@ -29,13 +29,13 @@ async function test(options) {
 }
 
 (async () => {
-  if (await test({ url: "./data/pdf/helloworld.pdf" })) return 1;
+  if (await test({ url: "./test/data/pdf/helloworld.pdf" })) return 1;
   if (await test({ url: "https://www2.census.gov/geo/pdfs/reference/ClassCodes.pdf", newlines: true })) return 1;
-  if (await test({ url: "./data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3, orderXY: false })) return 1;
-  if (await test({ url: "./data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
-  if (await test({ url: "./data/pdf/CongJul22.pdf" })) return 1;
-  if (await test({ url: "./data/pdf/state_voter_registration_jan2024.pdf", pages: [ 3, 4, 5 ], pageHeader: 64, repeatingHeaders: true })) return 1;
+  if (await test({ url: "./test/data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3, orderXY: false })) return 1;
+  if (await test({ url: "./test/data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
+  if (await test({ url: "./test/data/pdf/CongJul22.pdf" })) return 1;
+  if (await test({ url: "./test/data/pdf/state_voter_registration_jan2024.pdf", pages: [ 3, 4, 5 ], pageHeader: 64, repeatingHeaders: true })) return 1;
 
-  if (await test({ data: "./data/pdf/helloworld.pdf" })) return 1;
-  if (await test({ data: "./data/pdf/ClassCodes.pdf", newlines: true })) return 1;
+  if (await test({ data: "./test/data/pdf/helloworld.pdf" })) return 1;
+  if (await test({ data: "./test/data/pdf/ClassCodes.pdf", newlines: true })) return 1;
 })();
