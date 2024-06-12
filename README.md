@@ -106,9 +106,9 @@ pdp https://sos.iowa.gov/elections/pdf/VRStatsArchive/2024/CoJan24.pdf --cells=8
 ```
 
 ```bash
-pdp --options=.\\test\\testRepeatCell.json
+pdp --options=.\\test\\optionsRepeatCell.json
 
-testRepeatCell.json:
+optionsRepeatCell.json:
 {
   "url": "./test/data/pdf/state_voter_registration_jan2024.pdf",
   "output": "./test/output/cli/repeat_cell.json",
@@ -457,7 +457,7 @@ house3 = await parser.parse();
 
 ### PDF from a Report Generator
 
-The /test/data/pdf fold contains a PDF that was created by a report generator, state_voter_registration_jan2024.pdf.  This PDF content does not contain Marked content and cell positioning is totally by X,Y coordinates.  Also, it contains subheadings in tables and some missing cell values.  The test/testRepeatCells and test/testRepeatHeading files contain examples of parsing this type of PDF document.
+The /test/data/pdf fold contains a PDF that was created by a report generator, state_voter_registration_jan2024.pdf.  This PDF content does not contain Marked content and cell positioning is totally by X,Y coordinates.  Also, it contains subheadings in tables and some missing cell values.  The test files optionsRepeatCells.json | testRepeatCells.js and optionsRepeatHeading | testRepeatHeading.js contain examples of parsing this type of PDF document.
 
 ## Notes
 
