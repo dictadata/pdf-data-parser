@@ -1,6 +1,6 @@
 {
   "name": "pdf-data-parser",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "description": "Parse, search and stream PDF tabular data using Node.js with Mozilla's PDF.js library.",
   "author": "Drew O. Letcher",
   "license": "MIT",

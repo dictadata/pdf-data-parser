@@ -1,5 +1,8 @@
 # pdf-data-parser Change Log
 
+- version 1.2.14
+  - bug fix: RepeatCellTransform splice repeating column at array index
+  - feature: RepeatCellTransform handle missing value (empty cell)
 - version 1.2.13
   - refactor: _compareFiles test
   - refactor: testrunner.bat, use tr_launcher CLI test app from @dictadata/lib project
