@@ -1,6 +1,6 @@
 {
   "url": "./test/data/pdf/state_voter_registration_jan2024.pdf",
-  "output": "./test/output/cli/repeat_heading.json",
+  "output": "./test/output/pdp/repeat_heading.json",
   "format": "json",
   "pages": "2-5",
   "pageHeader": 48,

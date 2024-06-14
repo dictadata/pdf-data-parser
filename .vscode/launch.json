@@ -48,7 +48,7 @@
     {
       "type": "node",
       "name": "RowAsObjectTransform",
-      "program": "${workspaceFolder}/test/testRowAsObjectTransform.js",
+      "program": "${workspaceFolder}/test/testRowAsObject.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
@@ -79,7 +79,7 @@
     },
     {
       "type": "node",
-      "name": "cli helloworld json",
+      "name": "pdp helloworld json",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating" ],
       "outputCapture": "std",
@@ -89,7 +89,7 @@
     },
     {
       "type": "node",
-      "name": "cli helloworld csv",
+      "name": "pdp helloworld csv",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating", "--format=csv" ],
       "outputCapture": "std",
@@ -99,7 +99,7 @@
     },
     {
       "type": "node",
-      "name": "cli helloworld rows",
+      "name": "pdp helloworld rows",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating", "--format=rows" ],
       "outputCapture": "std",
@@ -109,9 +109,9 @@
     },
     {
       "type": "node",
-      "name": "cli ClassCodes csv",
+      "name": "pdp ClassCodes csv",
       "program": "pdf-data-parser.js",
-      "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\cli\\ClassCodes.csv", "--format=csv" ],
+      "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\pdp\\ClassCodes.csv", "--format=csv" ],
       "outputCapture": "std",
       "skipFiles": [
         "<node_internals>/**"
@@ -119,9 +119,9 @@
     },
     {
       "type": "node",
-      "name": "cli ClassCodes json",
+      "name": "pdp ClassCodes json",
       "program": "pdf-data-parser.js",
-      "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\cli\\ClassCodes.json", "--format=json" ],
+      "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\pdp\\ClassCodes.json", "--format=json" ],
       "outputCapture": "std",
       "skipFiles": [
         "<node_internals>/**"
@@ -129,7 +129,7 @@
     },
     {
       "type": "node",
-      "name": "cli RepeatCell",
+      "name": "pdp RepeatCell",
       "program": "pdf-data-parser.js",
       "args": [ "--options=.\\test\\optionsRepeatCell.json" ],
       "outputCapture": "std",
@@ -139,7 +139,7 @@
     },
     {
       "type": "node",
-      "name": "cli RepeatHeading",
+      "name": "pdp RepeatHeading",
       "program": "pdf-data-parser.js",
       "args": [ "--options=.\\test\\optionsRepeatHeading.json" ],
       "outputCapture": "std",

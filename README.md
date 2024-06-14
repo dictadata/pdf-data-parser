@@ -111,7 +111,7 @@ pdp --options=.\\test\\optionsRepeatCell.json
 optionsRepeatCell.json:
 {
   "url": "./test/data/pdf/state_voter_registration_jan2024.pdf",
-  "output": "./test/output/cli/repeat_cell.json",
+  "output": "./test/output/pdp/repeat_cell.json",
   "format": "json",
   "pages": [ 1 ],
   "pageHeader": 64,
