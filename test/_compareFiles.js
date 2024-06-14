@@ -131,41 +131,46 @@ module.exports = exports = function (filename_output, filename_expected, compare
   if (compareValues <= 0)
     return 0;
 
-  let ext1 = path.extname(filename_output);
-  let ext2 = path.extname(filename_expected);
+  try {
+    let ext1 = path.extname(filename_output);
+    let ext2 = path.extname(filename_expected);
 
-  console.log(">>> " + filename_output + " === " + filename_expected);
+    console.log(">>> " + filename_output + " === " + filename_expected);
 
-  // unzip, if needed
-  if (ext1 === ".gz")
-    ext1 = path.extname(filename_output.substring(0, filename_output.length - 3));
-  if (ext2 === ".gz")
-    ext2 = path.extname(filename_expected.substring(0, filename_expected.length - 3));
+    // unzip, if needed
+    if (ext1 === ".gz")
+      ext1 = path.extname(filename_output.substring(0, filename_output.length - 3));
+    if (ext2 === ".gz")
+      ext2 = path.extname(filename_expected.substring(0, filename_expected.length - 3));
 
-  // compare file extensions
-  if (ext1 !== ext2) {
-    console.error("Compare filename extension mismatch!");
+    // compare file extensions
+    if (ext1 !== ext2) {
+      console.error("Compare filename extension mismatch!");
+      return 1;
+    }
+
+    // read files
+    let output = fs.readFileSync(filename_output, { encoding: 'utf8' });
+    if (path.extname(filename_output) === '.gz')
+      output = unzipSync(output);
+    let expected = fs.readFileSync(filename_expected, { encoding: 'utf8' });
+    if (path.extname(filename_expected) === '.gz')
+      expected = unzipSync(expected);
+
+    // choose parser
+    if (ext1 === '.json')
+      return compareJSON(JSON.parse(output), JSON.parse(expected), compareValues);
+    else if (ext1 === '.csv')
+      return compareText(output, expected, compareValues);
+    else if (ext1 === '.txt')
+      return compareText(output, expected, compareValues);
+    else {
+      console.error("compare unknown file extension");
+      return 1;
+    }
+  }
+  catch (err) {
+    console.error(err);
     return 1;
   }
-
-  // read files
-  let output = fs.readFileSync(filename_output, { encoding: 'utf8' });
-  if (path.extname(filename_output) === '.gz')
-    output = unzipSync(output);
-  let expected = fs.readFileSync(filename_expected, { encoding: 'utf8' });
-  if (path.extname(filename_expected) === '.gz')
-    expected = unzipSync(expected);
-
-  // choose parser
-  if (ext1 === '.json')
-    return compareJSON(JSON.parse(output), JSON.parse(expected), compareValues);
-  else if (ext1 === '.csv')
-    return compareText(output, expected, compareValues);
-  else if (ext1 === '.txt')
-    return compareText(output, expected, compareValues);
-  else {
-    console.error("compare unknown file extension");
-    return 1;
-  }
-
 };
