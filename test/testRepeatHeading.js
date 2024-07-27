@@ -36,6 +36,6 @@ async function test(options) {
     pageHeader: 48,
     heading: "Active",
     stopHeading: "Active",
-    "RepeatHeading.header": "County:1"
+    "RepeatHeading.header": "County:1:0"
   })) return 1;
 })();
