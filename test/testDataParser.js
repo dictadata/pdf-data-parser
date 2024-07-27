@@ -29,6 +29,7 @@ async function test(options) {
 }
 
 (async () => {
+
   if (await test({ url: "./test/data/pdf/helloworld.pdf" })) return 1;
   if (await test({ url: "https://www2.census.gov/geo/pdfs/reference/ClassCodes.pdf", newlines: true })) return 1;
   if (await test({ url: "./test/data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3, orderXY: false })) return 1;
@@ -38,4 +39,7 @@ async function test(options) {
 
   if (await test({ data: "./test/data/pdf/helloworld.pdf" })) return 1;
   if (await test({ data: "./test/data/pdf/ClassCodes.pdf", newlines: true })) return 1;
+  if (await test({ data: "./test/data/pdf/2023-Registered-Voter-Count.pdf", pageHeader: 124, cells: 3 })) return 1;
+
+
 })();
