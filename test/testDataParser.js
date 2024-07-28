@@ -39,7 +39,6 @@ async function test(options) {
 
   if (await test({ data: "./test/data/pdf/helloworld.pdf" })) return 1;
   if (await test({ data: "./test/data/pdf/ClassCodes.pdf", newlines: true })) return 1;
-  if (await test({ data: "./test/data/pdf/2023-Registered-Voter-Count.pdf", pageHeader: 124, cells: 3 })) return 1;
-
+  if (await test({ data: "./test/data/pdf/2023-Registered-Voter-Count.pdf", pageHeader: 124, cells: "3-3" })) return 1;
 
 })();

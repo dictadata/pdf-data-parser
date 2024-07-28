@@ -25,7 +25,7 @@ var options = {
   url: "",
   format: "json",
   output: "",
-  cells: 1,
+  cells: "1-256",
   lineHeight: 1.67,
   orderXY: true,
   trim: true

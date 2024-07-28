@@ -5,7 +5,7 @@
   "pages": null,
   "heading": null,
   "stopHeading": null,
-  "cells": 1,
+  "cells": "1-256",
   "repeatingHeaders": false,
   "pageHeader": 0,
   "pageFooter": 0,
