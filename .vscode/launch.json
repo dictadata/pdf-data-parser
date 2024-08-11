@@ -79,6 +79,7 @@
     },
     {
       "type": "node",
+      "request": "launch",
       "name": "pdp helloworld json",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating" ],
@@ -89,6 +90,7 @@
     },
     {
       "type": "node",
+      "request": "launch",
       "name": "pdp helloworld csv",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating", "--format=csv" ],
@@ -99,6 +101,7 @@
     },
     {
       "type": "node",
+      "request": "launch",
       "name": "pdp helloworld rows",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\helloworld.pdf", "--headers=Greating", "--format=rows" ],
@@ -109,6 +112,7 @@
     },
     {
       "type": "node",
+      "request": "launch",
       "name": "pdp ClassCodes csv",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\pdp\\ClassCodes.csv", "--format=csv" ],
@@ -119,6 +123,7 @@
     },
     {
       "type": "node",
+      "request": "launch",
       "name": "pdp ClassCodes json",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\pdp\\ClassCodes.json", "--format=json" ],
@@ -129,6 +134,7 @@
     },
     {
       "type": "node",
+      "request": "launch",
       "name": "pdp RepeatCell",
       "program": "pdf-data-parser.js",
       "args": [ "--options=.\\test\\optionsRepeatCell.json" ],
@@ -139,6 +145,7 @@
     },
     {
       "type": "node",
+      "request": "launch",
       "name": "pdp RepeatHeading",
       "program": "pdf-data-parser.js",
       "args": [ "--options=.\\test\\optionsRepeatHeading.json" ],
