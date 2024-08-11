@@ -27,9 +27,9 @@
     "type": "git",
     "url": "git+https://github.com/dictadata/pdf-data-parser.git"
   },
-  "homepage": "https://github.com/drewletcher/pdf-data-parser#readme",
+  "homepage": "https://github.com/dictadata/pdf-data-parser#readme",
   "bugs": {
-    "url": "https://github.com/drewletcher/pdf-data-parser/issues"
+    "url": "https://github.com/dictadata/pdf-data-parser/issues"
   },
   "devDependencies": {
     "eslint": "^9.8.0"
