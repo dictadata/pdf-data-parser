@@ -60,7 +60,7 @@ function compareCSV(output, expected, compareValues) {
  *
  * @param {*} var1 output value
  * @param {*} var2 expected value
- * @param {number} compareValues 0 = no, 1 = compare basic values , 2 = compare dates and array lengths
+ * @param {Number} compareValues 0 = no, 1 = compare basic values , 2 = compare dates and array lengths
  * @returns 0 if OK, 1 if different
  */
 function compareJSON(var1, var2, compareValues) {
@@ -121,9 +121,9 @@ function compareJSON(var1, var2, compareValues) {
 }
 
 /**
- * @param {string} filename_output filename of test output
- * @param {string} filename_expected filename of expected data
- * @param {number} compareValues 0 = no, 1 = compare basic values , 2 = compare dates and array lengths
+ * @param {String} filename_output filename of test output
+ * @param {String} filename_expected filename of expected data
+ * @param {Number} compareValues 0 = no, 1 = compare basic values , 2 = compare dates and array lengths
  * @returns 0 if OK, 1 if different
  */
 module.exports = exports = function (filename_output, filename_expected, compareValues = 1) {

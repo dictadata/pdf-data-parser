@@ -1,0 +1,16 @@
+{
+  "include": [
+    "lib/index.js"
+  ],
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+    "target": "es2016", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "module": "commonjs", /* Specify what module code is generated. */
+    "allowJs": true, /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
+    "declaration": true, /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
+    "declarationMap": true, /* Create sourcemaps for d.ts files. */
+    "emitDeclarationOnly": true, /* Only output d.ts files and not JavaScript files. */
+    "outDir": "./types", /* Specify an output folder for all emitted files. */
+    "strict": true, /* Enable all strict type-checking options. */
+  }
+}

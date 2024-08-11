@@ -158,37 +158,37 @@ async function myFunc() {
 
 PdfDataParser constructor takes an options object with the following fields. One of `url` or `data` arguments is required.
 
-`{URL|string} url` - The local path or URL of the PDF document.
+`{String|URL} url` - The local path or URL of the PDF document.
 
-`{TypeArray|string} data` - pdf file data in a TypedArray, e.g. `options.data = new Uint8Array(buffer)`.
+`{String|ArrayBuffer} data` - pdf file data in a TypedArray, e.g. `options.data = new Uint8Array(buffer)`.
 
 Common Options:
 
 `{Array} pages` - array of page numbers to process, if undefined defaults to all pages. Examples: [ 1 ], [ 3, 5, 7 ]
 
-`{string|regexp} heading` - Section heading or text in the document after which the parser will look for tabular data; optional, default: none. The parser does a string comparison or regexp match looking for first occurrence of `heading` value in the first cell of rows. If not specified then data output starts with first row of the document that contains enough cells.
+`{String|RegExp} heading` - Section heading or text in the document after which the parser will look for tabular data; optional, default: none. The parser does a string comparison or regexp match looking for first occurrence of `heading` value in the first cell of rows. If not specified then data output starts with first row of the document that contains enough cells.
 
-`{string|regexp} stopHeading` - Section heading or text in the document after the tabular data; optional, default: none. The parser does a string comparison or regexp match looking for occurrence of `stopHeading` value in the first cell of rows. If not specified then data output stops on value of `cells` or the end of document.
+`{String|RegExp} stopHeading` - Section heading or text in the document after the tabular data; optional, default: none. The parser does a string comparison or regexp match looking for occurrence of `stopHeading` value in the first cell of rows. If not specified then data output stops on value of `cells` or the end of document.
 
-`{number} cells` - Minimum number of cells in tabular data; optional, default: 1. If `heading` is not specified then all rows in document with at least `cells` length will be output. If `heading` string is found parser will look for the first row that contains at least `cells` count of cells after the heading. The parser will output rows until it encounters a row with less than `cells` count of cells.
+`{Number} cells` - Minimum number of cells in tabular data; optional, default: 1. If `heading` is not specified then all rows in document with at least `cells` length will be output. If `heading` string is found parser will look for the first row that contains at least `cells` count of cells after the heading. The parser will output rows until it encounters a row with less than `cells` count of cells.
 
-`{boolean} repeatingHeaders` - Indicates if table headers are repeated on each page, default: false. The table headers will be compare to the first row on each subsequent page.  If found they will be removed from the output.
+`{Boolean} repeatingHeaders` - Indicates if table headers are repeated on each page, default: false. The table headers will be compare to the first row on each subsequent page.  If found they will be removed from the output.
 
-`{number} pageHeader` - Height of page header area in points, default: 0. Content within this area of the page will not be included in output. Use about 16 points per line including blank lines.
+`{Number} pageHeader` - Height of page header area in points, default: 0. Content within this area of the page will not be included in output. Use about 16 points per line including blank lines.
 
-`{number} pageFooter` - Height of page footer area in points, default: 0. Content within this area of the page will not be included in output. Use about 16 points per line including blank lines.
+`{Number} pageFooter` - Height of page footer area in points, default: 0. Content within this area of the page will not be included in output. Use about 16 points per line including blank lines.
 
 Other Options:
 
-`{boolean} artifacts` - Parse artifacts content, default: false. Artifacts content specifies objects on the page such as table/grid lines and table headers/footers. Grid lines do not have text content, but table headers and footers might. If page headers and footers show up in output try the pageHeader and pageFooter options.
+`{Boolean} artifacts` - Parse artifacts content, default: false. Artifacts content specifies objects on the page such as table/grid lines and table headers/footers. Grid lines do not have text content, but table headers and footers might. If page headers and footers show up in output try the pageHeader and pageFooter options.
 
-`{number} lineHeight` - Approximate line height ratio based on font size; default 1.67. The parser extracts font size from the pdf content. The line height ratio maybe used when comparing the position of content items on the page.
+`{Number} lineHeight` - Approximate line height ratio based on font size; default 1.67. The parser extracts font size from the pdf content. The line height ratio maybe used when comparing the position of content items on the page.
 
-`{boolean} newlines` - Preserve new lines in cell data; optional, default: false. When false newlines will be replaced by spaces. Preserving newlines characters will keep the formatting of multiline text such as descriptions. Though, newlines are problematic for cells containing multi-word identifiers and keywords that might be wrapped in the PDF text.
+`{Boolean} newlines` - Preserve new lines in cell data; optional, default: false. When false newlines will be replaced by spaces. Preserving newlines characters will keep the formatting of multiline text such as descriptions. Though, newlines are problematic for cells containing multi-word identifiers and keywords that might be wrapped in the PDF text.
 
-`{boolean} orderXY` - order cells by XY coordinates on page; default true. When false cells will be order as found in the PDF.js page content array. Some documents may have items ordered top-to-bottom, left-to-right in the PDF document.  Most PDF documents will have items that are out of order and need to be placed on the page by X,Y coordinates.
+`{Boolean} orderXY` - order cells by XY coordinates on page; default true. When false cells will be order as found in the PDF.js page content array. Some documents may have items ordered top-to-bottom, left-to-right in the PDF document.  Most PDF documents will have items that are out of order and need to be placed on the page by X,Y coordinates.
 
-`{boolean|number} trim` - trim whitespace from output values, false (0) = no trimming, true (1) = both, 2 = starting only, 3 = trailing only, default: true.
+`{Boolean|Number} trim` - trim whitespace from output values, false (0) = no trimming, true (1) = both, 2 = starting only, 3 = trailing only, default: true.
 
 ## Streaming Usage
 
@@ -242,7 +242,7 @@ RowAsObjectTransform constructor takes an options object with the following fiel
 
 `{array} headers` - array of cell property names; optional, default: none. If a headers array is not specified then parser will assume the first row found contains cell property names.
 
-`{boolean} hasHeaders` - data has a header row, if true and headers options is set then provided headers override header row. Default is true.
+`{Boolean} hasHeaders` - data has a header row, if true and headers options is set then provided headers override header row. Default is true.
 
 If a row is encountered with more cells than in the headers array then extra cell property names will be the ordinal position. For example if the data contains five cells, but only three headers where specified.  Specifying `options = { headers: [ 'name', 'type', 'info' ] }` then the Javascript objects in the stream will contain `{ "name": "value1", "type": "value2", "info": "value3", "4": "value4", "5": "value5" }`.
 
@@ -285,7 +285,7 @@ await pipeline(reader, transform1, writable);
 
 RepeatCellTransform constructor takes an options object with the following fields.
 
-`{number} column` - column index of cell to repeat, default 0.
+`{Number} column` - column index of cell to repeat, default 0.
 
 ### RepeatHeadingTransform
 
@@ -326,9 +326,9 @@ await pipeline(reader, transform1, writable);
 
 RepeatHeadingTransform constructor takes an options object with the following fields.
 
-`{string} header` - column name for the repeating heading field. Can optionally contain an index of where to insert the header in the header row. Default "heading:0".
+`{String} header` - column name for the repeating heading field. Can optionally contain an index of where to insert the header in the header row. Default "heading:0".
 
-`{boolean} hasHeaders` - data has a header row, if true and headers options is set then provided headers override header row. Default is true.
+`{Boolean} hasHeaders` - data has a header row, if true and headers options is set then provided headers override header row. Default is true.
 
 ### FormatCSV and FormatJSON
 
