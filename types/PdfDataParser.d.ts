@@ -66,6 +66,9 @@ declare class PdfDataParser {
     firstPageNumber: number;
     headerY: number;
     footerY: number;
+    started: boolean;
+    paused: boolean;
+    cancelled: boolean;
     /**
      * Load and parse the PDF document.
      * @returns Rows an array containing arrays of data values.
@@ -74,6 +77,9 @@ declare class PdfDataParser {
     parse(): Promise<any[] | undefined>;
     doc: import("pdfjs-dist/types/src/display/api").PDFDocumentProxy | undefined;
     page: import("pdfjs-dist/types/src/display/api").PDFPageProxy | undefined;
+    pause(): void;
+    resume(): void;
+    cancel(): void;
     /**
      * Parse the content items returned by PDF.js.
      * Use PDF.js marked content to collect multiple items into cells.
@@ -112,7 +118,7 @@ declare class PdfDataParser {
      *
      * @param {*} row is an array of data values
      */
-    output(row: any): void;
+    output(row: any): Promise<void>;
     /**
     *
     * @param {Object} row - the row to check

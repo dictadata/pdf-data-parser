@@ -18,8 +18,8 @@ export const PdfDataParser: {
 };
 export const PdfDataReader: {
     new (options: {
-        url?: string | URL | undefined;
-        data?: string | ArrayBuffer | undefined;
+        url: string | URL;
+        data: string | ArrayBuffer;
     }): import("./PdfDataReader.js");
 };
 export const RowAsObjectTransform: {
@@ -67,7 +67,7 @@ export const FormatJSON: {
     new (options: any): {
         first: boolean;
         _transform(row: Object, encoding: string, callback: Function): void;
-        _flush(callback: any): void;
+        _flush(callback: Function): void;
     };
 };
 //# sourceMappingURL=index.d.ts.map

@@ -8,7 +8,11 @@ declare const _exports: {
          * @param {Function} callback
          */
         _transform(row: Object, encoding: string, callback: Function): void;
-        _flush(callback: any): void;
+        /**
+         *
+         * @param {Function} callback
+         */
+        _flush(callback: Function): void;
     };
 };
 export = _exports;

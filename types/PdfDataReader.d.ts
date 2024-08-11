@@ -3,17 +3,17 @@ declare class PdfDataReader {
     /**
      *
      * @param {Object}           options
-     * @param {String|URL}       [options.url]
-     * @param {String|ArrayBuffer} [options.data]
+     * @param {String|URL}       options.url
+     * @param {String|ArrayBuffer} options.data
+     * @param {any}              see PdfDataParser for all options
      */
     constructor(options: {
-        url?: string | URL | undefined;
-        data?: string | ArrayBuffer | undefined;
+        url: string | URL;
+        data: string | ArrayBuffer;
     });
-    started: boolean;
     options: {
-        url?: string | URL | undefined;
-        data?: string | ArrayBuffer | undefined;
+        url: string | URL;
+        data: string | ArrayBuffer;
     };
     _construct(callback: any): Promise<void>;
     parser: PdfDataParser | undefined;
