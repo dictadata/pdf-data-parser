@@ -8,30 +8,36 @@ const path = require("path");
 const compareFiles = require("./_compareFiles");
 
 async function test(options) {
-  let outputName = path.parse(options.url || options.data).name;
+  try {
+    let outputName = path.parse(options.url || options.data).name;
 
-  if (options.data) {
-    options.data = new Uint8Array(fs.readFileSync(options.data));
-    outputName += "_data";
+    if (options.data) {
+      options.data = new Uint8Array(fs.readFileSync(options.data));
+      outputName += "_data";
+    }
+
+    let pdfDataParser = new PdfDataParser(options);
+    let rows = await pdfDataParser.parse();
+
+    let outputFile = "./test/output/PdfDataParser/" + outputName + ".json";
+    console.log("output: " + outputFile);
+    fs.mkdirSync(path.dirname(outputFile), { recursive: true });
+    fs.writeFileSync(outputFile, JSON.stringify(rows, null, 2));
+
+    let expectedFile = outputFile.replace("/output/", "/expected/");
+    let exitCode = compareFiles(outputFile, expectedFile, 2);
+    return exitCode;
   }
-
-  let pdfDataParser = new PdfDataParser(options);
-  let rows = await pdfDataParser.parse();
-
-  let outputFile = "./test/output/PdfDataParser/" + outputName + ".json";
-  console.log("output: " + outputFile);
-  fs.mkdirSync(path.dirname(outputFile), { recursive: true });
-  fs.writeFileSync(outputFile, JSON.stringify(rows, null, 2));
-
-  let expectedFile = outputFile.replace("/output/", "/expected/");
-  let exitCode = compareFiles(outputFile, expectedFile, 2);
-  return exitCode;
+  catch (err) {
+    console.error(err);
+    return 1;
+  }
 }
 
 (async () => {
 
   if (await test({ url: "./test/data/pdf/helloworld.pdf" })) return 1;
-  if (await test({ url: "https://www2.census.gov/geo/pdfs/reference/ClassCodes.pdf", newlines: true })) return 1;
+  if (await test({ url: "http://dev.dictadata.net/dictadata/US/census.gov/reference/ClassCodes.pdf", newlines: true })) return 1;
   if (await test({ url: "./test/data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3, orderXY: false })) return 1;
   if (await test({ url: "./test/data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
   if (await test({ url: "./test/data/pdf/CongJul22.pdf" })) return 1;
