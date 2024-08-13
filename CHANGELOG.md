@@ -1,5 +1,13 @@
 # pdf-data-parser Change Log
 
+- version 1.2.15
+  - enhancement: options.cell accepts minimum number of cells or "min-max" range
+  - enhancement: transform options hasHeader, header:m:n
+  - enhancement: handle stream pause/resume
+  - feature: support for Typescript types
+  - feature: add jsonc support for options files
+  - refactor: error handling improvements for file not found
+  - updated:  "pdfjs-dist": "^4.5.136"
 - version 1.2.14
   - bug fix: RepeatCellTransform splice repeating column at array index
   - feature: RepeatCellTransform handle missing value (empty cell)
