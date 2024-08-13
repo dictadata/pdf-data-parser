@@ -1,10 +1,12 @@
 # pdf-data-parser 1.2.x
 
-Parse, search and stream PDF tabular data using Node.js with Mozilla's PDF.js library.
+Parse and stream tabular data form PDF documents using Node.js with [Mozilla's PDF.js library](https://github.com/mozilla/pdf.js).
 
 This document explains how to use pdf-data-parser in your code or as a stand-alone program.
 
 > Only supports PDF files containing grid/table like content. Does not support reading PDF forms (XFA).
+
+Related projects: [html-data-parser](https://github.com/dictadata/html-data-parser#readme), [pdf-data-parser](https://github.com/dictadata/pdf-data-parser#readme), [xlsx-data-parser](https://github.com/dictadata/xlsx-data-parser#readme)
 
 ## Installation
 
@@ -27,13 +29,13 @@ npm install pdf-data-parser
 Parse tabular data from a PDF file or URL.
 
 ```bash
-pdp [--options=filename.json] <filename.pdf|URL> [<output-file>] [--cells=#] [--heading=title], [--repeating] [--headers=name1,name2,...] [--format=json|csv|rows]
+pdp [--options=filename.json] [--cells=#] [--heading=title], [--repeating] [--headers=name1,name2,...] [--format=json|csv|rows] <filename|URL> [<output-file>]
 
-  `--options`    - file containing JSON object with pdp options, optional.
   `filename|URL` - path name or URL of PDF file to process, required.
   `output-file`  - local path name for output of parsed data, default stdout.
+  `--options`    - JSON or JSONC file containing pdp options, optional.
   `--format`     - output data format JSON, CSV or rows (JSON arrays), default JSON.
-  `--cells`      - minimum number of cells for a data row, default = 1.
+  `--cells`      - number of cells for a data row, minimum or "min-max", default = "1-256".
   `--heading`    - text of heading to find in document that precedes desired data table, default none.
   `--headers`    - comma separated list of column names for data, default none, first table row contains names.
   `--repeating`  - table headers repeat on each PDF page, default = false.
@@ -43,11 +45,12 @@ Note: If the `pdp` command conflicts with another program on your system use `pd
 
 ### Options File
 
-The options file supports options for all pdf-data-parser modules.
+The options file supports options for all pdf-data-parser modules. Parser will read plain JSON files or JSONC files with Javascript style comments.
 
 ```javascript
 {
-  ///// PdfDataParser options
+  /* PdfDataParser options */
+
   // url - local path name or URL of PDF file to process, required.
   "url": "",
   // output - local path name for output of parsed data, default stdout.
@@ -60,8 +63,8 @@ The options file supports options for all pdf-data-parser modules.
   "heading": null,
   // stopHeading - text of heading that follows desired data table, default none.
   "stopHeading": null,
-  // cells - minimum number of cells for a data row, default = 1.
-  "cells": 1,
+  // cells - number of cells for a data row, minimum or "min-max", default = "1-256".
+  "cells": "1-256",
   // repeating - table header row repeats on each PDF page, default = false.
   "repeatingHeaders": false,
   // pageHeader - height of page header area in points, default: 0. Content in this area will be excluded. When true any row matching the first row encountered will be excluded from output.
@@ -79,21 +82,24 @@ The options file supports options for all pdf-data-parser modules.
   // trim whitespace from output values, false (0) = none, true (1) = both, 2 = starting only, 3 = trailing only, default: true.
   "trim": true,
 
-  //// RowAsObjectTransform options
-  // headers - comma separated list of column names for data, default none. When not defined the first table row encountered will be treated as column names.
-  "RowAsObject.headers": []
+  /* RowAsObjectTransform options */
+
   // hasHeaders - data has a header row, if true and headers set then headers overrides header row.
   "RowAsObject.hasHeader": true
+  // headers - comma separated list of column names for data, default none. When not defined the first table row encountered will be treated as column names.
+  "RowAsObject.headers": []
 
-  //// RepeatCellTransform options
+  /* RepeatCellTransform options */
+
   // column - column index of cell to repeat, default 0.
   "RepeatCell.column": 0
 
-  //// RepeatHeadingTransform options
+  /* RepeatHeadingTransform options */
+
+  // hasHeaders - data has a header row, if true and headers set then headers overrides header row.
+  "RepeatHeading.hasHeader": true
   // header - column name for the repeating heading field. Can optionally contain suffix :m:n with index for inserting into header and data rows.
   "RepeatHeading.header": "subheading:0:0"
-// hasHeaders - data has a header row, if true and headers set then headers overrides header row.
-  "RepeatHeading.hasHeader": true
 
 }
 ```
