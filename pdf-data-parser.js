@@ -11,6 +11,7 @@ const RepeatHeadingTransform = require("./lib/RepeatHeadingTransform.js");
 const RowAsObjectTransform = require("./lib/RowAsObjectTransform.js");
 const FormatCSV = require("./lib/FormatCSV.js");
 const FormatJSON = require("./lib/FormatJSON.js");
+const { parse } = require("jsonc-parser");
 const Package = require("./package.json");
 const colors = require('colors');
 
@@ -52,7 +53,14 @@ async function parseArgs() {
       let nv = arg.split('=');
 
       if (nv[ 0 ] === "--options") {
-        Object.assign(options, JSON.parse(await readFile(nv[ 1 ])));
+        let optionsfile = await readFile(nv[ 1 ], { encoding: 'utf8' });
+        let perrors = [];
+        let poptions = {
+          disallowComments: false,
+          allowTrailingComma: true,
+          allowEmptyContent: false
+        };
+        Object.assign(options, parse(optionsfile, perrors, poptions));
       }
       else if (nv[ 0 ] === "--cells")
         options.cells = parseInt(nv[ 1 ]);
