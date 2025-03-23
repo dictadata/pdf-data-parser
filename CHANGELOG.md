@@ -1,5 +1,7 @@
 # pdf-data-parser Change Log
 
+- version 1.2.16
+  - refactor: change project group to gitlab:drewletcher
 - version 1.2.15
   - enhancement: options.cell accepts minimum number of cells or "min-max" range
   - enhancement: transform options hasHeader, header:m:n
@@ -13,7 +15,7 @@
   - feature: RepeatCellTransform handle missing value (empty cell)
 - version 1.2.13
   - refactor: _compareFiles test
-  - refactor: testrunner.bat, use tr_launcher CLI test app from @dictadata/lib project
+  - refactor: testrunner.bat, use tr_launcher CLI test app from @oby4/storage-lib project
 - version 1.2.12
   - feature: add trim option to trim whitespace from output values
   - refactor: refactor CLI format option: --format=json|csv|rows
