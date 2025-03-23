@@ -37,7 +37,7 @@ async function test(options) {
 (async () => {
 
   if (await test({ url: "./test/data/pdf/helloworld.pdf" })) return 1;
-  if (await test({ url: "http://dev.dictadata.net/dictadata/US/census.gov/reference/ClassCodes.pdf", newlines: true })) return 1;
+  if (await test({ url: "http://dev.oby4.org/data/US/census.gov/reference/ClassCodes.pdf", newlines: true })) return 1;
   if (await test({ url: "./test/data/pdf/Nat_State_Topic_File_formats.pdf", heading: "Government Units File Format", cells: 3, orderXY: false })) return 1;
   if (await test({ url: "./test/data/pdf/CoJul22.pdf", repeatingHeaders: true })) return 1;
   if (await test({ url: "./test/data/pdf/CongJul22.pdf" })) return 1;
