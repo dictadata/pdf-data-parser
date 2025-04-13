@@ -73,7 +73,13 @@ function compareJSON(var1, var2, compareValues) {
     return 1;
   }
 
-  if (Array.isArray(var1)) {
+  if ((var1 === null || var2 === null)) {
+    if (compareValues > 1 && var1 !== var2) {
+      console.error(`compare value mismatch: ${var1} <> ${var2}`);
+      return 1;
+    }
+  }
+  else if (Array.isArray(var1)) {
     // check array lengths
     if (compareValues > 1 && var1.length !== var2.length) {
       console.error("arrays have different lengths");
