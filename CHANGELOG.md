@@ -1,5 +1,9 @@
 # pdf-data-parser Change Log
 
+- version 1.2.17
+  - feature: add password option to decrypt PDF documents
+  - refactor: pdp CLI improved options handling
+  - bug fix: optional JSON output of rows as arrays
 - version 1.2.16
   - refactor: change project group to gitlab:drewletcher
 - version 1.2.15
@@ -18,7 +22,7 @@
   - refactor: testrunner.bat, use tr_launcher CLI test app from @oby4/storage-lib project
 - version 1.2.12
   - feature: add trim option to trim whitespace from output values
-  - refactor: refactor CLI format option: --format=json|csv|rows
+  - refactor: refactor CLI format option: --format=csv|json|rows
 - version 1.2.11
   - update: use pdfjs-dist 4.2.67, fixes a high severity vulnerability
 - version 1.2.10
