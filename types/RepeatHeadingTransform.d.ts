@@ -2,7 +2,7 @@ declare const _exports: {
     new (options?: {
         header?: string | undefined;
         hasHeader?: boolean | undefined;
-    } | undefined): {
+    }): {
         header: any;
         headerIndex: any;
         dataIndex: any;

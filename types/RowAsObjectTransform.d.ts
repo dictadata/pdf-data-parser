@@ -2,7 +2,7 @@ declare const _exports: {
     new (options?: {
         hasHeader?: Object | undefined;
         headers?: string[] | undefined;
-    } | undefined): {
+    }): {
         headers: any;
         hasHeader: any;
         /**

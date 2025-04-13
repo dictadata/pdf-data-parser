@@ -1,7 +1,7 @@
 declare const _exports: {
     new (options?: {
         column?: number | undefined;
-    } | undefined): {
+    }): {
         column: any;
         repeatValue: string;
         prevLen: number;
