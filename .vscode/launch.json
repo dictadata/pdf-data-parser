@@ -113,6 +113,17 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "pdp helloworld-protected",
+      "program": "pdf-data-parser.js",
+      "args": [ ".\\test\\data\\pdf\\helloworld-protected.pdf", "--password=PdfDataParser", "--headers=Greating" ],
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "pdp ClassCodes csv",
       "program": "pdf-data-parser.js",
       "args": [ ".\\test\\data\\pdf\\ClassCodes.pdf", ".\\test\\output\\pdp\\ClassCodes.csv", "--format=csv" ],

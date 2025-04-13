@@ -57,6 +57,8 @@ async function parseArgs() {
 
       if (nv[ 0 ] === "--options")
         optionsfile = nv[ 1 ];
+      else if (nv[ 0 ] === "--password")
+        clOptions.password = nv[ 1 ];
       else if (nv[ 0 ] === "--cells")
         clOptions.cells = parseInt(nv[ 1 ]);
       else if (nv[ 0 ] === "--pages")
@@ -136,6 +138,7 @@ async function parseArgs() {
     console.log("  filename|URL - path name or URL of PDF file to process, required.");
     console.log("  output       - local path name for output of parsed data, default stdout.");
     console.log("  --options    - file containing JSON object with pdp options, default: pdp.options.json.");
+    console.log("  --password   - password for decrypting the PDF document, optional.");
     console.log("  --format     - output data format CSV, JSON, or ROWS (JSON array of arrays), default JSON.");
     console.log("  --cells      - minimum number of cells for a data row, default = 1.");
     console.log("  --heading    - text of heading to find in document that precedes desired data table, default none.");

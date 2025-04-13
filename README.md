@@ -34,6 +34,7 @@ pdp <filename|URL> <output-file> --options=filename.json --cells=# --heading=tit
   `filename|URL` - path name or URL of PDF file to process, required.
   `output-file`  - local path name for output of parsed data, default stdout.
   `--options`    - JSON or JSONC file containing pdp options, default: pdp.options.json.
+  `--password`   - password for decrypting the PDF document, optional.
   `--heading`    - text of heading to find in document that precedes desired data table, default none.
   `--repeating`  - table headers repeat on each PDF page, default = false.
   `--cells`      - number of cells for a data row, minimum or "min-max", default = "1-256".
@@ -53,6 +54,8 @@ The options file supports options for all pdf-data-parser modules. Parser will r
 
   // url - local path name or URL of PDF file to process, required.
   "url": "",
+  // password - password for decrypting the PDF document, optional.
+  "password": "",
   // output - local path name for output of parsed data, default stdout.
   "output": "",
   // format - output data format CSV, JSON or rows, default JSON, rows is JSON array of arrays (rows).
@@ -169,6 +172,8 @@ PdfDataParser constructor takes an options object with the following fields. One
 `{String|ArrayBuffer} data` - pdf file data in a TypedArray, e.g. `options.data = new Uint8Array(buffer)`.
 
 Common Options:
+
+`{String} password` - password for decrypting the PDF document, optional.
 
 `{Array} pages` - array of page numbers to process, if undefined defaults to all pages. Examples: [ 1 ], [ 3, 5, 7 ]
 

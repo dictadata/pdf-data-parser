@@ -2,18 +2,6 @@ export const PdfDataParser: {
     new (options?: {
         url?: string | URL | undefined;
         data?: string | ArrayBuffer | undefined;
-        pages?: number[] | undefined;
-        heading?: string | RegExp | undefined;
-        stopHeading?: string | RegExp | undefined;
-        cells?: number | undefined;
-        newlines?: boolean | undefined;
-        pageHeader?: number | undefined;
-        pageFooter?: number | undefined;
-        repeatingHeaders?: boolean | undefined;
-        trim?: number | boolean | undefined;
-        artifacts?: boolean | undefined;
-        lineHeight?: number | undefined;
-        orderXY?: boolean | undefined;
     }): import("./PdfDataParser.js");
 };
 export const PdfDataReader: {

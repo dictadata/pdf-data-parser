@@ -5,6 +5,7 @@ declare class PdfDataParser {
      * @param {Object} options
      * @param {String|URL}        [options.url]  the URL or local file name of the .pdf
      * @param {String|ArrayBuffer} [options.data] pdf file data as an array, instead of using url
+     * @param {String} [password] password for decrypting the pdf document, optional
      * @param {Number[]} [options.pages]       array of page numbers to process, if undefined defaults to all pages
      * @param {String|RegExp}   [options.heading]     PDF section heading where data is located, default: none
      * @param {String|RegExp}   [options.stopHeading] PDF section heading after data table, default: none
@@ -21,18 +22,6 @@ declare class PdfDataParser {
     constructor(options?: {
         url?: string | URL | undefined;
         data?: string | ArrayBuffer | undefined;
-        pages?: number[] | undefined;
-        heading?: string | RegExp | undefined;
-        stopHeading?: string | RegExp | undefined;
-        cells?: number | undefined;
-        newlines?: boolean | undefined;
-        pageHeader?: number | undefined;
-        pageFooter?: number | undefined;
-        repeatingHeaders?: boolean | undefined;
-        trim?: number | boolean | undefined;
-        artifacts?: boolean | undefined;
-        lineHeight?: number | undefined;
-        orderXY?: boolean | undefined;
     });
     options: {
         trim: boolean;
@@ -40,18 +29,6 @@ declare class PdfDataParser {
     } & {
         url?: string | URL | undefined;
         data?: string | ArrayBuffer | undefined;
-        pages?: number[] | undefined;
-        heading?: string | RegExp | undefined;
-        stopHeading?: string | RegExp | undefined;
-        cells?: number | undefined;
-        newlines?: boolean | undefined;
-        pageHeader?: number | undefined;
-        pageFooter?: number | undefined;
-        repeatingHeaders?: boolean | undefined;
-        trim?: number | boolean | undefined;
-        artifacts?: boolean | undefined;
-        lineHeight?: number | undefined;
-        orderXY?: boolean | undefined;
     };
     cells: {
         min: number;
@@ -63,7 +40,7 @@ declare class PdfDataParser {
     headingFound: boolean;
     tableFound: boolean;
     tableDone: boolean;
-    firstPageNumber: number;
+    firstPageNumber: any;
     headerY: number;
     footerY: number;
     started: boolean;
