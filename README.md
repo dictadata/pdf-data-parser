@@ -6,7 +6,7 @@ This readme explains how to use pdf-data-parser in your code or as a stand-alone
 
 > Only supports PDF files containing grid/table like content. Does not support reading PDF forms (XFA).
 
-Related projects: [html-data-parser](https://gitlab.com/drewletcher/html-data-parser#readme), [text-data-parser](https://gitlab.com/drewletcher/text-data-parser#readme), [xlsx-data-parser](https://gitlab.com/drewletcher/xlsx-data-parser#readme)
+Related projects: [html-data-parser](https://github.com/drewletcher/html-data-parser#readme), [text-data-parser](https://github.com/drewletcher/text-data-parser#readme), [xlsx-data-parser](https://github.com/drewletcher/xlsx-data-parser#readme)
 
 ## Installation
 

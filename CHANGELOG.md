@@ -1,5 +1,7 @@
 # pdf-data-parser Change Log
 
+- version 1.2.18
+  - refactor: change project group to github:drewletcher
 - version 1.2.17
   - feature: add password option to decrypt PDF documents
   - refactor: pdp CLI improved options handling

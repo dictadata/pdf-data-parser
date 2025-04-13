@@ -1,6 +1,6 @@
 {
   "name": "pdf-data-parser",
-  "version": "1.2.17",
+  "version": "1.2.18",
   "description": "Parse, search and stream PDF tabular data using Node.js with Mozilla's PDF.js library.",
   "author": "Drew O. Letcher",
   "license": "MIT",
@@ -22,14 +22,9 @@
     "pdp": "pdf-data-parser.js",
     "pdfdataparser": "pdf-data-parser.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://gitlab.com/drewletcher/pdf-data-parser.git"
-  },
-  "homepage": "https://gitlab.com/drewletcher/pdf-data-parser#readme",
-  "bugs": {
-    "url": "https://gitlab.com/drewletcher/pdf-data-parser/issues"
-  },
+  "repository": "git@github.com/drewletcher/pdf-data-parser.git",
+  "homepage": "https://github.com/drewletcher/pdf-data-parser#readme",
+  "bugs": "https://github.com/drewletcher/pdf-data-parser/issues",
   "devDependencies": {
     "eslint": "^9.8.0"
   },
