@@ -2,11 +2,11 @@
 
 Parse and stream tabular data form PDF documents using Node.js with [Mozilla's PDF.js library](https://github.com/mozilla/pdf.js).
 
-This document explains how to use pdf-data-parser in your code or as a stand-alone program.
+This readme explains how to use pdf-data-parser in your code or as a stand-alone program.
 
 > Only supports PDF files containing grid/table like content. Does not support reading PDF forms (XFA).
 
-Related projects: [html-data-parser](https://gitlab.com/drewletcher/html-data-parser#readme), [pdf-data-parser](https://gitlab.com/drewletcher/pdf-data-parser#readme), [xlsx-data-parser](https://gitlab.com/drewletcher/xlsx-data-parser#readme)
+Related projects: [html-data-parser](https://gitlab.com/drewletcher/html-data-parser#readme), [text-data-parser](https://gitlab.com/drewletcher/text-data-parser#readme), [xlsx-data-parser](https://gitlab.com/drewletcher/xlsx-data-parser#readme)
 
 ## Installation
 
@@ -29,16 +29,16 @@ npm install pdf-data-parser
 Parse tabular data from a PDF file or URL.
 
 ```bash
-pdp [--options=filename.json] [--cells=#] [--heading=title], [--repeating] [--headers=name1,name2,...] [--format=json|csv|rows] <filename|URL> [<output-file>]
+pdp <filename|URL> <output-file> --options=filename.json --cells=# --heading=title, --repeating --headers=name1,name2,... --format=csv|json|rows
 
   `filename|URL` - path name or URL of PDF file to process, required.
   `output-file`  - local path name for output of parsed data, default stdout.
-  `--options`    - JSON or JSONC file containing pdp options, optional.
-  `--format`     - output data format JSON, CSV or rows (JSON arrays), default JSON.
-  `--cells`      - number of cells for a data row, minimum or "min-max", default = "1-256".
+  `--options`    - JSON or JSONC file containing pdp options, default: pdp.options.json.
   `--heading`    - text of heading to find in document that precedes desired data table, default none.
-  `--headers`    - comma separated list of column names for data, default none, first table row contains names.
   `--repeating`  - table headers repeat on each PDF page, default = false.
+  `--cells`      - number of cells for a data row, minimum or "min-max", default = "1-256".
+  `--headers`    - comma separated list of column names for data, default none, first table row contains names.
+  `--format`     - output data format CSV, JSON, or ROWS (JSON array of arrays), default JSON.
 ```
 
 Note: If the `pdp` command conflicts with another program on your system use `pdfdataparser` instead.
@@ -117,9 +117,9 @@ pdp https://sos.iowa.gov/elections/pdf/VRStatsArchive/2024/CoJan24.pdf --cells=8
 ```
 
 ```bash
-pdp --options=.\\test\\optionsRepeatCell.json
+pdp --options=.\\test\\RepeatCell.options.json
 
-optionsRepeatCell.json:
+RepeatCell.options.json:
 {
   "url": "./test/data/pdf/state_voter_registration_jan2024.pdf",
   "output": "./test/output/pdp/repeat_cell.json",
