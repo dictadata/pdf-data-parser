@@ -30,7 +30,7 @@
     {
       "type": "node",
       "name": "PdfDataParser",
-      "program": "${workspaceFolder}/test/testDataParser.js",
+      "program": "${workspaceFolder}/test/PdfDataParser.test.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
@@ -39,7 +39,7 @@
     {
       "type": "node",
       "name": "PdfDataReader",
-      "program": "${workspaceFolder}/test/testDataReader.js",
+      "program": "${workspaceFolder}/test/PdfDataReader.test.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
@@ -48,7 +48,7 @@
     {
       "type": "node",
       "name": "RowAsObjectTransform",
-      "program": "${workspaceFolder}/test/testRowAsObject.js",
+      "program": "${workspaceFolder}/test/RowAsObject.test.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
@@ -57,7 +57,7 @@
     {
       "type": "node",
       "name": "RepeatCellTransform",
-      "program": "${workspaceFolder}/test/testRepeatCell.js",
+      "program": "${workspaceFolder}/test/RepeatCell.test.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
@@ -66,7 +66,7 @@
     {
       "type": "node",
       "name": "RepeatHeadingTransform",
-      "program": "${workspaceFolder}/test/testRepeatHeading.js",
+      "program": "${workspaceFolder}/test/RepeatHeading.test.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
@@ -137,7 +137,7 @@
       "request": "launch",
       "name": "pdp RepeatCell",
       "program": "pdf-data-parser.js",
-      "args": [ "--options=.\\test\\optionsRepeatCell.json" ],
+      "args": [ "--options=.\\test\\RepeatCell.options.json" ],
       "outputCapture": "std",
       "skipFiles": [
         "<node_internals>/**"
@@ -148,7 +148,7 @@
       "request": "launch",
       "name": "pdp RepeatHeading",
       "program": "pdf-data-parser.js",
-      "args": [ "--options=.\\test\\optionsRepeatHeading.json" ],
+      "args": [ "--options=.\\test\\RepeatHeading.options.json" ],
       "outputCapture": "std",
       "skipFiles": [
         "<node_internals>/**"
