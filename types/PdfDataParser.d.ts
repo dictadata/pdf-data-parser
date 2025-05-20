@@ -1,5 +1,4 @@
-export = PdfDataParser;
-declare class PdfDataParser {
+export default class PdfDataParser {
     /**
      *
      * @param {Object} options
@@ -52,8 +51,8 @@ declare class PdfDataParser {
      * If using an event listener the return value will be an empty array.
      */
     parse(): Promise<any[] | undefined>;
-    doc: import("pdfjs-dist/types/src/display/api").PDFDocumentProxy | undefined;
-    page: import("pdfjs-dist/types/src/display/api").PDFPageProxy | undefined;
+    doc: any;
+    page: any;
     pause(): void;
     resume(): void;
     cancel(): void;

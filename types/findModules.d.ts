@@ -1,3 +1,3 @@
-declare function _exports(): Promise<any>;
-export = _exports;
+declare function _default(): Promise<any>;
+export default _default;
 //# sourceMappingURL=findModules.d.ts.map

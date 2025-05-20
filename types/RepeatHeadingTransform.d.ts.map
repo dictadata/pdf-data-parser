@@ -1,1 +1,1 @@
-{"version":3,"file":"RepeatHeadingTransform.d.ts","sourceRoot":"","sources":["../lib/RepeatHeadingTransform.js"],"names":[],"mappings":";mBAkBK;QAA0B,MAAM;QACN,SAAS;KACrC;;;;;;;QA0BD;;;;;WAKG;wBAHQ,MAAM"}
+{"version":3,"file":"RepeatHeadingTransform.d.ts","sourceRoot":"","sources":["../lib/RepeatHeadingTransform.js"],"names":[],"mappings":"AAYA;IAEE;;;;;OAKG;IACH,sBAHG;QAA0B,MAAM;QACN,SAAS;KACrC,EAwBA;IAfC,YAAuB;IACvB,iBAAoD;IACpD,eAA0E;IAGxE,eAAgD;IAQlD,mBAAoB;IACpB,cAAc;IAGhB;;;;;OAKG;IACH,gBAJW,MAAM,8CAkBhB;CAOF"}

@@ -1,5 +1,4 @@
-export = PdfDataReader;
-declare class PdfDataReader {
+export default class PdfDataReader {
     /**
      *
      * @param {Object}           options
@@ -23,5 +22,5 @@ declare class PdfDataReader {
      */
     _read(size: number): Promise<void>;
 }
-import PdfDataParser = require("./PdfDataParser");
+import PdfDataParser from "./PdfDataParser.js";
 //# sourceMappingURL=PdfDataReader.d.ts.map
