@@ -16,7 +16,7 @@
   "orderXY": true,
   "trim": true,
   "RowAsObject.headers": null,
-  "RowAsObject.hasHeader": true,
+  "RowAsObject.hasHeader": false,
   "RepeatCell.column": null,
   "RepeatHeading.header": null,
   "RepeatHeading.hasHeader": true
