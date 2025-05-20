@@ -3,5 +3,6 @@ REM and "name" includes %1 argument, if defined.
 REM tr_launcher is a node.js bin script in @oby4/storage-lib project.
 SET NODE_ENV=development
 SET LOG_LEVEL=verbose
-SET LAUNCH_PROGRAM=/test/
+SET COMPARE_VALUES=3
+SET LAUNCH_PROGRAM=t
 tr_launcher %1
