@@ -5,19 +5,19 @@
  */
 "use strict";
 
-const PdfDataReader = require("./lib/PdfDataReader.js");
-const RepeatCellTransform = require("./lib/RepeatCellTransform.js");
-const RepeatHeadingTransform = require("./lib/RepeatHeadingTransform.js");
-const RowAsObjectTransform = require("./lib/RowAsObjectTransform.js");
-const FormatCSV = require("./lib/FormatCSV.js");
-const FormatJSON = require("./lib/FormatJSON.js");
-const { parse } = require("jsonc-parser");
-const Package = require("./package.json");
-const colors = require('colors');
+import PdfDataReader from "./lib/PdfDataReader.js";
+import RepeatCellTransform from "./lib/RepeatCellTransform.js";
+import RepeatHeadingTransform from "./lib/RepeatHeadingTransform.js";
+import RowAsObjectTransform from "./lib/RowAsObjectTransform.js";
+import FormatCSV from "./lib/FormatCSV.js";
+import FormatJSON from "./lib/FormatJSON.js";
+import { parse } from "jsonc-parser";
+import Package from "./package.json" with { type: 'json' };
+import colors from 'colors';
 
-const { open, readFile } = require('node:fs/promises');
-const { pipeline } = require('node:stream/promises');
-const { stdout } = require('node:process');
+import { open, readFile } from 'node:fs/promises';
+import { pipeline } from 'node:stream/promises';
+import { stdout } from 'node:process';
 
 colors.enable();
 

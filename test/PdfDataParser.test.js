@@ -2,10 +2,10 @@
  * test/testParser.js
  */
 
-const PdfDataParser = require("../lib/PdfDataParser");
-const fs = require("fs");
-const path = require("path");
-const compareFiles = require("./_compareFiles");
+import PdfDataParser from "../lib/PdfDataParser.js";
+import fs from "node:fs";
+import path from "node:path";
+import compareFiles from "./_compareFiles.js";
 
 async function test(options) {
   try {

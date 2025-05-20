@@ -7,12 +7,12 @@
 // including marked content to a output file in .txt or .json format.
 //
 
-//const pdfjsLib = require("pdfjs-dist");
+//import pdfjsLib from "pdfjs-dist";
 //pdfjsLib.GlobalWorkerOptions.workerSrc = '../../lib/pdfjs-dist/build/pdf.worker.js';
 
-const fs = require("fs");
-const path = require("path");
-const findModules = require("../lib/findModules");
+import fs from "node:fs";
+import path from "node:path";
+import findModules from "../lib/findModules.js";
 
 var doc;
 

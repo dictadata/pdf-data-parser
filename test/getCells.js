@@ -9,13 +9,13 @@
 // Output is an array of arrays.
 //
 
-//const pdfjsLib = require("pdfjs-dist");
+//import pdfjsLib from "pdfjs-dist";
 //pdfjsLib.GlobalWorkerOptions.workerSrc = '../../lib/pdfjs-dist/build/pdf.worker.js';
 
-const Cell = require("../lib/cell");
-const fs = require("fs");
-const path = require("path");
-const findModules = require("../lib/findModules");
+import Cell from "../lib/cell.js";
+import fs from "node:fs";
+import path from "node:path";
+import findModules from "../lib/findModules.js";
 
 var pdfPath;
 var doc;

@@ -153,7 +153,7 @@ Rows and Cells terminology is used instead of Rows and Columns because the marke
 ### Basic Usage
 
 ```javascript
-const { PdfDataParser } = require("pdf-data-parser");
+import { PdfDataParser } from "pdf-data-parser";
 
 let parser = new PdfDataParser({url: "filename.pdf"});
 
@@ -210,7 +210,7 @@ Other Options:
 PdfDataReader is a Node.js stream reader implemented with the Object mode option. It uses PdfDataParser to stream one data row (array) per chunk.
 
 ```javascript
-const { PdfDataReader } = require("pdf-data-parser");
+import { PdfDataReader } from "pdf-data-parser";
 
 let reader = new PdfDataReader({url: "filename.pdf"});
 var rows = [];
@@ -237,8 +237,8 @@ PdfDataReader constructor options are the same as [PdfDataParser Options](#pdf-d
 PdfDataReader operates in Object Mode. The reader outputs arrays (rows). To convert rows into Javascript objects use the RowAsObjectTransform transform.  PdfDataReader operates in Object mode where a chunk is a Javascript Object of <name,value> pairs.
 
 ```javascript
-const { PdfDataReader, RowAsObjectTransform } = require("pdf-data-parser");
-const { pipeline } = require('node:stream/promises');
+import { PdfDataReader, RowAsObjectTransform } from "pdf-data-parser";
+import { pipeline } from 'node:stream/promises';
 
 let reader = new PdfDataReader(options);
 let transform1 = new RowAsObjectTransform(options);
@@ -282,8 +282,8 @@ Dewitt          44  JUL 2023     52,297
 ### Example Usage
 
 ```javascript
-const { PdfDataReader, RepeatCellTransform } = require("pdf-data-parser");
-const { pipeline } = require('node:stream/promises');
+import { PdfDataReader, RepeatCellTransform } from "pdf-data-parser";
+import { pipeline } from 'node:stream/promises';
 
 let reader = new PdfDataReader(options);
 let transform1 = new RepeatCellTransform({ column: 0 });
@@ -323,8 +323,8 @@ Total:          150  506,253
 ```
 
 ```javascript
-const { PdfDataReader, RepeatHeadingTransform } = require("pdf-data-parser");
-const { pipeline } = require('node:stream/promises');
+import { PdfDataReader, RepeatHeadingTransform } from "pdf-data-parser";
+import { pipeline } from 'node:stream/promises';
 
 let reader = new PdfDataReader(options);
 let transform1 = new RepeatHeadingTransform({header: "County:1:0"});
@@ -346,8 +346,8 @@ RepeatHeadingTransform constructor takes an options object with the following fi
 The `pdfdataparser` CLI program uses the FormatCSV and FormatJSON transforms to covert Javascript Objects into strings that can be saved to a file.
 
 ```javascript
-const { PdfDataReader, RowAsObjectTransform, FormatCSV } = require("pdf-data-parser");
-const { pipeline } = require('node:stream/promises');
+import { PdfDataReader, RowAsObjectTransform, FormatCSV } from "pdf-data-parser";
+import { pipeline } from 'node:stream/promises';
 
 let reader = new PdfDataReader(options);
 let transform1 = new RowAsObjectTransform(options);

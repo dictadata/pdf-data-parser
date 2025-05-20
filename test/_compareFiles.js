@@ -3,9 +3,9 @@
  */
 "use strict";
 
-const fs = require('fs');
-const path = require('path');
-const { unzipSync } = require('zlib');
+import fs from 'node:fs';
+import path from 'node:path';
+import { unzipSync } from 'node:zlib';
 
 function compareText(output, expected, compareValues) {
 
@@ -132,7 +132,7 @@ function compareJSON(var1, var2, compareValues) {
  * @param {Number} compareValues 0 = no, 1 = compare basic values , 2 = compare dates and array lengths
  * @returns 0 if OK, 1 if different
  */
-module.exports = exports = function (filename_output, filename_expected, compareValues = 1) {
+export default function (filename_output, filename_expected, compareValues = 1) {
   console.log(">>> compare files");
   if (compareValues <= 0)
     return 0;

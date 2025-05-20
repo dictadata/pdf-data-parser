@@ -1,4 +1,4 @@
-const findModules = require("../lib/findModules");
+import findModules from "../lib/findModules.js";
 
 (async () => {
   console.log(await findModules());
