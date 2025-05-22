@@ -1,5 +1,8 @@
 # pdf-data-parser Change Log
 
+- version 1.2.19
+  - refactor: convert project to ECMAScript modules
+  - refactor: options hasHeader default is false
 - version 1.2.18
   - refactor: change project group to github:drewletcher
 - version 1.2.17
