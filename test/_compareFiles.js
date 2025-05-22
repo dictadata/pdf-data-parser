@@ -6,6 +6,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { unzipSync } from 'node:zlib';
+import colors from 'colors';
+
+colors.enable();
 
 function compareText(output, expected, compareValues) {
 
@@ -13,14 +16,14 @@ function compareText(output, expected, compareValues) {
   let expLines = expected.split(/\r?\n/);
 
   if (outLines.length !== expLines.length) {
-    console.error(`output file has different length ${outLines.length} ${expLines.length}`);
+    console.error(`output file has different length ${outLines.length} ${expLines.length}`.red);
     return 1;
   }
 
   if (compareValues > 1) {
     for (let i = 0; i < expLines.length; i++) {
       if (outLines[ i ] !== expLines[ i ]) {
-        console.error("contents of files are not equal on line: " + (i + 1));
+        console.error(("contents of files are not equal on line: " + (i + 1)).red);
         console.error(outLines[ i ]);
         console.error(expLines[ i ]);
         return 1;
@@ -35,14 +38,14 @@ function compareBuffer(output, expected, compareValues) {
 
   let ok = (output.length === expected.length);
   if (!ok) {
-    console.error(`output files have different lengths ${output.length} ${expected.length}`);
+    console.error(`output files have different lengths ${output.length} ${expected.length}`.red);
     return 1;
   }
 
   if (compareValues > 1) {
     let ok = expected.compare(output) === 0;
     if (!ok) {
-      console.error("contents of files are not equal");
+      console.error("contents of files are not equal".red);
       return 1;
     }
   }
@@ -69,20 +72,20 @@ function compareJSON(var1, var2, compareValues) {
 
   // objects must be of same type
   if (typeof var1 !== typeof var2) {
-    console.error(`objects are different types: ${typeof var1} <> ${typeof var2}`);
+    console.error(`objects are different types: ${typeof var1} <> ${typeof var2}`.red);
     return 1;
   }
 
   if ((var1 === null || var2 === null)) {
     if (compareValues > 1 && var1 !== var2) {
-      console.error(`compare value mismatch: ${var1} <> ${var2}`);
+      console.error(`compare value mismatch: ${var1} <> ${var2}`.red);
       return 1;
     }
   }
   else if (Array.isArray(var1)) {
     // check array lengths
     if (compareValues > 1 && var1.length !== var2.length) {
-      console.error("arrays have different lengths");
+      console.error("arrays have different lengths".red);
       return 1;
     }
 
@@ -98,14 +101,14 @@ function compareJSON(var1, var2, compareValues) {
     let keys1 = Object.keys(var1);
     let keys2 = Object.keys(var2);
     if ((compareValues > 1) ? keys1.length != keys2.length : keys1.length < keys2.length) {
-      console.error("compare object maps have different lengths");
+      console.error("compare object maps have different lengths".red);
       return 1;
     }
 
     // walk var2 and compare to var1
     for (let key of keys2) {
       if (!Object.hasOwn(var1, key)) {
-        console.error("compare object1 does not contain property: " + key);
+        console.error(("compare object1 does not contain property: " + key).red);
         return 1;
       }
 
@@ -119,7 +122,7 @@ function compareJSON(var1, var2, compareValues) {
   }
   // check values of basic types
   else if (compareValues > 1 && var1 !== var2) {
-    console.error(`compare value mismatch: ${var1} <> ${var2}`);
+    console.error(`compare value mismatch: ${var1} <> ${var2}`.red);
     return 1;
   }
 
@@ -151,7 +154,7 @@ export default function (filename_output, filename_expected, compareValues = 1) 
 
     // compare file extensions
     if (ext1 !== ext2) {
-      console.error("Compare filename extension mismatch!");
+      console.error("Compare filename extension mismatch!".red);
       return 1;
     }
 
@@ -171,7 +174,7 @@ export default function (filename_output, filename_expected, compareValues = 1) 
     else if (ext1 === '.txt')
       return compareText(output, expected, compareValues);
     else {
-      console.error("compare unknown file extension");
+      console.error("compare unknown file extension".red);
       return 1;
     }
   }
